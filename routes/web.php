@@ -14,6 +14,10 @@ use App\Http\Livewire\StaticSignIn;
 use App\Http\Livewire\StaticSignUp;
 use App\Http\Livewire\Rtl;
 
+use App\Http\Livewire\Admin\Quotes;
+use App\Http\Livewire\Admin\EditQuote;
+use App\Http\Livewire\Admin\ViewQuote;
+
 use App\Http\Livewire\LaravelExamples\UserProfile;
 use App\Http\Livewire\LaravelExamples\UserManagement;
 
@@ -36,7 +40,7 @@ Route::get('/sign-up', SignUp::class)->name('sign-up');
 Route::get('/login', Login::class)->name('login');
 
 Route::get('/login/forgot-password', ForgotPassword::class)->name('forgot-password');
- 
+
 Route::get('/reset-password/{id}',ResetPassword::class)->name('reset-password')->middleware('signed');
 
 Route::middleware('auth')->group(function () {
@@ -49,5 +53,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/rtl', Rtl::class)->name('rtl');
     Route::get('/laravel-user-profile', UserProfile::class)->name('user-profile');
     Route::get('/laravel-user-management', UserManagement::class)->name('user-management');
+
+    Route::get('/quotes', Quotes::class)->name('cotizaciones');
+    Route::get('/edit-quote', EditQuote::class)->name('editar-cotizacion');
+    Route::get('/view-quote', ViewQuote::class)->name('ver-cotizacion');
+
 });
 

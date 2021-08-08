@@ -52,8 +52,9 @@
                   <p class="mb-0 text-secondary">
                       Copyright © {{ now()->year }} Developed with love by <a style="color: #252f40;" href="https://larepaweb.com.ve"
                           class="font-weight-bold ml-1" target="_blank">Arepa Web Group</a>
+                  </p>
               </div>
-              </p>
+
           </div>
       </div>
       </div>
