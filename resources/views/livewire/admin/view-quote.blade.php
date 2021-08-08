@@ -49,18 +49,18 @@
 
 </div>
 
-      <div class="row">
+<div class="row">
 
             <div class="nav-wrapper position-relative end-0">
-            <ul class="nav nav-pills nav-fill p-1" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link mb-0 px-0 py-1 active"  href="{{ route('cotizaciones' )}}" role="tab" aria-controls="profile" aria-selected="true">
-                    Regresar
-                    </a>
-                </li>
+                <ul class="nav nav-pills nav-fill p-1" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link mb-0 px-0 py-1 active"  href="{{ route('cotizaciones' )}}" role="tab" aria-controls="profile" aria-selected="true">
+                        Regresar
+                        </a>
+                    </li>
 
                 </ul>
             </div>
 
-      </div>
+</div>
 

@@ -18,6 +18,11 @@ use App\Http\Livewire\Admin\Quotes;
 use App\Http\Livewire\Admin\EditQuote;
 use App\Http\Livewire\Admin\ViewQuote;
 
+use App\Http\Livewire\Admin\Users\Users;
+use App\Http\Livewire\Admin\Users\EditUsers;
+use App\Http\Livewire\Admin\Users\ViewUsersI;
+use App\Http\Livewire\Admin\Users\ViewUsersE;
+
 use App\Http\Livewire\LaravelExamples\UserProfile;
 use App\Http\Livewire\LaravelExamples\UserManagement;
 
@@ -57,6 +62,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/quotes', Quotes::class)->name('cotizaciones');
     Route::get('/edit-quote', EditQuote::class)->name('editar-cotizacion');
     Route::get('/view-quote', ViewQuote::class)->name('ver-cotizacion');
+
+    Route::get('/users', Users::class)->name('usuarios');
+    Route::get('/edit-user', EditUsers::class)->name('editar-usuario');
+    Route::get('/view-user', ViewUsersI::class)->name('ver-usuario');
+    Route::get('/view-user', ViewUsersE::class)->name('ver-usuario');
 
 });
 

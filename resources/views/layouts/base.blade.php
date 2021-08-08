@@ -39,6 +39,11 @@
     <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css" rel="stylesheet" />
     <!-- Alpine -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+
+    {{-- fullcalendar --}}
+    <link href='../assets/css/fullcalendar/main.css' rel='stylesheet' />
+    <script src='../assets/js/fullcalendar/main.js'></script>
+
     @livewireStyles
 
 </head>
@@ -65,6 +70,18 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.2"></script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth'
+        });
+        calendar.render();
+      });
+
+    </script>
+
     @livewireScripts
 </body>
 

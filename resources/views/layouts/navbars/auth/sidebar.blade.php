@@ -45,8 +45,8 @@
             </li>
 
             <li class="nav-item pb-2">
-                <a class="nav-link {{ Route::currentRouteName() == 'user-management' ? 'active' : '' }}"
-                    href="{{ route('user-management') }}">
+                <a class="nav-link {{ Route::currentRouteName() == 'usuarios' ? 'active' : '' }}"
+                    href="{{ route('usuarios') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1"
@@ -75,6 +75,7 @@
                     <span class="nav-link-text ms-1">Usuarios</span>
                 </a>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link {{ Route::currentRouteName() == 'cotizaciones' ? 'active' : '' }}"
                     href="{{ route('cotizaciones') }}">
@@ -86,8 +87,7 @@
 								 M16.344,17.394c0,0.314-0.254,0.569-0.568,0.569H4.4c-0.314,0-0.568-0.255-0.568-0.569V2.606c0-0.314,0.254-0.568,0.568-0.568
 								h7.394v4.55h4.55V17.394z"></path>
 						</svg>
-                        <i class="fa fa-address-book p-3 cursor-pointer text-secondary opacity-5 position-absolute right-0 top-0 d-none d-xl-none"
-            aria-hidden="true" id="iconSidenav"></i>
+                        <i class="fa fa-address-book p-3 cursor-pointer text-secondary opacity-5 position-absolute right-0 top-0 d-none d-xl-none"             aria-hidden="true" id="iconSidenav"></i>
                     </div>
                     <span class="nav-link-text ms-1">Cotizaciones</span>
                 </a>
