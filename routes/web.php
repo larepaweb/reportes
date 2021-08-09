@@ -31,6 +31,14 @@ use App\Http\Livewire\Admin\Tasks\Tasks;
 use App\Http\Livewire\Admin\Tasks\EditTasks;
 use App\Http\Livewire\Admin\Tasks\ViewTasks;
 
+use App\Http\Livewire\Admin\Services\Services;
+use App\Http\Livewire\Admin\Services\EditServices;
+use App\Http\Livewire\Admin\Services\ViewServices;
+
+use App\Http\Livewire\Admin\Mantains\Mantains;
+use App\Http\Livewire\Admin\Mantains\EditMantains;
+use App\Http\Livewire\Admin\Mantains\ViewMantains;
+
 use App\Http\Livewire\Admin\Config;
 
 
@@ -86,6 +94,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/tasks', Tasks::class)->name('tareas');
     Route::get('/edit-tasks', EditTasks::class)->name('editar-tarea');
     Route::get('/view-tasks', ViewTasks::class)->name('ver-tarea');
+
+    Route::get('/services', Services::class)->name('servicios');
+    Route::get('/edit-service', EditServices::class)->name('editar-servicio');
+    Route::get('/view-service', ViewServices::class)->name('ver-servicio');
+
+    Route::get('/mantains', Mantains::class)->name('mantenimientos');
+    Route::get('/edit-mantain', EditMantains::class)->name('editar-mantenimientos');
+    Route::get('/view-mantain', ViewMantains::class)->name('ver-mantenimientos');
 
 
     Route::get('/config', Config::class)->name('configuracion');

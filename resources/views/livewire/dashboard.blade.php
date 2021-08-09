@@ -1,4 +1,5 @@
- <main>
+<main>
+    <div class="container-fluid py-4">
 
      <div id='calendar'></div>
 
@@ -617,7 +618,9 @@
         </div>
       </div>
     </div> --}}
-  </main>
+
+    </div>
+</main>
 
   <!--   Core JS Files   -->
   <script src="../assets/js/plugins/chartjs.min.js"></script>
