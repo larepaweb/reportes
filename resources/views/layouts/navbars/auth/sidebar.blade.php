@@ -222,8 +222,8 @@
 
 
             <li class="nav-item">
-                <a class="nav-link {{ Route::currentRouteName() == 'profile' ? 'active' : '' }}"
-                    href="{{ route('profile') }}">
+                <a class="nav-link {{ Route::currentRouteName() == 'configuracion' ? 'active' : '' }}"
+                    href="{{ route('configuracion') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                           <svg width="12px" height="12px" class="svg-icon" viewBox="0 0 20 20">

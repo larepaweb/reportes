@@ -31,6 +31,9 @@ use App\Http\Livewire\Admin\Tasks\Tasks;
 use App\Http\Livewire\Admin\Tasks\EditTasks;
 use App\Http\Livewire\Admin\Tasks\ViewTasks;
 
+use App\Http\Livewire\Admin\Config;
+
+
 use App\Http\Livewire\LaravelExamples\UserProfile;
 use App\Http\Livewire\LaravelExamples\UserManagement;
 
@@ -83,6 +86,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/tasks', Tasks::class)->name('tareas');
     Route::get('/edit-tasks', EditTasks::class)->name('editar-tarea');
     Route::get('/view-tasks', ViewTasks::class)->name('ver-tarea');
+
+
+    Route::get('/config', Config::class)->name('configuracion');
 
 });
 
