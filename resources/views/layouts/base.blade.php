@@ -41,8 +41,38 @@
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
     {{-- fullcalendar --}}
+    <script src='https://cdn.jsdelivr.net/npm/moment@2.27.0/min/moment.min.js'></script>
     <link href='../assets/css/fullcalendar/main.css' rel='stylesheet' />
     <script src='../assets/js/fullcalendar/main.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/moment@5.5.0/main.global.min.js'></script>
+    <script src='../assets/js/fullcalendar/lang/es.js'></script>
+    <script>
+
+    $(function() {
+
+        $('#calendar').fullCalendar({
+        });
+
+    });
+
+    </script>
+
+    {{-- fileinput --}}
+    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/> --}}
+    <style type="text/css">
+        .main-section{
+            margin:0 auto;
+            padding: 20px;
+            margin-top: 100px;
+            background-color: #fff;
+            box-shadow: 0px 0px 20px #c1c1c1;
+        }
+        .fileinput-remove,
+        .fileinput-upload{
+            display: none;
+        }
+    </style>
+
 
     @livewireStyles
 
@@ -51,6 +81,8 @@
 <body class="g-sidenav-show bg-gray-100">
 
     {{ $slot }}
+
+
 
     <!--   Core JS Files   -->
     <script src="../assets/js/core/popper.min.js"></script>
@@ -70,7 +102,7 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.2"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.js" integrity="sha512-+ruHlyki4CepPr07VklkX/KM5NXdD16K1xVwSva5VqOVbsotyCQVKEwdQ1tAeo3UkHCXfSMtKU/mZpKjYqkxZA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
@@ -79,6 +111,9 @@
         });
         calendar.render();
       });
+
+
+
 
     </script>
 

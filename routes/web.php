@@ -14,14 +14,22 @@ use App\Http\Livewire\StaticSignIn;
 use App\Http\Livewire\StaticSignUp;
 use App\Http\Livewire\Rtl;
 
-use App\Http\Livewire\Admin\Quotes;
-use App\Http\Livewire\Admin\EditQuote;
-use App\Http\Livewire\Admin\ViewQuote;
+use App\Http\Livewire\Admin\Quotes\Quotes;
+use App\Http\Livewire\Admin\Quotes\EditQuote;
+use App\Http\Livewire\Admin\Quotes\ViewQuote;
 
 use App\Http\Livewire\Admin\Users\Users;
 use App\Http\Livewire\Admin\Users\EditUsers;
 use App\Http\Livewire\Admin\Users\ViewUsersI;
 use App\Http\Livewire\Admin\Users\ViewUsersE;
+
+use App\Http\Livewire\Admin\Products\Products;
+use App\Http\Livewire\Admin\Products\EditProducts;
+use App\Http\Livewire\Admin\Products\ViewProducts;
+
+use App\Http\Livewire\Admin\Tasks\Tasks;
+use App\Http\Livewire\Admin\Tasks\EditTasks;
+use App\Http\Livewire\Admin\Tasks\ViewTasks;
 
 use App\Http\Livewire\LaravelExamples\UserProfile;
 use App\Http\Livewire\LaravelExamples\UserManagement;
@@ -67,6 +75,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/edit-user', EditUsers::class)->name('editar-usuario');
     Route::get('/view-user', ViewUsersI::class)->name('ver-usuario');
     Route::get('/view-user', ViewUsersE::class)->name('ver-usuario');
+
+    Route::get('/products', Products::class)->name('productos');
+    Route::get('/edit-product', EditProducts::class)->name('editar-producto');
+    Route::get('/view-product', ViewProducts::class)->name('ver-producto');
+
+    Route::get('/tasks', Tasks::class)->name('tareas');
+    Route::get('/edit-tasks', EditTasks::class)->name('editar-tarea');
+    Route::get('/view-tasks', ViewTasks::class)->name('ver-tarea');
 
 });
 
