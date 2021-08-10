@@ -48,12 +48,12 @@
     <script src='../assets/js/fullcalendar/lang/es.js'></script>
     <script>
 
-    $(function() {
+    // $(function() {
 
-        $('#calendar').fullCalendar({
-        });
+    //     $('#calendar').fullCalendar({
+    //     });
 
-    });
+    // });
 
     </script>
 

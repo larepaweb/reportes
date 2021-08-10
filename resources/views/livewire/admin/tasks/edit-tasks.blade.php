@@ -87,6 +87,19 @@
                             </div>
 
 
+                        <div class="row">
+
+                            <div class="form-group form-check form-switch ps-0">
+
+                                <input class="form-check-input ms-auto" type="checkbox" id="flexSwitchCheckDefault"
+                                    onchange='changeDiv(this);'  >
+                                <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0"
+                                    for="flexSwitchCheckDefault">Cambiar estado de la tarea <b>Pendiente / Terminada</b></label>
+                            </div>
+
+                        </div>
+
+
 
                             <div class="d-flex justify-content-end">
                                 <button type="submit" class="btn bg-gradient-dark btn-md mt-4 mb-4">{{ 'Crear Tarea' }}</button>

@@ -363,9 +363,18 @@
 
                         <div class="form-group">
                             <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="fcustomCheck1" >
-                            <label class="custom-control-label" for="customCheck1">¿Se dejaron herramientas?</label>
+                            <input class="form-check-input" type="checkbox" onchange='ShowToolsInput(this);' value="0" id="fcustomCheck1" >
+                            <label class="custom-control-label" for="customCheck1" >¿Se dejaron herramientas?</label>
                             </div>
+                        </div>
+
+                        <div class="form-group" id="tools" hidden="hidden">
+                            <label for="about">{{ 'Listado de herramientas' }}</label>
+                            <div class="@error('user.about')border border-danger rounded-3 @enderror" >
+                                <textarea wire:model="user.about" class="form-control" id="about" rows="3"
+                                    placeholder="Indique herramientas"></textarea>
+                            </div>
+                            @error('user.about') <div class="text-danger">{{ $message }}</div> @enderror
                         </div>
 
 
@@ -386,6 +395,32 @@
 
     </div>
  </main>
+
+
+ <script>
+
+
+function ShowToolsInput(){
+
+
+
+  if (!document.getElementById('tools').hidden){
+
+      document.getElementById('tools').hidden = "hidden";
+
+  }else {
+
+      document.getElementById('tools').hidden = "";
+
+  }
+
+
+}
+
+
+
+
+ </script>
 
 
 

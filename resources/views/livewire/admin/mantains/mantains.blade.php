@@ -283,7 +283,7 @@
 
                                             <div class="form-group">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="fcustomCheck1" >
+                                                <input class="form-check-input" id="check1" type="checkbox" onchange='Show1(this);' value="" id="fcustomCheck1" >
                                                 <label class="custom-control-label" for="customCheck1">Activar este servicio</label>
                                                 </div>
                                             </div>
@@ -292,173 +292,173 @@
 
                                             <div class="form-group form-inline">
                                                 <label for="user-email" >{{ __('Cantidad') }}</label>
-                                                    <input  class="form-control" type="number">
+                                                    <input  class="form-control" id="man1" type="number" disabled>
                                             </div>
 
                                             <div class="form-group">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="fcustomCheck1" checked>
+                                                <input class="form-check-input" type="checkbox" value="" id="man2" checked disabled>
                                                 <label class="custom-control-label" for="customCheck1">La hora y fecha del sistema están sincronizadas</label>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="fcustomCheck1" checked>
+                                                <input class="form-check-input" type="checkbox" value="" id="man3" checked disabled>
                                                 <label class="custom-control-label" for="customCheck1">El Disco duro aún tiene espacio libre para operar</label>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="fcustomCheck1" checked>
+                                                <input class="form-check-input" type="checkbox" value="" id="man4" checked disabled>
                                                 <label class="custom-control-label" for="customCheck1">El botón de encendido y reset funcionan correctamente</label>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="fcustomCheck1" checked>
+                                                <input class="form-check-input" type="checkbox" value="" id="man5" checked disabled>
                                                 <label class="custom-control-label" for="customCheck1">Se realizo chequeo con antivirus</label>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="fcustomCheck1" checked>
+                                                <input class="form-check-input" type="checkbox" value="" id="man6" checked disabled>
                                                 <label class="custom-control-label" for="customCheck1">Revisión de lectoras de proximidad RFID</label>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="fcustomCheck1" checked>
+                                                <input class="form-check-input" type="checkbox" value="" id="man7" checked disabled>
                                                 <label class="custom-control-label" for="customCheck1">Se revisó el firewall de Windows</label>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="fcustomCheck1" checked>
+                                                <input class="form-check-input" type="checkbox" value="" id="man8" checked disabled>
                                                 <label class="custom-control-label" for="customCheck1">El sistema genera mensajes de voz en español</label>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="fcustomCheck1" checked>
+                                                <input class="form-check-input" type="checkbox" value="" id="man9" checked disabled>
                                                 <label class="custom-control-label" for="customCheck1">Revisión del software Bioscan</label>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="fcustomCheck1" checked>
+                                                <input class="form-check-input" type="checkbox" value="" id="man10" checked disabled>
                                                 <label class="custom-control-label" for="customCheck1">Se realizó backup de base de datos</label>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="fcustomCheck1" checked>
+                                                <input class="form-check-input" type="checkbox" value="" id="man11" checked disabled>
                                                 <label class="custom-control-label" for="customCheck1">Las bocinas funcionan correctamente</label>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="fcustomCheck1" checked>
+                                                <input class="form-check-input" type="checkbox" value="" id="man12" checked disabled>
                                                 <label class="custom-control-label" for="customCheck1"> El teclado se encuentra en buen estado</label>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="fcustomCheck1" checked>
+                                                <input class="form-check-input" type="checkbox" value="" id="man13" checked disabled>
                                                 <label class="custom-control-label" for="customCheck1">El mouse se encuentra en buen estado</label>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="fcustomCheck1" checked>
+                                                <input class="form-check-input" type="checkbox" value="" id="man14" checked disabled>
                                                 <label class="custom-control-label" for="customCheck1"> El lector biométrico funciona correctamente</label>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="fcustomCheck1" checked>
+                                                <input class="form-check-input" type="checkbox" value="" id="man15" checked disabled>
                                                 <label class="custom-control-label" for="customCheck1">La cámara Webcam funciona correctamente</label>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="fcustomCheck1" checked>
+                                                <input class="form-check-input" type="checkbox" value="" id="man16" checked disabled>
                                                 <label class="custom-control-label" for="customCheck1">Se chequeo la tarjeta de red y conector rj45</label>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="fcustomCheck1" checked>
+                                                <input class="form-check-input" type="checkbox" value="" id="man17" checked disabled>
                                                 <label class="custom-control-label" for="customCheck1">La tarjeta telefónica realiza llamadas correctamente</label>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="fcustomCheck1" checked>
+                                                <input class="form-check-input" type="checkbox" value="" id="man18" checked disabled>
                                                 <label class="custom-control-label" for="customCheck1">La conexión de red funciona correctamente</label>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="fcustomCheck1" checked>
+                                                <input class="form-check-input" type="checkbox" value="" id="man19" checked disabled>
                                                 <label class="custom-control-label" for="customCheck1"> El UPS funciona correctamente</label>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="fcustomCheck1" checked>
+                                                <input class="form-check-input" type="checkbox" value="" id="man20" checked disabled>
                                                 <label class="custom-control-label" for="customCheck1">Los transformadores funcionan correctamente</label>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="fcustomCheck1" checked>
+                                                <input class="form-check-input" type="checkbox" value="" id="man21" checked disabled>
                                                 <label class="custom-control-label" for="customCheck1">El regulador de voltaje funciona correctamente</label>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="fcustomCheck1" checked>
+                                                <input class="form-check-input" type="checkbox" value="" id="man22" checked disabled>
                                                 <label class="custom-control-label" for="customCheck1">La regleta de corriente funciona correctamente</label>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="fcustomCheck1" checked>
+                                                <input class="form-check-input" type="checkbox" value="" id="man23" checked disabled>
                                                 <label class="custom-control-label" for="customCheck1">El panel de acceso apertura correctamente</label>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="fcustomCheck1" checked>
+                                                <input class="form-check-input" type="checkbox" value="" id="man24" checked disabled>
                                                 <label class="custom-control-label" for="customCheck1">Se realizó limpieza interna y externa del equipo</label>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="fcustomCheck1" checked>
+                                                <input class="form-check-input" type="checkbox" value="" id="man25" checked disabled>
                                                 <label class="custom-control-label" for="customCheck1">Se revisó el firewall de Windows</label>
                                                 </div>
                                             </div>
@@ -468,8 +468,8 @@
                                             <div class="form-group">
                                                 <label for="about">{{ 'Comentario' }}</label>
                                                 <div class="@error('user.about')border border-danger rounded-3 @enderror">
-                                                    <textarea wire:model="user.about" class="form-control" id="about" rows="3"
-                                                        placeholder="Agregue comentarios adicionales"></textarea>
+                                                    <textarea wire:model="user.about" class="form-control" id="man26" rows="3"
+                                                        placeholder="Agregue comentarios adicionales" disabled></textarea>
                                                 </div>
                                                 @error('user.about') <div class="text-danger">{{ $message }}</div> @enderror
                                             </div>
@@ -952,66 +952,6 @@
 
                         </div>
 
-
-                        {{-- <div class="form-group">
-                            <label for="about">{{ 'Descripción del servicio' }}</label>
-                            <div class="@error('user.about')border border-danger rounded-3 @enderror">
-                                <textarea wire:model="user.about" class="form-control" id="about" rows="3"
-                                    placeholder="Especifique los detalles del servicio"></textarea>
-                            </div>
-                            @error('user.about') <div class="text-danger">{{ $message }}</div> @enderror
-                        </div>
-
-                        <div class="row" >
-                             <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="user-name" class="form-control-label">{{ __('Visita') }}</label>
-                                    <div class="@error('user.name')border border-danger rounded-3 @enderror" id="user-name">
-                                        <select wire:model="user.name" class="form-control" >
-                                            <option selected>Seleccione tipo de visita</option>
-                                            <option value="1">Unica</option>
-                                            <option value="2">Complementaria</option>
-                                            <option value="3">Garantia</option>
-                                        </select>
-
-                                    </div>
-                                    @error('user.name') <div class="text-danger">{{ $message }}</div> @enderror
-                                </div>
-                            </div>
-                          <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="user-name" class="form-control-label">{{ __('Hora entrada') }}</label>
-                                    <div class="@error('user.name')border border-danger rounded-3 @enderror" id="user-name">
-                                        <input type="time" class="form-control" name="" id="">
-
-                                    </div>
-                                    @error('user.name') <div class="text-danger">{{ $message }}</div> @enderror
-                                </div>
-                            </div>
-                          <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="user-name" class="form-control-label">{{ __('Hora Salida') }}</label>
-                                    <div class="@error('user.name')border border-danger rounded-3 @enderror" id="user-name">
-                                        <input type="time" class="form-control" name="" id="">
-
-                                    </div>
-                                    @error('user.name') <div class="text-danger">{{ $message }}</div> @enderror
-                                </div>
-                            </div>
-
-                        </div>
-
-
-
-
-                        <div class="form-group">
-                            <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="fcustomCheck1" >
-                            <label class="custom-control-label" for="customCheck1">¿Se dejaron herramientas?</label>
-                            </div>
-                        </div> --}}
-
-
                         <div class="d-flex justify-content-end">
                             <button type="submit" class="btn bg-gradient-dark btn-md mt-4 mb-4">{{ 'Crear Tarea' }}</button>
                         </div>
@@ -1025,6 +965,79 @@
 
     </div>
  </main>
+
+ <script>
+
+
+        function Show1(){
+
+
+
+        if (document.getElementById('check1').checked){
+
+            document.getElementById('man1').removeAttribute('disabled');
+            document.getElementById('man2').removeAttribute('disabled');
+            document.getElementById('man3').removeAttribute('disabled');
+            document.getElementById('man4').removeAttribute('disabled');
+            document.getElementById('man5').removeAttribute('disabled');
+            document.getElementById('man6').removeAttribute('disabled');
+            document.getElementById('man7').removeAttribute('disabled');
+            document.getElementById('man8').removeAttribute('disabled');
+            document.getElementById('man9').removeAttribute('disabled');
+            document.getElementById('man10').removeAttribute('disabled');
+            document.getElementById('man11').removeAttribute('disabled');
+            document.getElementById('man12').removeAttribute('disabled');
+            document.getElementById('man13').removeAttribute('disabled');
+            document.getElementById('man14').removeAttribute('disabled');
+            document.getElementById('man15').removeAttribute('disabled');
+            document.getElementById('man16').removeAttribute('disabled');
+            document.getElementById('man17').removeAttribute('disabled');
+            document.getElementById('man18').removeAttribute('disabled');
+            document.getElementById('man19').removeAttribute('disabled');
+            document.getElementById('man20').removeAttribute('disabled');
+            document.getElementById('man21').removeAttribute('disabled');
+            document.getElementById('man22').removeAttribute('disabled');
+            document.getElementById('man23').removeAttribute('disabled');
+            document.getElementById('man24').removeAttribute('disabled');
+            document.getElementById('man25').removeAttribute('disabled');
+            document.getElementById('man26').removeAttribute('disabled');
+
+        }else {
+
+            document.getElementById('man1').setAttribute("disabled", true);
+            document.getElementById('man2').setAttribute("disabled", true);
+            document.getElementById('man3').setAttribute("disabled", true);
+            document.getElementById('man4').setAttribute("disabled", true);
+            document.getElementById('man5').setAttribute("disabled", true);
+            document.getElementById('man6').setAttribute("disabled", true);
+            document.getElementById('man7').setAttribute("disabled", true);
+            document.getElementById('man8').setAttribute("disabled", true);
+            document.getElementById('man9').setAttribute("disabled", true);
+            document.getElementById('man10').setAttribute("disabled", true);
+            document.getElementById('man11').setAttribute("disabled", true);
+            document.getElementById('man12').setAttribute("disabled", true);
+            document.getElementById('man13').setAttribute("disabled", true);
+            document.getElementById('man14').setAttribute("disabled", true);
+            document.getElementById('man15').setAttribute("disabled", true);
+            document.getElementById('man16').setAttribute("disabled", true);
+            document.getElementById('man17').setAttribute("disabled", true);
+            document.getElementById('man18').setAttribute("disabled", true);
+            document.getElementById('man19').setAttribute("disabled", true);
+            document.getElementById('man20').setAttribute("disabled", true);
+            document.getElementById('man21').setAttribute("disabled", true);
+            document.getElementById('man22').setAttribute("disabled", true);
+            document.getElementById('man23').setAttribute("disabled", true);
+            document.getElementById('man24').setAttribute("disabled", true);
+            document.getElementById('man25').setAttribute("disabled", true);
+            document.getElementById('man26').setAttribute("disabled", true);
+
+
+        }
+
+
+        }
+
+ </script>
 
 
 
