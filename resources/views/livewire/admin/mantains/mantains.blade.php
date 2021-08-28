@@ -46,30 +46,15 @@
                         </div>
                         <div class="card-body pt-4 p-3">
                             <div class="table-responsive p-0">
-                                <table class="table align-items-center mb-0">
+
+                                <table id="example5" class=" nowrap" style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                ID
-                                            </th>
-
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Fecha
-                                            </th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Cliente
-                                            </th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Técnico
-                                            </th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Estatus
-                                            </th>
-
-
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-
-                                            </th>
+                                            <th  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
+                                            <th  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Fecha</th>
+                                            <th  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cliente</th>
+                                            <th  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Técnico</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -87,18 +72,22 @@
                                             <td class="text-center">
                                                 <p class="text-xs font-weight-bold mb-0">Steve Job</p>
                                             </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Pendiente</p>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <a href="{{route('editar-mantenimientos')}}" class="mx-3" data-bs-toggle="tooltip"
+                                            <td class="text-center"> <a href="{{route('editar-mantenimientos')}}" class="mx-3" data-bs-toggle="tooltip"
                                                     data-bs-original-title="Editar">
                                                     <i class="fas fa-user-edit text-secondary"></i>
                                                 </a>
-                                                <a href="{{route('ver-mantenimientos')}}" data-bs-toggle="tooltip"
+                                                <a href="{{route('ver-mantenimientos')}}"  data-bs-toggle="tooltip"
                                                     data-bs-original-title="Ver">
                                                     <i class="cursor-pointer far fa-eye text-secondary"></i>
+                                                </a>
+                                                <a onclick="confirmar()" class="mx-3" data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Enviar boleta">
+                                                    <i class="far fa-envelope text-secondary "></i>
+                                                </a>
+
+                                                <a  href=""  data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Eliminar">
+                                                    <i class="far fa-trash-alt text-secondary "></i>
                                                 </a>
                                             </td>
                                         </tr>
@@ -117,17 +106,21 @@
                                                 <p class="text-xs font-weight-bold mb-0">Steve Job</p>
                                             </td>
                                             <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Terminado</p>
-                                            </td>
-
-                                            <td class="text-center">
                                                 <a href="{{route('editar-mantenimientos')}}" class="mx-3" data-bs-toggle="tooltip"
                                                     data-bs-original-title="Editar">
                                                     <i class="fas fa-user-edit text-secondary"></i>
                                                 </a>
-                                                <a href="{{route('ver-mantenimientos')}}" data-bs-toggle="tooltip"
+                                                <a href="{{route('ver-mantenimientos')}}"  data-bs-toggle="tooltip"
                                                     data-bs-original-title="Ver">
                                                     <i class="cursor-pointer far fa-eye text-secondary"></i>
+                                                </a>
+                                                <a onclick="confirmar()" class="mx-3" data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Enviar boleta">
+                                                    <i class="far fa-envelope text-secondary "></i>
+                                                </a>
+                                                <a href=""   data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Eliminar">
+                                                    <i class="far fa-trash-alt text-secondary "></i>
                                                 </a>
                                             </td>
                                         </tr>
@@ -146,21 +139,24 @@
                                                 <p class="text-xs font-weight-bold mb-0">Steve Job</p>
                                             </td>
                                             <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Pendiente</p>
-                                            </td>
-
-                                            <td class="text-center">
                                                 <a href="{{route('editar-mantenimientos')}}" class="mx-3" data-bs-toggle="tooltip"
                                                     data-bs-original-title="Editar">
                                                     <i class="fas fa-user-edit text-secondary"></i>
                                                 </a>
-                                                <a href="{{route('ver-mantenimientos')}}" data-bs-toggle="tooltip"
+                                                <a href="{{route('ver-mantenimientos')}}"  data-bs-toggle="tooltip"
                                                     data-bs-original-title="Ver">
                                                     <i class="cursor-pointer far fa-eye text-secondary"></i>
                                                 </a>
+                                                <a onclick="confirmar()" class="mx-3" data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Enviar boleta">
+                                                    <i class="far fa-envelope text-secondary "></i>
+                                                </a>
+                                                <a href=""   data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Eliminar">
+                                                    <i class="far fa-trash-alt text-secondary "></i>
+                                                </a>
                                             </td>
                                         </tr>
-
                                         <tr>
                                             <td class="ps-4">
                                                 <p class="text-xs font-weight-bold mb-0">4</p>
@@ -176,22 +172,66 @@
                                                 <p class="text-xs font-weight-bold mb-0">Steve Job</p>
                                             </td>
                                             <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Pendiente</p>
+                                                <a href="{{route('editar-mantenimientos')}}" class="mx-3" data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Editar">
+                                                    <i class="fas fa-user-edit text-secondary"></i>
+                                                </a>
+                                                <a href="{{route('ver-mantenimientos')}}"  data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Ver">
+                                                    <i class="cursor-pointer far fa-eye text-secondary"></i>
+                                                </a>
+                                                <a onclick="confirmar()" class="mx-3" data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Enviar boleta">
+                                                    <i class="far fa-envelope text-secondary "></i>
+                                                </a>
+                                                <a href=""   data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Eliminar">
+                                                    <i class="far fa-trash-alt text-secondary "></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                             <td class="ps-4">
+                                                <p class="text-xs font-weight-bold mb-0">4</p>
                                             </td>
 
+                                            <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">24/10/2021</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">Mark Twain</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">Steve Job</p>
+                                            </td>
                                             <td class="text-center">
                                                 <a href="{{route('editar-mantenimientos')}}" class="mx-3" data-bs-toggle="tooltip"
                                                     data-bs-original-title="Editar">
                                                     <i class="fas fa-user-edit text-secondary"></i>
                                                 </a>
-                                                <a href="{{route('ver-mantenimientos')}}" data-bs-toggle="tooltip"
+                                                <a href="{{route('ver-mantenimientos')}}"  data-bs-toggle="tooltip"
                                                     data-bs-original-title="Ver">
                                                     <i class="cursor-pointer far fa-eye text-secondary"></i>
                                                 </a>
+                                                <a onclick="confirmar()" class="mx-3" data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Enviar boleta">
+                                                    <i class="far fa-envelope text-secondary "></i>
+                                                </a>
+
+                                                <a href=""  data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Eliminar">
+                                                    <i class="far fa-trash-alt text-secondary "></i>
+                                                </a>
                                             </td>
+
+
                                         </tr>
+
                                     </tbody>
+
                                 </table>
+
+
                             </div>
                         </div>
                     </div>
@@ -202,7 +242,8 @@
         <div role="tabpanel" class="row mt-4  tab-pane fade" id ="metaTab">
             <div class="card">
                 <div class="card-header pb-0 px-3">
-                    <h6 class="mb-0">{{ __('Detalles de boleta de mantenimiento') }}</h6>
+                    <h6 class="mb-0" style="float:left">{{ __('Detalles de boleta de mantenimiento') }}</h6>
+                    <h6 class="mb-0" style="float:right">Correlativo Nro. XXXX</h6>
                 </div>
                 <div class="card-body pt-4 p-3">
 
@@ -255,10 +296,21 @@
                                 </div>
                             </div>
                           <div class="col-md-4">
+
+                                    <?php
+
+                                        $month = date('m');
+                                        $day = date('d');
+                                        $year = date('Y');
+
+                                        $today = $year . '-' . $month . '-' . $day;
+                                    ?>
+
                                 <div class="form-group">
                                     <label for="user-name" class="form-control-label">{{ __('Fecha') }}</label>
                                     <div class="@error('user.name')border border-danger rounded-3 @enderror" id="user-name">
-                                        <input type="date" class="form-control" name="" id="">
+                                        <input type="date" class="form-control" name="" value="<?php echo $today; ?>" id="dateMantain">
+
 
                                     </div>
                                     @error('user.name') <div class="text-danger">{{ $message }}</div> @enderror
@@ -933,8 +985,8 @@
                              <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="user-name" class="form-control-label">{{ __('Imagen de servicio completado') }}</label>
-                                    <div class="@error('user.name')border border-danger rounded-3 @enderror" id="user-name">
-                                        <input type="file" name="" id="">
+                                    <div class="file-loading @error('user.name')border border-danger rounded-3 @enderror" id="user-name">
+                                        <input type="file" name="read_img" multiple class="file" data-overwrite-initial="false" data-min-file-count="2">
 
                                     </div>
                                     @error('user.name') <div class="text-danger">{{ $message }}</div> @enderror
@@ -969,73 +1021,162 @@
  <script>
 
 
-        function Show1(){
+    function Show1(){
 
 
 
-        if (document.getElementById('check1').checked){
+            if (document.getElementById('check1').checked){
 
-            document.getElementById('man1').removeAttribute('disabled');
-            document.getElementById('man2').removeAttribute('disabled');
-            document.getElementById('man3').removeAttribute('disabled');
-            document.getElementById('man4').removeAttribute('disabled');
-            document.getElementById('man5').removeAttribute('disabled');
-            document.getElementById('man6').removeAttribute('disabled');
-            document.getElementById('man7').removeAttribute('disabled');
-            document.getElementById('man8').removeAttribute('disabled');
-            document.getElementById('man9').removeAttribute('disabled');
-            document.getElementById('man10').removeAttribute('disabled');
-            document.getElementById('man11').removeAttribute('disabled');
-            document.getElementById('man12').removeAttribute('disabled');
-            document.getElementById('man13').removeAttribute('disabled');
-            document.getElementById('man14').removeAttribute('disabled');
-            document.getElementById('man15').removeAttribute('disabled');
-            document.getElementById('man16').removeAttribute('disabled');
-            document.getElementById('man17').removeAttribute('disabled');
-            document.getElementById('man18').removeAttribute('disabled');
-            document.getElementById('man19').removeAttribute('disabled');
-            document.getElementById('man20').removeAttribute('disabled');
-            document.getElementById('man21').removeAttribute('disabled');
-            document.getElementById('man22').removeAttribute('disabled');
-            document.getElementById('man23').removeAttribute('disabled');
-            document.getElementById('man24').removeAttribute('disabled');
-            document.getElementById('man25').removeAttribute('disabled');
-            document.getElementById('man26').removeAttribute('disabled');
+                document.getElementById('man1').removeAttribute('disabled');
+                document.getElementById('man2').removeAttribute('disabled');
+                document.getElementById('man3').removeAttribute('disabled');
+                document.getElementById('man4').removeAttribute('disabled');
+                document.getElementById('man5').removeAttribute('disabled');
+                document.getElementById('man6').removeAttribute('disabled');
+                document.getElementById('man7').removeAttribute('disabled');
+                document.getElementById('man8').removeAttribute('disabled');
+                document.getElementById('man9').removeAttribute('disabled');
+                document.getElementById('man10').removeAttribute('disabled');
+                document.getElementById('man11').removeAttribute('disabled');
+                document.getElementById('man12').removeAttribute('disabled');
+                document.getElementById('man13').removeAttribute('disabled');
+                document.getElementById('man14').removeAttribute('disabled');
+                document.getElementById('man15').removeAttribute('disabled');
+                document.getElementById('man16').removeAttribute('disabled');
+                document.getElementById('man17').removeAttribute('disabled');
+                document.getElementById('man18').removeAttribute('disabled');
+                document.getElementById('man19').removeAttribute('disabled');
+                document.getElementById('man20').removeAttribute('disabled');
+                document.getElementById('man21').removeAttribute('disabled');
+                document.getElementById('man22').removeAttribute('disabled');
+                document.getElementById('man23').removeAttribute('disabled');
+                document.getElementById('man24').removeAttribute('disabled');
+                document.getElementById('man25').removeAttribute('disabled');
+                document.getElementById('man26').removeAttribute('disabled');
 
-        }else {
+            }else {
 
-            document.getElementById('man1').setAttribute("disabled", true);
-            document.getElementById('man2').setAttribute("disabled", true);
-            document.getElementById('man3').setAttribute("disabled", true);
-            document.getElementById('man4').setAttribute("disabled", true);
-            document.getElementById('man5').setAttribute("disabled", true);
-            document.getElementById('man6').setAttribute("disabled", true);
-            document.getElementById('man7').setAttribute("disabled", true);
-            document.getElementById('man8').setAttribute("disabled", true);
-            document.getElementById('man9').setAttribute("disabled", true);
-            document.getElementById('man10').setAttribute("disabled", true);
-            document.getElementById('man11').setAttribute("disabled", true);
-            document.getElementById('man12').setAttribute("disabled", true);
-            document.getElementById('man13').setAttribute("disabled", true);
-            document.getElementById('man14').setAttribute("disabled", true);
-            document.getElementById('man15').setAttribute("disabled", true);
-            document.getElementById('man16').setAttribute("disabled", true);
-            document.getElementById('man17').setAttribute("disabled", true);
-            document.getElementById('man18').setAttribute("disabled", true);
-            document.getElementById('man19').setAttribute("disabled", true);
-            document.getElementById('man20').setAttribute("disabled", true);
-            document.getElementById('man21').setAttribute("disabled", true);
-            document.getElementById('man22').setAttribute("disabled", true);
-            document.getElementById('man23').setAttribute("disabled", true);
-            document.getElementById('man24').setAttribute("disabled", true);
-            document.getElementById('man25').setAttribute("disabled", true);
-            document.getElementById('man26').setAttribute("disabled", true);
-
-
-        }
+                document.getElementById('man1').setAttribute("disabled", true);
+                document.getElementById('man2').setAttribute("disabled", true);
+                document.getElementById('man3').setAttribute("disabled", true);
+                document.getElementById('man4').setAttribute("disabled", true);
+                document.getElementById('man5').setAttribute("disabled", true);
+                document.getElementById('man6').setAttribute("disabled", true);
+                document.getElementById('man7').setAttribute("disabled", true);
+                document.getElementById('man8').setAttribute("disabled", true);
+                document.getElementById('man9').setAttribute("disabled", true);
+                document.getElementById('man10').setAttribute("disabled", true);
+                document.getElementById('man11').setAttribute("disabled", true);
+                document.getElementById('man12').setAttribute("disabled", true);
+                document.getElementById('man13').setAttribute("disabled", true);
+                document.getElementById('man14').setAttribute("disabled", true);
+                document.getElementById('man15').setAttribute("disabled", true);
+                document.getElementById('man16').setAttribute("disabled", true);
+                document.getElementById('man17').setAttribute("disabled", true);
+                document.getElementById('man18').setAttribute("disabled", true);
+                document.getElementById('man19').setAttribute("disabled", true);
+                document.getElementById('man20').setAttribute("disabled", true);
+                document.getElementById('man21').setAttribute("disabled", true);
+                document.getElementById('man22').setAttribute("disabled", true);
+                document.getElementById('man23').setAttribute("disabled", true);
+                document.getElementById('man24').setAttribute("disabled", true);
+                document.getElementById('man25').setAttribute("disabled", true);
+                document.getElementById('man26').setAttribute("disabled", true);
 
 
-        }
+            }
+
+
+    }
+
+    $(document).ready(function() {
+
+
+        $('#example5').DataTable( {
+            dom: 'Bfrtip',
+            buttons: [
+
+            ],
+            bInfo: false,
+            "responsive": true,
+            "columnDefs": [
+            { "orderable": false, "targets": 4 }
+            ],
+            "language": {
+                     "sProcessing":    "Procesando...",
+                     "sLengthMenu":    "Mostrar _MENU_ registros",
+                     "sZeroRecords":   "No se encontraron resultados",
+                     "sEmptyTable":    "Ningún dato disponible en esta tabla",
+                     "sInfo":          "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                     "sInfoEmpty":     "Mostrando registros del 0 al 0 de un total de 0 registros",
+                     "sInfoFiltered":  "(filtrado de un total de _MAX_ registros)",
+                     "sInfoPostFix":   "",
+                     "sSearch":        "{{ __('Receipt No.') }}",
+                     "sUrl":           "",
+                     "sInfoThousands":  ",",
+                     "sLoadingRecords": "Cargando...",
+                     "search": "_INPUT_",
+                     "searchPlaceholder": "{{ __('Buscar') }}",
+                     "oPaginate": {
+                                   "sFirst":    "Primero",
+                                   "sLast":    "Último",
+                                   "sNext":    "Siguiente",
+                                   "sPrevious": "Anterior"
+                                   },
+                     "oAria": {
+                               "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                               "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                               }
+            },
+
+            initComplete: function () {
+
+                this.api().columns([2]).every( function () {
+
+                    var column = this;
+                    var select = $('<br><select><option value=""></option></select>')
+                        .appendTo( $(column.header()) )
+                        .on( 'change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex(
+                                $(this).val()
+                            );
+
+                            column
+                                .search( val ? '^'+val+'$' : '', true, false )
+                                .draw();
+                        } );
+
+                    column.data().unique().sort().each( function ( d, j ) {
+                        select.append( '<option value="'+j+'">'+d+'</option>' )
+                    } );
+                } );
+            }
+
+        } );
+
+
+    } );
+
+    function confirmar(){
+        Swal
+        .fire({
+
+            text: "¿Desea reenviar la Boleta de Servicio?",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonText: "Sí",
+            cancelButtonText: "Cancelar",
+        })
+        .then(resultado => {
+            if (resultado.value) {
+                // Hicieron click en "Sí"
+                console.log("*se elimina la venta*");
+            } else {
+                // Dijeron que no
+                console.log("*NO se elimina la venta*");
+            }
+        });
+    }
 
  </script>
 

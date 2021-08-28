@@ -45,7 +45,40 @@
     <link href='../assets/css/fullcalendar/main.css' rel='stylesheet' />
     <script src='../assets/js/fullcalendar/main.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/moment@5.5.0/main.global.min.js'></script>
-    <script src='../assets/js/fullcalendar/lang/es.js'></script>
+
+
+        {{-- datatables --}}
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.0.3/css/dataTables.dateTime.min.css">
+
+
+
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/datetime/1.0.3/js/dataTables.dateTime.min.js"></script>
+
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js"></script>
+
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
+
+
+    <link rel=”stylesheet” href=" https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
+
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
     <script>
 
     // $(function() {
@@ -80,6 +113,7 @@
 
 <body class="g-sidenav-show bg-gray-100">
 
+
     {{ $slot }}
 
 
@@ -103,14 +137,84 @@
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.2"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.js" integrity="sha512-+ruHlyki4CepPr07VklkX/KM5NXdD16K1xVwSva5VqOVbsotyCQVKEwdQ1tAeo3UkHCXfSMtKU/mZpKjYqkxZA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/js/fileinput.js" type="text/javascript"></script>
+
+
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth'
+
+        $("#file-1").fileinput({
+            theme: 'fa',
+            uploadUrl: "/image-view",
+            uploadExtraData: function() {
+                return {
+                    _token: $("input[name='_token']").val(),
+                };
+            },
+            allowedFileExtensions: ['jpg', 'png', 'gif', 'wav','ogg', '3gpp', 'mp3', 'mkv', 'aac', 'mp4', '3gp'],
+            overwriteInitial: false,
+            maxFileSize:5000,
+            maxFilesNum: 1,
+            slugCallback: function (filename) {
+                return filename.replace('(', '_').replace(']', '_');
+            }
         });
+
+
+      document.addEventListener('DOMContentLoaded', function() {
+
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth',
+          events: [
+                        {
+                        title: 'Event Title1',
+                        start: '2021-08-23T13:13:55.008',
+                        end: '2021-08-23T15:13:55.008',
+                        "color": "#000000"
+                        },
+                                               {
+                        title: 'Event Title4',
+                        start: '2021-08-23T13:13:55.008',
+                        end: '2021-08-23T13:13:55.008',
+                        "color": "#00ffff"
+                        },
+                        {
+                        title: 'Event Title2',
+                        start: '2021-08-25T13:13:55-0400',
+                        end: '2015-03-19T13:13:55-0400',
+                        "color": "#cba234"
+                        }
+                  ],
+          droppable: true,
+          editable: true,
+          eventDrop: function(event,dayDelta,minuteDelta,allDay,revertFunc) {
+
+                // alert(
+                //     event.title + " was moved " +
+                //     dayDelta + " days and " +
+                //     minuteDelta + " minutes."
+                // );
+
+                if (allDay) {
+                    //alert("Event is now all-day");
+                }else{
+                    //alert("Event has a time-of-day");
+                }
+
+                // if (!confirm("Are you sure about this change?")) {
+                //     revertFunc();
+                // }
+
+            }
+        });
+
         calendar.render();
+
       });
+
+
 
 
 
@@ -118,6 +222,9 @@
     </script>
 
     @livewireScripts
+
+    @include('sweetalert::alert')
+
 </body>
 
 </html>

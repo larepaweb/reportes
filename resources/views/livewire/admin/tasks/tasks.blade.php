@@ -1,33 +1,5 @@
  <main>
     <div class="container-fluid py-4">
-      <div class="row">
-
-        <div class="nav-wrapper position-relative end-0">
-          <ul class="nav nav-pills nav-fill p-1" role="tablist">
-              <li class="nav-item">
-                <a class="nav-link mb-0 px-0 py-1 active"  data-bs-toggle="tab" href="#homeTab" role="tab" aria-controls="profile" aria-selected="true">
-                Listar Tareas
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link mb-0 px-0 py-1"  data-bs-toggle="tab"  href="#metaTab" role="tab" aria-controls="dashboard" aria-selected="false">
-                Crear Tarea
-                </a>
-              </li>
-
-            </ul>
-        </div>
-
-      </div>
-
-
-
-      <div class="container-fluid py-4 tab-content">
-
-
-        <div role="tabpanel" class="row mt-4  tab-pane fade in show active" id ="homeTab">
-
-
             <div class="row">
 
                 <div class="col-12 alert alert-secondary" role="alert">
@@ -35,176 +7,14 @@
                 </div>
             </div>
 
-            <div class="row">
-
-                <div class="col-12">
-                    <div class="card ">
-                        <div class="card-header pb-0 px-3">
-                            <div class="d-flex flex-row justify-content-between">
-                                <div>
-                                    <h5 class="mb-0">Tareas</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body pt-4 p-3">
-                            <div class="table-responsive p-0">
-                                <table class="table align-items-center mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                ID
-                                            </th>
-
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Fecha
-                                            </th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Cliente
-                                            </th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Técnico
-                                            </th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Estatus
-                                            </th>
 
 
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+      <div class="row">
 
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="ps-4">
-                                                <p class="text-xs font-weight-bold mb-0">1</p>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">17/10/2021</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Mark Twain</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Steve Job</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Pendiente</p>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <a href="{{route('editar-tarea')}}" class="mx-3" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Editar">
-                                                    <i class="fas fa-user-edit text-secondary"></i>
-                                                </a>
-                                                <a href="{{route('ver-tarea')}}" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Ver">
-                                                    <i class="cursor-pointer far fa-eye text-secondary"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="ps-4">
-                                                <p class="text-xs font-weight-bold mb-0">2</p>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">22/10/2021</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Mark Twain</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Steve Job</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Terminado</p>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <a href="{{route('editar-tarea')}}" class="mx-3" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Editar">
-                                                    <i class="fas fa-user-edit text-secondary"></i>
-                                                </a>
-                                                <a href="{{route('ver-tarea')}}" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Ver">
-                                                    <i class="cursor-pointer far fa-eye text-secondary"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="ps-4">
-                                                <p class="text-xs font-weight-bold mb-0">3</p>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">24/10/2021</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Mark Twain</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Steve Job</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Pendiente</p>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <a href="{{route('editar-tarea')}}" class="mx-3" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Editar">
-                                                    <i class="fas fa-user-edit text-secondary"></i>
-                                                </a>
-                                                <a href="{{route('ver-tarea')}}" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Ver">
-                                                    <i class="cursor-pointer far fa-eye text-secondary"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td class="ps-4">
-                                                <p class="text-xs font-weight-bold mb-0">4</p>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">24/10/2021</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Mark Twain</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Steve Job</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Pendiente</p>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <a href="{{route('editar-tarea')}}" class="mx-3" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Editar">
-                                                    <i class="fas fa-user-edit text-secondary"></i>
-                                                </a>
-                                                <a href="{{route('ver-tarea')}}" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Ver">
-                                                    <i class="cursor-pointer far fa-eye text-secondary"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div role="tabpanel" class="row mt-4  tab-pane fade" id ="metaTab">
+        <div class="col-6  mt-4">
             <div class="card">
                 <div class="card-header pb-0 px-3">
-                    <h6 class="mb-0">{{ __('Detalles de tarea') }}</h6>
+                    <h6 class="mb-0">{{ __('Crear de tarea') }}</h6>
                 </div>
                 <div class="card-body pt-4 p-3">
 
@@ -224,12 +34,21 @@
 
                     <form wire:submit.prevent="save" action="#" method="POST" role="form text-left">
 
+                                    <?php
+
+                                        $month = date('m');
+                                        $day = date('d');
+                                        $year = date('Y');
+
+                                        $today = $year . '-' . $month . '-' . $day;
+                                    ?>
+
                         <div class="row" >
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="user-name" class="form-control-label">{{ __('Fecha de actividad') }}</label>
                                     <div class="@error('user.name')border border-danger rounded-3 @enderror" id="user-name">
-                                        <input class="form-control datepicker" placeholder="Please select date" type="date" onfocus="focused(this)" onfocusout="defocused(this)">
+                                        <input value="<?php echo $today; ?>"  type="date" class="form-control" name="" id="">
                                     </div>
                                     @error('user.name') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
@@ -296,6 +115,206 @@
             </div>
         </div>
 
+        <div class="col-6  mt-4" >
+
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="card ">
+
+                        <div class="card-body pt-4 p-3">
+                            <div class="table-responsive p-0">
+
+
+                                <table id="example3" class=" nowrap" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
+                                            <th  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Fecha</th>
+                                            <th  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cliente</th>
+                                            <th  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Técnico</th>
+                                            <th  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Estatus</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="ps-4">
+                                                <p class="text-xs font-weight-bold mb-0">1</p>
+                                            </td>
+
+                                            <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">17/10/2021</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">Mark Twain</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">Steve Job</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">Pendiente</p>
+                                            </td>
+                                            <td class="text-center"> <a href="{{route('editar-tarea')}}" class="mx-3" data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Editar">
+                                                    <i class="fas fa-user-edit text-secondary"></i>
+                                                </a>
+                                                <a href="{{route('ver-tarea')}}"  data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Ver">
+                                                    <i class="cursor-pointer far fa-eye text-secondary"></i>
+                                                </a>
+
+                                                <a  href=""  class="mx-3"  data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Eliminar">
+                                                    <i class="far fa-trash-alt text-secondary "></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ps-4">
+                                                <p class="text-xs font-weight-bold mb-0">2</p>
+                                            </td>
+
+                                            <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">22/10/2021</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">Mark Twain</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">Steve Job</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">Terminado</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <a href="{{route('editar-tarea')}}" class="mx-3" data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Editar">
+                                                    <i class="fas fa-user-edit text-secondary"></i>
+                                                </a>
+                                                <a href="{{route('ver-tarea')}}"  data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Ver">
+                                                    <i class="cursor-pointer far fa-eye text-secondary"></i>
+                                                </a>
+                                                <a href=""  class="mx-3"  data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Eliminar">
+                                                    <i class="far fa-trash-alt text-secondary "></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ps-4">
+                                                <p class="text-xs font-weight-bold mb-0">3</p>
+                                            </td>
+
+                                            <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">24/10/2021</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">Mark Twain</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">Steve Job</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">Cancelada</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <a href="{{route('editar-tarea')}}" class="mx-3" data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Editar">
+                                                    <i class="fas fa-user-edit text-secondary"></i>
+                                                </a>
+                                                <a href="{{route('ver-tarea')}}"  data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Ver">
+                                                    <i class="cursor-pointer far fa-eye text-secondary"></i>
+                                                </a>
+                                                <a href=""  class="mx-3"  data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Eliminar">
+                                                    <i class="far fa-trash-alt text-secondary "></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ps-4">
+                                                <p class="text-xs font-weight-bold mb-0">4</p>
+                                            </td>
+
+                                            <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">24/10/2021</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">Mark Twain</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">Steve Job</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">En Curso</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <a href="{{route('editar-tarea')}}" class="mx-3" data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Editar">
+                                                    <i class="fas fa-user-edit text-secondary"></i>
+                                                </a>
+                                                <a href="{{route('ver-tarea')}}"  data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Ver">
+                                                    <i class="cursor-pointer far fa-eye text-secondary"></i>
+                                                </a>
+
+                                                <a href=""  class="mx-3"  data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Eliminar">
+                                                    <i class="far fa-trash-alt text-secondary "></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                             <td class="ps-4">
+                                                <p class="text-xs font-weight-bold mb-0">4</p>
+                                            </td>
+
+                                            <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">24/10/2021</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">Mark Twain</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">Steve Job</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">Pendiente</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <a href="{{route('editar-tarea')}}" class="mx-3" data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Editar">
+                                                    <i class="fas fa-user-edit text-secondary"></i>
+                                                </a>
+                                                <a href="{{route('ver-tarea')}}"  data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Ver">
+                                                    <i class="cursor-pointer far fa-eye text-secondary"></i>
+                                                </a>
+
+                                                <a href=""  class="mx-3"  data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Eliminar">
+                                                    <i class="far fa-trash-alt text-secondary "></i>
+                                                </a>
+                                            </td>
+
+
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
 
 
 
@@ -324,6 +343,72 @@ function changeDiv(){
 
 
 }
+
+
+ $(document).ready(function() {
+    $('#example3').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+
+        ],
+        bInfo: false,
+
+        "columnDefs": [
+            { "orderable": false, "targets": 5 }
+        ],
+        "language": {
+                     "sProcessing":    "Procesando...",
+                     "sLengthMenu":    "Mostrar _MENU_ registros",
+                     "sZeroRecords":   "No se encontraron resultados",
+                     "sEmptyTable":    "Ningún dato disponible en esta tabla",
+                     "sInfo":          "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                     "sInfoEmpty":     "Mostrando registros del 0 al 0 de un total de 0 registros",
+                     "sInfoFiltered":  "(filtrado de un total de _MAX_ registros)",
+                     "sInfoPostFix":   "",
+                     "sSearch":        "{{ __('Receipt No.') }}",
+                     "sUrl":           "",
+                     "sInfoThousands":  ",",
+                     "sLoadingRecords": "Cargando...",
+                     "search": "_INPUT_",
+                     "searchPlaceholder": "{{ __('Buscar') }}",
+                     "oPaginate": {
+                                   "sFirst":    "Primero",
+                                   "sLast":    "Último",
+                                   "sNext":    "Siguiente",
+                                   "sPrevious": "Anterior"
+                                   },
+                     "oAria": {
+                               "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                               "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                               }
+        },
+
+        initComplete: function () {
+
+            this.api().columns([2, 4]).every( function () {
+
+                var column = this;
+                var select = $('<br><select><option value=""></option></select>')
+                    .appendTo( $(column.header()) )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+j+'">'+d+'</option>' )
+                } );
+            } );
+        }
+
+
+    } );
+} );
 
  </script>
 

@@ -42,8 +42,13 @@
 
             <div class="card">
                 <div class="card-header pb-0 px-3">
-                    <h6 class="mb-0">{{ __('Crear usuario') }}</h6>
+                    <h6 class="mb-0" style="float:left">{{ __('Crear usuario') }}</h6>
+                    <h6 class="mb-0" style="float:right">
+                        <a id="more_items" class="btn bg-gradient-dark btn-md mt-2">{{ 'Importar Usuarios' }}</a>
+                    </h6>
+
                 </div>
+
                 <div class="card-body pt-4 p-3">
 
                     @php
@@ -67,7 +72,7 @@
                                 <div class="form-group">
                                     <label for="user-name" class="form-control-label">{{ __('Rol') }}</label>
                                     <div class="@error('user.name')border border-danger rounded-3 @enderror" id="user-name">
-                                        <select wire:model="user.name" class="form-control" >
+                                        <select onchange="esCliente()" id="role" class="form-control" >
                                             <option selected>Seleccione un rol</option>
                                             <option value="1">Administrador</option>
                                             <option value="2">Técnico</option>
@@ -100,7 +105,7 @@
                                     @error('user.location') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" id="hid1" hidden>
                                 <div class="form-group">
                                     <label for="user.phone" class="form-control-label">{{ __('Telefono') }}</label>
                                     <div class="@error('user.phone')border border-danger rounded-3 @enderror">
@@ -113,7 +118,7 @@
 
                         </div>
 
-                        <div class="row">
+                        <div class="row"  id="hid2" hidden>
                              <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="user.location" class="form-control-label">{{ __('NIT') }}</label>
@@ -136,7 +141,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group"  id="hid3" hidden>
                             <label for="about">{{ 'Dirección' }}</label>
                             <div class="@error('user.about')border border-danger rounded-3 @enderror">
                                 <textarea wire:model="user.about" class="form-control" id="about" rows="3"
@@ -145,7 +150,7 @@
                             @error('user.about') <div class="text-danger">{{ $message }}</div> @enderror
                         </div>
 
-                        <div class="row" >
+                        <div class="row"  id="hid4" hidden>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="user-name" class="form-control-label">{{ __('Forma de pago') }}</label>
@@ -173,7 +178,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group"  id="hid5" hidden>
                             <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="fcustomCheck1" >
                             <label class="custom-control-label" for="customCheck1">¿Es agente retenedor de ISR?</label>
@@ -205,26 +210,17 @@
                         </div>
                         <div class="card-body pt-4 p-3">
                             <div class="table-responsive p-0">
-                                <table class="table align-items-center mb-0">
+
+
+                                <table id="example" class=" nowrap" style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                ID
-                                            </th>
-
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Nombre
-                                            </th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Email
-                                            </th>
-
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Fecha de creación
-                                            </th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-
-                                            </th>
+                                            <th  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
+                                            <th  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nombre</th>
+                                            <th  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+                                            <th  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Telefono</th>
+                                            <th  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Fecha de creacion</th>
+                                            <th  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -240,10 +236,13 @@
                                                 <p class="text-xs font-weight-bold mb-0">admin@example.com</p>
                                             </td>
                                             <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">+502 55555555</p>
+                                            </td>
+
+                                            <td class="text-center">
                                                 <span class="text-secondary text-xs font-weight-bold">16/06/18</span>
                                             </td>
-                                            <td class="text-center">
-                                                <a href="{{route('editar-usuario')}}" class="mx-3" data-bs-toggle="tooltip"
+                                            <td class="text-center"> <a href="{{route('editar-usuario')}}" class="mx-3" data-bs-toggle="tooltip"
                                                     data-bs-original-title="Editar">
                                                     <i class="fas fa-user-edit text-secondary"></i>
                                                 </a>
@@ -251,7 +250,10 @@
                                                     data-bs-original-title="Ver">
                                                     <i class="cursor-pointer far fa-eye text-secondary"></i>
                                                 </a>
-                                            </td>
+                                                <a href="" class="mx-3" data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Eliminar">
+                                                    <i class="far fa-trash-alt text-secondary "></i>
+                                                </a></td>
                                         </tr>
                                         <tr>
                                             <td class="ps-4">
@@ -263,6 +265,9 @@
                                             </td>
                                             <td class="text-center">
                                                 <p class="text-xs font-weight-bold mb-0">creator@example.com</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">+502 55555555</p>
                                             </td>
 
                                             <td class="text-center">
@@ -277,6 +282,10 @@
                                                     data-bs-original-title="Ver">
                                                     <i class="cursor-pointer far fa-eye text-secondary"></i>
                                                 </a>
+                                                <a href="" class="mx-3" data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Eliminar">
+                                                    <i class="far fa-trash-alt text-secondary "></i>
+                                                </a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -289,6 +298,9 @@
                                             </td>
                                             <td class="text-center">
                                                 <p class="text-xs font-weight-bold mb-0">member@example.com</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">+502 55555555</p>
                                             </td>
 
                                             <td class="text-center">
@@ -303,6 +315,10 @@
                                                     data-bs-original-title="Ver">
                                                     <i class="cursor-pointer far fa-eye text-secondary"></i>
                                                 </a>
+                                                <a href="" class="mx-3" data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Eliminar">
+                                                    <i class="far fa-trash-alt text-secondary "></i>
+                                                </a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -315,6 +331,9 @@
                                             </td>
                                             <td class="text-center">
                                                 <p class="text-xs font-weight-bold mb-0">peterson@example.com</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">+502 55555555</p>
                                             </td>
 
                                             <td class="text-center">
@@ -329,6 +348,10 @@
                                                     data-bs-original-title="Ver">
                                                     <i class="cursor-pointer far fa-eye text-secondary"></i>
                                                 </a>
+                                                <a href="" class="mx-3" data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Eliminar">
+                                                    <i class="far fa-trash-alt text-secondary "></i>
+                                                </a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -341,6 +364,9 @@
                                             </td>
                                             <td class="text-center">
                                                 <p class="text-xs font-weight-bold mb-0">marie@example.com</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">+502 55555555</p>
                                             </td>
 
                                             <td class="text-center">
@@ -355,12 +381,19 @@
                                                     data-bs-original-title="Ver">
                                                     <i class="cursor-pointer far fa-eye text-secondary"></i>
                                                 </a>
+                                                <a href="" class="mx-3" data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Eliminar">
+                                                    <i class="far fa-trash-alt text-secondary "></i>
+                                                </a>
                                             </td>
 
 
                                         </tr>
+
                                     </tbody>
+
                                 </table>
+
                             </div>
                         </div>
                     </div>
@@ -383,26 +416,16 @@
                         </div>
                         <div class="card-body pt-4 p-3">
                             <div class="table-responsive p-0">
-                                <table class="table align-items-center mb-0">
+
+                                <table id="example2" class=" nowrap" style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                ID
-                                            </th>
-
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Nombre
-                                            </th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Email
-                                            </th>
-
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Fecha de creación
-                                            </th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-
-                                            </th>
+                                            <th  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
+                                            <th  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nombre</th>
+                                            <th  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+                                            <th  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Telefono</th>
+                                            <th  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Fecha de creacion</th>
+                                            <th  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -418,10 +441,13 @@
                                                 <p class="text-xs font-weight-bold mb-0">admin@example.com</p>
                                             </td>
                                             <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">+502 55555555</p>
+                                            </td>
+
+                                            <td class="text-center">
                                                 <span class="text-secondary text-xs font-weight-bold">16/06/18</span>
                                             </td>
-                                            <td class="text-center">
-                                                <a href="{{route('editar-usuario')}}" class="mx-3" data-bs-toggle="tooltip"
+                                            <td class="text-center"> <a href="{{route('editar-usuario')}}" class="mx-3" data-bs-toggle="tooltip"
                                                     data-bs-original-title="Editar">
                                                     <i class="fas fa-user-edit text-secondary"></i>
                                                 </a>
@@ -429,7 +455,10 @@
                                                     data-bs-original-title="Ver">
                                                     <i class="cursor-pointer far fa-eye text-secondary"></i>
                                                 </a>
-                                            </td>
+                                                <a href="" class="mx-3" data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Eliminar">
+                                                    <i class="far fa-trash-alt text-secondary "></i>
+                                                </a></td>
                                         </tr>
                                         <tr>
                                             <td class="ps-4">
@@ -441,6 +470,9 @@
                                             </td>
                                             <td class="text-center">
                                                 <p class="text-xs font-weight-bold mb-0">creator@example.com</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">+502 55555555</p>
                                             </td>
 
                                             <td class="text-center">
@@ -455,6 +487,10 @@
                                                     data-bs-original-title="Ver">
                                                     <i class="cursor-pointer far fa-eye text-secondary"></i>
                                                 </a>
+                                                <a href="" class="mx-3" data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Eliminar">
+                                                    <i class="far fa-trash-alt text-secondary "></i>
+                                                </a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -467,6 +503,9 @@
                                             </td>
                                             <td class="text-center">
                                                 <p class="text-xs font-weight-bold mb-0">member@example.com</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">+502 55555555</p>
                                             </td>
 
                                             <td class="text-center">
@@ -481,6 +520,10 @@
                                                     data-bs-original-title="Ver">
                                                     <i class="cursor-pointer far fa-eye text-secondary"></i>
                                                 </a>
+                                                <a href="" class="mx-3" data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Eliminar">
+                                                    <i class="far fa-trash-alt text-secondary "></i>
+                                                </a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -493,6 +536,9 @@
                                             </td>
                                             <td class="text-center">
                                                 <p class="text-xs font-weight-bold mb-0">peterson@example.com</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">+502 55555555</p>
                                             </td>
 
                                             <td class="text-center">
@@ -507,6 +553,10 @@
                                                     data-bs-original-title="Ver">
                                                     <i class="cursor-pointer far fa-eye text-secondary"></i>
                                                 </a>
+                                                <a href="" class="mx-3" data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Eliminar">
+                                                    <i class="far fa-trash-alt text-secondary "></i>
+                                                </a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -519,6 +569,9 @@
                                             </td>
                                             <td class="text-center">
                                                 <p class="text-xs font-weight-bold mb-0">marie@example.com</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">+502 55555555</p>
                                             </td>
 
                                             <td class="text-center">
@@ -533,13 +586,23 @@
                                                     data-bs-original-title="Ver">
                                                     <i class="cursor-pointer far fa-eye text-secondary"></i>
                                                 </a>
+                                                <a href="" class="mx-3" data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Eliminar">
+                                                    <i class="far fa-trash-alt text-secondary "></i>
+                                                </a>
                                             </td>
 
 
                                         </tr>
+
                                     </tbody>
+
                                 </table>
+
+
                             </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -558,6 +621,7 @@
 function changeDiv(){
 
 
+
   if (!document.getElementById('estandar').hidden){
 
       document.getElementById('estandar').hidden = "hidden";
@@ -573,6 +637,120 @@ function changeDiv(){
 
 }
 
+
+function esCliente(){
+
+
+
+    d = document.getElementById("role").value;
+
+
+  if (d == 3){
+
+
+      document.getElementById('hid1').hidden = "";
+      document.getElementById('hid2').hidden = "";
+      document.getElementById('hid3').hidden = "";
+      document.getElementById('hid4').hidden = "";
+      document.getElementById('hid5').hidden = "";
+
+  }else {
+
+      document.getElementById('hid1').hidden = "hidden";
+      document.getElementById('hid2').hidden = "hidden";
+      document.getElementById('hid3').hidden = "hidden";
+      document.getElementById('hid4').hidden = "hidden";
+      document.getElementById('hid5').hidden = "hidden";
+
+  }
+
+
+}
+
+
+ $(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            { extend: 'csv', text: 'Exportar CSV', className: 'btn bg-gradient-dark btn-md mt-2' }
+        ],
+        bInfo: false,
+                                    "responsive": true,
+                                    "searching": false,
+                                    "columnDefs": [
+                                            { "orderable": false, "targets": 5 }
+                                    ],
+                                    "language": {
+                                        "sProcessing":    "Procesando...",
+                                        "sLengthMenu":    "Mostrar _MENU_ registros",
+                                        "sZeroRecords":   "No se encontraron resultados",
+                                        "sEmptyTable":    "Ningún dato disponible en esta tabla",
+                                        "sInfo":          "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                        "sInfoEmpty":     "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                        "sInfoFiltered":  "(filtrado de un total de _MAX_ registros)",
+                                        "sInfoPostFix":   "",
+                                        "sSearch":        "{{ __('Receipt No.') }}",
+                                        "sUrl":           "",
+                                        "sInfoThousands":  ",",
+                                        "sLoadingRecords": "Cargando...",
+                                        "search": "_INPUT_",
+                                        "searchPlaceholder": "{{ __('Buscar') }}",
+                                        "oPaginate": {
+                                            "sFirst":    "Primero",
+                                            "sLast":    "Último",
+                                            "sNext":    "Siguiente",
+                                            "sPrevious": "Anterior"
+                                        },
+                                        "oAria": {
+                                            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                                        }
+                                    },
+    } );
+
+
+    $('#example2').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+             { extend: 'csv', text: 'Exportar CSV', className: 'btn bg-gradient-dark btn-md mt-2' }
+        ],
+        bInfo: false,
+                                    "responsive": true,
+                                    "searching": false,
+                                    "columnDefs": [
+                                            { "orderable": false, "targets": 5 }
+                                    ],
+                                    "language": {
+                                        "sProcessing":    "Procesando...",
+                                        "sLengthMenu":    "Mostrar _MENU_ registros",
+                                        "sZeroRecords":   "No se encontraron resultados",
+                                        "sEmptyTable":    "Ningún dato disponible en esta tabla",
+                                        "sInfo":          "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                        "sInfoEmpty":     "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                        "sInfoFiltered":  "(filtrado de un total de _MAX_ registros)",
+                                        "sInfoPostFix":   "",
+                                        "sSearch":        "{{ __('Receipt No.') }}",
+                                        "sUrl":           "",
+                                        "sInfoThousands":  ",",
+                                        "sLoadingRecords": "Cargando...",
+                                        "search": "_INPUT_",
+                                        "searchPlaceholder": "{{ __('Buscar') }}",
+                                        "oPaginate": {
+                                            "sFirst":    "Primero",
+                                            "sLast":    "Último",
+                                            "sNext":    "Siguiente",
+                                            "sPrevious": "Anterior"
+                                        },
+                                        "oAria": {
+                                            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                                        }
+                                    },
+    } );
+} );
+
  </script>
+
+
 
 

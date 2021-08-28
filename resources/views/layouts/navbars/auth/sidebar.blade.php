@@ -40,7 +40,7 @@
                             </g>
                         </svg>
                     </div>
-                    <span class="nav-link-text ms-1">Dashboard</span>
+                    <span class="nav-link-text ms-1">Actividades</span>
                 </a>
             </li>
 
@@ -151,7 +151,7 @@
                             </g>
                         </svg>
                     </div>
-                    <span class="nav-link-text ms-1">Tareas</span>
+                    <span class="nav-link-text ms-1">Asignar Tareas</span>
                 </a>
             </li>
 

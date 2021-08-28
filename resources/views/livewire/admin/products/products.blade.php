@@ -48,26 +48,17 @@
                         </div>
                         <div class="card-body pt-4 p-3">
                             <div class="table-responsive p-0">
-                                <table class="table align-items-center mb-0">
+
+       <table id="example" class=" nowrap" style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                ID
-                                            </th>
-
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Nombre
-                                            </th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Costo
-                                            </th>
-
-
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-
-                                            </th>
+                                            <th  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
+                                            <th  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nombre</th>
+                                            <th  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Costo</th>
+                                            <th  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                                         </tr>
                                     </thead>
+
                                     <tbody>
                                         <tr>
                                             <td class="ps-4">
@@ -89,6 +80,10 @@
                                                 <a href="{{route('ver-producto')}}" data-bs-toggle="tooltip"
                                                     data-bs-original-title="Ver">
                                                     <i class="cursor-pointer far fa-eye text-secondary"></i>
+                                                </a>
+                                                <a class="mx-3" href=""  data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Eliminar">
+                                                    <i class="far fa-trash-alt text-secondary "></i>
                                                 </a>
                                             </td>
                                         </tr>
@@ -112,6 +107,10 @@
                                                     data-bs-original-title="Ver">
                                                     <i class="cursor-pointer far fa-eye text-secondary"></i>
                                                 </a>
+                                                <a  class="mx-3" href=""  data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Eliminar">
+                                                    <i class="far fa-trash-alt text-secondary "></i>
+                                                </a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -133,6 +132,10 @@
                                                 <a href="{{route('ver-producto')}}" data-bs-toggle="tooltip"
                                                     data-bs-original-title="Ver">
                                                     <i class="cursor-pointer far fa-eye text-secondary"></i>
+                                                </a>
+                                                <a  class="mx-3" href=""  data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Eliminar">
+                                                    <i class="far fa-trash-alt text-secondary "></i>
                                                 </a>
                                             </td>
                                         </tr>
@@ -157,12 +160,23 @@
                                                     data-bs-original-title="Ver">
                                                     <i class="cursor-pointer far fa-eye text-secondary"></i>
                                                 </a>
+                                                <a  class="mx-3" href=""  data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Eliminar">
+                                                    <i class="far fa-trash-alt text-secondary "></i>
+                                                </a>
                                             </td>
 
 
                                         </tr>
+
                                     </tbody>
+
                                 </table>
+
+
+
+
+
                             </div>
                         </div>
                     </div>
@@ -173,7 +187,10 @@
         <div role="tabpanel" class="row mt-4  tab-pane fade" id ="metaTab">
             <div class="card">
                 <div class="card-header pb-0 px-3">
-                    <h6 class="mb-0">{{ __('Detalles del producto') }}</h6>
+                    <h6 class="mb-0" style="float:left">{{ __('Detalles del producto') }}</h6>
+                    <h6 class="mb-0" style="float:right">
+                        <a id="more_items" class="btn bg-gradient-dark btn-md mt-2">{{ 'Importar Productos' }}</a>
+                    </h6>
                 </div>
                 <div class="card-body pt-4 p-3">
 
@@ -309,6 +326,51 @@
  </main>
 
  <script>
+
+ $(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            { extend: 'csv', text: 'Exportar CSV', className: 'btn bg-gradient-dark btn-md mt-2' }
+        ],
+        bInfo: false,
+                                    "responsive": true,
+                                    "searching": false,
+                                    "columnDefs": [
+                                            { "orderable": false, "targets": 1 }
+                                    ],
+                                    "language": {
+                                        "sProcessing":    "Procesando...",
+                                        "sLengthMenu":    "Mostrar _MENU_ registros",
+                                        "sZeroRecords":   "No se encontraron resultados",
+                                        "sEmptyTable":    "Ningún dato disponible en esta tabla",
+                                        "sInfo":          "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                        "sInfoEmpty":     "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                        "sInfoFiltered":  "(filtrado de un total de _MAX_ registros)",
+                                        "sInfoPostFix":   "",
+                                        "sSearch":        "{{ __('Receipt No.') }}",
+                                        "sUrl":           "",
+                                        "sInfoThousands":  ",",
+                                        "sLoadingRecords": "Cargando...",
+                                        "search": "_INPUT_",
+                                        "searchPlaceholder": "{{ __('Buscar') }}",
+                                        "oPaginate": {
+                                            "sFirst":    "Primero",
+                                            "sLast":    "Último",
+                                            "sNext":    "Siguiente",
+                                            "sPrevious": "Anterior"
+                                        },
+                                        "oAria": {
+                                            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                                        }
+                                    },
+    } );
+
+
+
+} );
+
 
 function changeDiv(){
 
