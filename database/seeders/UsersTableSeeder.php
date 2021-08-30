@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Profile;
 
 class UsersTableSeeder extends Seeder
 {
@@ -16,24 +17,29 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
 
-        User::create([
+        $admin = User::create([
             'email' => 'admin@reportes.com',
             'password' => Hash::make('secret'),
             'role_name' => 'admin'
 
         ]);
+        $admin->profile()->save(Profile::factory()->make());
 
-        User::create([
+        $tecnico = User::create([
             'email' => 'tecnico@reportes.com',
             'password' => Hash::make('secret'),
             'role_name' => 'tecnico'
         ]);
+        $tecnico->profile()->save(Profile::factory()->make());
 
-        User::create([
+
+
+        $cliente = User::create([
             'email' => 'cliente@reportes.com',
             'password' => Hash::make('secret'),
             'role_name' => 'cliente'
         ]);
+        $cliente->profile()->save(Profile::factory()->make());
 
     }
 }

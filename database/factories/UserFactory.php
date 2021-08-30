@@ -44,4 +44,31 @@ class UserFactory extends Factory
             ];
         });
     }
+
+    public function admin()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'role_name' => 'admin',
+            ];
+        });
+    }
+
+    public function tecnico()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'role_name' => 'tecnico',
+            ];
+        });
+    }
+
+    public function cliente()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'role_name' => 'cliente',
+            ];
+        });
+    }
 }
