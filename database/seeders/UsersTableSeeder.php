@@ -18,17 +18,21 @@ class UsersTableSeeder extends Seeder
 
         User::create([
             'email' => 'admin@reportes.com',
-            'password' => Hash::make('secret')
+            'password' => Hash::make('secret'),
+            'role_name' => 'admin'
+
         ]);
 
         User::create([
             'email' => 'tecnico@reportes.com',
-            'password' => Hash::make('secret')
+            'password' => Hash::make('secret'),
+            'role_name' => 'tecnico'
         ]);
 
         User::create([
             'email' => 'cliente@reportes.com',
-            'password' => Hash::make('secret')
+            'password' => Hash::make('secret'),
+            'role_name' => 'cliente'
         ]);
 
     }
