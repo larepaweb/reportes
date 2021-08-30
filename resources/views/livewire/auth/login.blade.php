@@ -6,25 +6,27 @@
                     <div class="card card-plain mt-8">
                         <div class="card-header pb-0 text-left bg-transparent">
                             <img src="../assets/img/logos/logo-dex.png" class="navbar-brand-img h-10" alt="Logo Dex Data Expert">
-                            {{-- <p class="mb-0 mt-5">{{__('Credenciales de prueba:') }}</p>
-                            <p class="mb-0">{{ __('Email ') }}<b>{{ __('admin@reportes.com') }}</b></p>
-                            <p class="mb-0">{{ __('Password ') }}<b>{{ __('secret') }}</b></p> --}}
+                            <p class="mb-0 mt-5">{{__('Credenciales de prueba:') }}</p>
+                            <p class="mb-0">{{ __('Admin ') }}<b>{{ __('admin@reportes.com') }}</b></p>
+                            <p class="mb-0">{{ __('Técnico ') }}<b>{{ __('tecnico@reportes.com') }}</b></p>
+                            <p class="mb-0">{{ __('Cliente ') }}<b>{{ __('cliente@reportes.com') }}</b></p>
+                            <p class="mb-0">{{ __('Passwords ') }}<b>{{ __('secret') }}</b></p>
                         </div>
                         <div class="card-body">
-                            <form wire:submit.prevent="login" action="#" method="POST" role="form text-left">
+                            <form wire:submit.prevent="login" action="{{ route('login') }}" method="POST" role="form text-left">
                                 <div class="mb-3">
-                                    <label for="email">{{ __('Email') }}</label>
+                                    <label for="email">{{ __('Correo') }}</label>
                                     <div class="@error('email')border border-danger rounded-3 @enderror">
-                                        <input  id="email" type="email" class="form-control"
-                                            placeholder="Email" aria-label="Email" aria-describedby="email-addon">
+                                        <input  wire:model="email" id="email" type="email" class="form-control"
+                                            placeholder="Correo" aria-label="Email" aria-describedby="email-addon">
                                     </div>
                                     @error('email') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <label for="password">{{ __('Password') }}</label>
+                                    <label for="password">{{ __('Contraseña') }}</label>
                                     <div class="@error('password')border border-danger rounded-3 @enderror">
-                                        <input  id="password" type="password" class="form-control"
-                                            placeholder="Password" aria-label="Password"
+                                        <input wire:model="password" id="password" type="password" class="form-control"
+                                            placeholder="Contraseña" aria-label="Password"
                                             aria-describedby="password-addon">
                                     </div>
                                     @error('password') <div class="text-danger">{{ $message }}</div> @enderror
@@ -32,14 +34,14 @@
 
                                 <div class="text-center">
                                     <button type="submit"
-                                        class="btn bg-gradient-info w-100 mt-4 mb-0">{{ __('Sign in') }}</button>
+                                        class="btn bg-gradient-info w-100 mt-4 mb-0">{{ __('Ingrese') }}</button>
                                 </div>
                             </form>
                         </div>
                         <div class="card-footer text-center pt-0 px-lg-2 px-1">
-                            <small class="text-muted">{{ __('Forgot you password? Reset you password') }} <a
+                            <small class="text-muted">{{ __('Olvido su contraseña? reiniciela') }} <a
                                     href="{{ route('forgot-password') }}"
-                                    class="text-info text-gradient font-weight-bold">{{ __('here') }}</a></small>
+                                    class="text-info text-gradient font-weight-bold">{{ __('Aquí') }}</a></small>
 
                         </div>
                     </div>
