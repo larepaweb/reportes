@@ -1,3 +1,4 @@
+ <x-layouts.app>
 <div class="row">
 
   <div class="col-md-8">
@@ -8,42 +9,62 @@
           <div class="card-body text-left">
             <div class="p-md-0 pt-3">
               <h5 class="font-weight-bolder mb-0">Rol</h5>
-              <p class="mb-2">Administrador</p>
+              @switch($user->role_name)
+                  @case("admin")
+                      <p class="mb-2">Administrador</p>
+                      @break
+                  @case("tecnico")
+                      <p class="mb-2">Técnico</p>
+                      @break
+                  @case("cliente")
+                      <p class="mb-2">Cliente</p>
+                      @break
+
+                  @default
+
+              @endswitch
+
+
             </div>
             <div class="p-md-0 pt-3">
               <h5 class="font-weight-bolder mb-0">Nombre</h5>
-              <p class="mb-2">Mark Twain</p>
+              <p class="mb-2">{{$user->profile->contact_name}}</p>
             </div>
             <div class="p-md-0 pt-3">
               <h5 class="font-weight-bolder mb-0">Correo</h5>
-              <p class="mb-2">correo@example.com</p>
+              <p class="mb-2">{{$user->email}}</p>
             </div>
             <div class="p-md-0 pt-3">
               <h5 class="font-weight-bolder mb-0">Teléfono</h5>
-              <p class="mb-2">+502 55555555</p>
+              <p class="mb-2">{{$user->profile->phone}}</p>
             </div>
             <div class="p-md-0 pt-3">
               <h5 class="font-weight-bolder mb-0">NIT</h5>
-              <p class="mb-2">ADAS412312</p>
+              <p class="mb-2">{{$user->profile->nit}}</p>
             </div>
             <div class="p-md-0 pt-3">
               <h5 class="font-weight-bolder mb-0">Nombre de empresa</h5>
-              <p class="mb-2">Corporacion LLT.</p>
+              <p class="mb-2">{{$user->profile->business_name}}</p>
             </div>
             <div class="p-md-0 pt-3">
               <h5 class="font-weight-bolder mb-0">Dirección</h5>
-              <p class="mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi repellendus repellat delectus in laboriosam placeat dolorum veniam dolor dignissimos accusamus, veritatis voluptatem excepturi odit a? Quae quo dolorum aperiam iure.</p>
+              <p class="mb-2">{{$user->profile->address}}</p>
             </div>
            <div class="p-md-0 pt-3">
               <h5 class="font-weight-bolder mb-0">Forma de pago</h5>
-              <p class="mb-2">Efectivo</p>
+              <p class="mb-2">{{$user->profile->payment_method}}</p>
             </div>
             <div class="p-md-0 pt-3">
               <h5 class="font-weight-bolder mb-0">Persona de contacto</h5>
-              <p class="mb-2">Mr. Black</p>
+              <p class="mb-2">{{$user->profile->contact_name}}</p>
             </div>
             <div class="p-md-0 pt-3">
-              <h5 class="font-weight-bolder mb-0">Si es agente retenedor de ISR</h5>
+                @if ($user->profile->isr)
+                    <h5 class="font-weight-bolder mb-0">Si es agente retenedor de ISR</h5>
+                @else
+                    <h5 class="font-weight-bolder mb-0">No es agente retenedor de ISR</h5>
+                @endif
+
             </div>
           </div>
         </div>
@@ -72,3 +93,13 @@
             </div>
 
 </div>
+
+
+</x-layouts.app>
+
+
+
+
+
+
+

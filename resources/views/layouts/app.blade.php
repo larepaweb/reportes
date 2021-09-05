@@ -11,7 +11,7 @@
             @include('layouts.navbars.guest.login')
             {{ $slot }}
             @include('layouts.footers.guest.description')
-        @elseif (in_array(request()->route()->getName(),['profile', 'my-profile'],))
+        {{-- @elseif (in_array(request()->route()->getName(),['profile', 'my-profile'],))
             @include('layouts.navbars.auth.sidebar')
             <div class="main-content position-relative bg-gray-100">
                 @include('layouts.navbars.auth.nav-profile')
@@ -19,7 +19,7 @@
                     {{ $slot }}
                     @include('layouts.footers.auth.footer')
                 </div>
-            </div>
+            </div> --}}
             {{-- @include('components.plugins.fixed-plugin') --}}
         @else
             @include('layouts.navbars.auth.sidebar')

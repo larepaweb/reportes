@@ -33,13 +33,6 @@
         <div role="tabpanel" class="row mt-4  tab-pane fade in show active" id ="crear">
 
 
-            <div class="row">
-
-                <div class="col-12 alert alert-secondary" role="alert">
-                    <span class="text-white"><strong>Las opciones de Crear, Editar y Ver no son funcionales!</strong> este solo es el maquetado visual de la aplicación</span>
-                </div>
-            </div>
-
             <div class="card">
                 <div class="card-header pb-0 px-3">
                     <h6 class="mb-0" style="float:left">{{ __('Crear usuario') }}</h6>
@@ -65,32 +58,49 @@
                         </div>
                     @endif
 
-                    <form wire:submit.prevent="save" action="#" method="POST" role="form text-left">
-
+                    <form action="{{ route( 'store.profile' )}}" method="POST" role="form text-left">
+                        @csrf
                         <div class="row" >
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="user-name" class="form-control-label">{{ __('Rol') }}</label>
-                                    <div class="@error('user.name')border border-danger rounded-3 @enderror" id="user-name">
-                                        <select onchange="esCliente()" id="role" class="form-control" >
-                                            <option selected>Seleccione un rol</option>
-                                            <option value="1">Administrador</option>
-                                            <option value="2">Técnico</option>
-                                            <option value="3">Cliente</option>
+                                    <label for="userrole" class="form-control-label">{{ __('Rol') }}</label>
+                                    <div class="@error('userrole')border border-danger rounded-3 @enderror" >
+                                        <select onchange="esCliente()" id="userrole" name="userrole" class="form-control" >
+
+
+                                            @switch( old('userrole') )
+                                                @case("admin")
+                                                    <option value="admin">Administrador</option>
+                                                    @break
+
+                                                @case("tecnico")
+                                                    <option value="tecnico">Técnico</option>
+                                                    @break
+
+                                                @case("cliente")
+                                                    <option value="cliente">Cliente</option>
+                                                    @break
+
+                                                @default
+                                                    <option>Seleccione un rol</option>
+                                            @endswitch
+                                            <option value="admin">Administrador</option>
+                                            <option value="tecnico">Técnico</option>
+                                            <option value="cliente">Cliente</option>
                                         </select>
 
                                     </div>
-                                    @error('user.name') <div class="text-danger">{{ $message }}</div> @enderror
+                                    @error('userrole') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="user-email" class="form-control-label">{{ __('Nombre') }}</label>
-                                    <div class="@error('user.email')border border-danger rounded-3 @enderror">
-                                        <input wire:model="user.email" class="form-control" type="text" step="0.01"
-                                            placeholder="" id="producto">
+                                    <label for="username" class="form-control-label">{{ __('Nombre') }}</label>
+                                    <div class="@error('username')border border-danger rounded-3 @enderror">
+
+                                        <input class="form-control" type="text" placeholder="" name="username" id="username" value="{{ old('username') }}" >
                                     </div>
-                                    @error('user.email') <div class="text-danger">{{ $message }}</div> @enderror
+                                    @error('username') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                             </div>
                         </div>
@@ -98,21 +108,21 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="user.location" class="form-control-label">{{ __('Correo') }}</label>
-                                    <div class="@error('user.location') border border-danger rounded-3 @enderror">
-                                        <input wire:model="user.location" class="form-control" type="email" placeholder="">
+                                    <label for="useremail" class="form-control-label">{{ __('Correo') }}</label>
+                                    <div class="@error('useremail') border border-danger rounded-3 @enderror">
+                                        <input id="useremail"  name="useremail" class="form-control" type="email" placeholder="" value="{{ old('useremail') }}" >
                                     </div>
-                                    @error('user.location') <div class="text-danger">{{ $message }}</div> @enderror
+                                    @error('useremail') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                             </div>
                             <div class="col-md-6" id="hid1" hidden>
                                 <div class="form-group">
-                                    <label for="user.phone" class="form-control-label">{{ __('Telefono') }}</label>
-                                    <div class="@error('user.phone')border border-danger rounded-3 @enderror">
-                                        <input wire:model="user.phone" class="form-control" type="tel"
-                                            placeholder="" id="phone">
+                                    <label for="userphone" class="form-control-label">{{ __('Teléfono') }}</label>
+                                    <div class="@error('userphone')border border-danger rounded-3 @enderror">
+                                        <input class="form-control" type="tel"
+                                            placeholder="" id="userphone" name="userphone" value="{{ old('userphone') }}" >
                                     </div>
-                                    @error('user.phone') <div class="text-danger">{{ $message }}</div> @enderror
+                                    @error('userphone') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                             </div>
 
@@ -121,67 +131,68 @@
                         <div class="row"  id="hid2" hidden>
                              <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="user.location" class="form-control-label">{{ __('NIT') }}</label>
-                                    <div class="@error('user.location') border border-danger rounded-3 @enderror">
-                                        <input wire:model="user.location" class="form-control" type="text"
-                                             id="name">
+                                    <label for="usernit" class="form-control-label">{{ __('NIT') }}</label>
+                                    <div class="@error('usernit') border border-danger rounded-3 @enderror">
+                                        <input  class="form-control" type="text"
+                                             id="usernit" name="usernit" value="{{ old('usernit') }}" >
                                     </div>
-                                    @error('user.location') <div class="text-danger">{{ $message }}</div> @enderror
+                                    @error('usernit') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="user.location" class="form-control-label">{{ __('Nombre de empresa') }}</label>
-                                    <div class="@error('user.location') border border-danger rounded-3 @enderror">
-                                        <input wire:model="user.location" class="form-control" type="text"
-                                            id="name">
+                                    <label for="userbusiness" class="form-control-label">{{ __('Nombre de empresa') }}</label>
+                                    <div class="@error('userbusiness') border border-danger rounded-3 @enderror">
+                                        <input class="form-control" type="text"
+                                            id="userbusiness" name="userbusiness" value="{{ old('userbusiness') }}" >
                                     </div>
-                                    @error('user.location') <div class="text-danger">{{ $message }}</div> @enderror
+                                    @error('userbusiness') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group"  id="hid3" hidden>
-                            <label for="about">{{ 'Dirección' }}</label>
-                            <div class="@error('user.about')border border-danger rounded-3 @enderror">
-                                <textarea wire:model="user.about" class="form-control" id="about" rows="3"
-                                    placeholder="Especifique dirección detallada"></textarea>
+                            <label for="useraddress">{{ 'Dirección' }}</label>
+                            <div class="@error('useraddress')border border-danger rounded-3 @enderror">
+                                <textarea  class="form-control" id="useraddress" name="useraddress" rows="3"
+                                    placeholder="Especifique dirección detallada" value="{{ old('useraddress') }}" ></textarea>
                             </div>
-                            @error('user.about') <div class="text-danger">{{ $message }}</div> @enderror
+                            @error('useraddress') <div class="text-danger">{{ $message }}</div> @enderror
                         </div>
 
                         <div class="row"  id="hid4" hidden>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="user-name" class="form-control-label">{{ __('Forma de pago') }}</label>
-                                    <div class="@error('user.name')border border-danger rounded-3 @enderror" id="user-name">
-                                        <select wire:model="user.name" class="form-control" >
-                                            <option selected>Seleccione la forma de pago</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                    <label for="userpayment" class="form-control-label">{{ __('Forma de pago') }}</label>
+                                    <div class="@error('userpayment')border border-danger rounded-3 @enderror">
+                                        <select id="userpayment"  name="userpayment" class="form-control" >
+                                            <option value="contra entrega">Seleccione la forma de pago</option>
+                                            <option value="contra entrega">Contra Entrega</option>
+                                            <option value="7 dias">7 días</option>
+                                            <option value="15 dias">15 días</option>
+                                            <option value="30 dias">30 días</option>
                                         </select>
 
                                     </div>
-                                    @error('user.name') <div class="text-danger">{{ $message }}</div> @enderror
+                                    @error('userpayment') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="user-email" class="form-control-label">{{ __('Persona de contacto') }}</label>
-                                    <div class="@error('user.email')border border-danger rounded-3 @enderror">
-                                        <input wire:model="user.email" class="form-control" type="text" step="0.01"
-                                            placeholder="" id="producto">
+                                    <label for="usercontact" class="form-control-label">{{ __('Persona de contacto') }}</label>
+                                    <div class="@error('usercontact')border border-danger rounded-3 @enderror">
+                                        <input class="form-control" type="text"
+                                            placeholder="" id="usercontact" name="usercontact" value="{{ old('usercontact') }}" >
                                     </div>
-                                    @error('user.email') <div class="text-danger">{{ $message }}</div> @enderror
+                                    @error('usercontact') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group"  id="hid5" hidden>
                             <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="fcustomCheck1" >
-                            <label class="custom-control-label" for="customCheck1">¿Es agente retenedor de ISR?</label>
+                                <input class="form-check-input" type="checkbox" value="{{ old('userisr') }}" id="userisr" name="userisr" checked>
+                                <label class="custom-control-label" for="userisr">¿Es agente retenedor de ISR?</label>
                             </div>
                         </div>
 
@@ -223,175 +234,6 @@
                                             <th  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="ps-4">
-                                                <p class="text-xs font-weight-bold mb-0">1</p>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Admin</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">admin@example.com</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">+502 55555555</p>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">16/06/18</span>
-                                            </td>
-                                            <td class="text-center"> <a href="{{route('editar-usuario')}}" class="mx-3" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Editar">
-                                                    <i class="fas fa-user-edit text-secondary"></i>
-                                                </a>
-                                                <a href="{{route('ver-usuario')}}" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Ver">
-                                                    <i class="cursor-pointer far fa-eye text-secondary"></i>
-                                                </a>
-                                                <a href="" class="mx-3" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Eliminar">
-                                                    <i class="far fa-trash-alt text-secondary "></i>
-                                                </a></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="ps-4">
-                                                <p class="text-xs font-weight-bold mb-0">2</p>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Creator</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">creator@example.com</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">+502 55555555</p>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">05/05/20</span>
-                                            </td>
-                                            <td class="text-center">
-                                                <a href="{{route('editar-usuario')}}" class="mx-3" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Editar">
-                                                    <i class="fas fa-user-edit text-secondary"></i>
-                                                </a>
-                                                <a href="{{route('ver-usuario')}}" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Ver">
-                                                    <i class="cursor-pointer far fa-eye text-secondary"></i>
-                                                </a>
-                                                <a href="" class="mx-3" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Eliminar">
-                                                    <i class="far fa-trash-alt text-secondary "></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="ps-4">
-                                                <p class="text-xs font-weight-bold mb-0">3</p>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Member</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">member@example.com</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">+502 55555555</p>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">23/06/20</span>
-                                            </td>
-                                            <td class="text-center">
-                                                <a href="{{route('editar-usuario')}}" class="mx-3" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Editar">
-                                                    <i class="fas fa-user-edit text-secondary"></i>
-                                                </a>
-                                                <a href="{{route('ver-usuario')}}" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Ver">
-                                                    <i class="cursor-pointer far fa-eye text-secondary"></i>
-                                                </a>
-                                                <a href="" class="mx-3" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Eliminar">
-                                                    <i class="far fa-trash-alt text-secondary "></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="ps-4">
-                                                <p class="text-xs font-weight-bold mb-0">4</p>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Peterson</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">peterson@example.com</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">+502 55555555</p>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">26/10/17</span>
-                                            </td>
-                                            <td class="text-center">
-                                                <a href="{{route('editar-usuario')}}" class="mx-3" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Editar">
-                                                    <i class="fas fa-user-edit text-secondary"></i>
-                                                </a>
-                                                <a href="{{route('ver-usuario')}}" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Ver">
-                                                    <i class="cursor-pointer far fa-eye text-secondary"></i>
-                                                </a>
-                                                <a href="" class="mx-3" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Eliminar">
-                                                    <i class="far fa-trash-alt text-secondary "></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="ps-4">
-                                                <p class="text-xs font-weight-bold mb-0">5</p>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Marie</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">marie@example.com</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">+502 55555555</p>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">23/01/21</span>
-                                            </td>
-                                            <td class="text-center">
-                                                <a href="{{route('editar-usuario')}}" class="mx-3" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Editar">
-                                                    <i class="fas fa-user-edit text-secondary"></i>
-                                                </a>
-                                                <a href="{{route('ver-usuario')}}" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Ver">
-                                                    <i class="cursor-pointer far fa-eye text-secondary"></i>
-                                                </a>
-                                                <a href="" class="mx-3" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Eliminar">
-                                                    <i class="far fa-trash-alt text-secondary "></i>
-                                                </a>
-                                            </td>
-
-
-                                        </tr>
-
-                                    </tbody>
-
                                 </table>
 
                             </div>
@@ -428,174 +270,7 @@
                                             <th  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="ps-4">
-                                                <p class="text-xs font-weight-bold mb-0">1</p>
-                                            </td>
 
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Admin</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">admin@example.com</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">+502 55555555</p>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">16/06/18</span>
-                                            </td>
-                                            <td class="text-center"> <a href="{{route('editar-usuario')}}" class="mx-3" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Editar">
-                                                    <i class="fas fa-user-edit text-secondary"></i>
-                                                </a>
-                                                <a href="{{route('ver-usuario')}}" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Ver">
-                                                    <i class="cursor-pointer far fa-eye text-secondary"></i>
-                                                </a>
-                                                <a href="" class="mx-3" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Eliminar">
-                                                    <i class="far fa-trash-alt text-secondary "></i>
-                                                </a></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="ps-4">
-                                                <p class="text-xs font-weight-bold mb-0">2</p>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Creator</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">creator@example.com</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">+502 55555555</p>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">05/05/20</span>
-                                            </td>
-                                            <td class="text-center">
-                                                <a href="{{route('editar-usuario')}}" class="mx-3" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Editar">
-                                                    <i class="fas fa-user-edit text-secondary"></i>
-                                                </a>
-                                                <a href="{{route('ver-usuario')}}" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Ver">
-                                                    <i class="cursor-pointer far fa-eye text-secondary"></i>
-                                                </a>
-                                                <a href="" class="mx-3" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Eliminar">
-                                                    <i class="far fa-trash-alt text-secondary "></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="ps-4">
-                                                <p class="text-xs font-weight-bold mb-0">3</p>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Member</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">member@example.com</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">+502 55555555</p>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">23/06/20</span>
-                                            </td>
-                                            <td class="text-center">
-                                                <a href="{{route('editar-usuario')}}" class="mx-3" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Editar">
-                                                    <i class="fas fa-user-edit text-secondary"></i>
-                                                </a>
-                                                <a href="{{route('ver-usuario')}}" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Ver">
-                                                    <i class="cursor-pointer far fa-eye text-secondary"></i>
-                                                </a>
-                                                <a href="" class="mx-3" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Eliminar">
-                                                    <i class="far fa-trash-alt text-secondary "></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="ps-4">
-                                                <p class="text-xs font-weight-bold mb-0">4</p>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Peterson</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">peterson@example.com</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">+502 55555555</p>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">26/10/17</span>
-                                            </td>
-                                            <td class="text-center">
-                                                <a href="{{route('editar-usuario')}}" class="mx-3" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Editar">
-                                                    <i class="fas fa-user-edit text-secondary"></i>
-                                                </a>
-                                                <a href="{{route('ver-usuario')}}" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Ver">
-                                                    <i class="cursor-pointer far fa-eye text-secondary"></i>
-                                                </a>
-                                                <a href="" class="mx-3" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Eliminar">
-                                                    <i class="far fa-trash-alt text-secondary "></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="ps-4">
-                                                <p class="text-xs font-weight-bold mb-0">5</p>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Marie</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">marie@example.com</p>
-                                            </td>
-                                            <td class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">+502 55555555</p>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">23/01/21</span>
-                                            </td>
-                                            <td class="text-center">
-                                                <a href="{{route('editar-usuario')}}" class="mx-3" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Editar">
-                                                    <i class="fas fa-user-edit text-secondary"></i>
-                                                </a>
-                                                <a href="{{route('ver-usuario')}}" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Ver">
-                                                    <i class="cursor-pointer far fa-eye text-secondary"></i>
-                                                </a>
-                                                <a href="" class="mx-3" data-bs-toggle="tooltip"
-                                                    data-bs-original-title="Eliminar">
-                                                    <i class="far fa-trash-alt text-secondary "></i>
-                                                </a>
-                                            </td>
-
-
-                                        </tr>
-
-                                    </tbody>
 
                                 </table>
 
@@ -616,140 +291,179 @@
     </div>
  </main>
 
- <script>
+<script>
 
-function changeDiv(){
-
-
-
-  if (!document.getElementById('estandar').hidden){
-
-      document.getElementById('estandar').hidden = "hidden";
-      document.getElementById('personalizado').hidden = "";
-
-  }else {
-
-      document.getElementById('estandar').hidden = "";
-      document.getElementById('personalizado').hidden = "hidden";
-
-  }
-
-
-}
-
-
-function esCliente(){
+    function changeDiv(){
 
 
 
-    d = document.getElementById("role").value;
+        if (!document.getElementById('estandar').hidden){
+
+            document.getElementById('estandar').hidden = "hidden";
+            document.getElementById('personalizado').hidden = "";
+
+        }else {
+
+            document.getElementById('estandar').hidden = "";
+            document.getElementById('personalizado').hidden = "hidden";
+
+        }
 
 
-  if (d == 3){
+    }
 
 
-      document.getElementById('hid1').hidden = "";
-      document.getElementById('hid2').hidden = "";
-      document.getElementById('hid3').hidden = "";
-      document.getElementById('hid4').hidden = "";
-      document.getElementById('hid5').hidden = "";
-
-  }else {
-
-      document.getElementById('hid1').hidden = "hidden";
-      document.getElementById('hid2').hidden = "hidden";
-      document.getElementById('hid3').hidden = "hidden";
-      document.getElementById('hid4').hidden = "hidden";
-      document.getElementById('hid5').hidden = "hidden";
-
-  }
+    function esCliente(){
 
 
-}
+
+        valueSelect = document.getElementById("userrole").value;
 
 
- $(document).ready(function() {
-    $('#example').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            { extend: 'csv', text: 'Exportar CSV', className: 'btn bg-gradient-dark btn-md mt-2' }
-        ],
-        bInfo: false,
-                                    "responsive": true,
-                                    "searching": false,
-                                    "columnDefs": [
-                                            { "orderable": false, "targets": 5 }
-                                    ],
-                                    "language": {
-                                        "sProcessing":    "Procesando...",
-                                        "sLengthMenu":    "Mostrar _MENU_ registros",
-                                        "sZeroRecords":   "No se encontraron resultados",
-                                        "sEmptyTable":    "Ningún dato disponible en esta tabla",
-                                        "sInfo":          "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                                        "sInfoEmpty":     "Mostrando registros del 0 al 0 de un total de 0 registros",
-                                        "sInfoFiltered":  "(filtrado de un total de _MAX_ registros)",
-                                        "sInfoPostFix":   "",
-                                        "sSearch":        "{{ __('Receipt No.') }}",
-                                        "sUrl":           "",
-                                        "sInfoThousands":  ",",
-                                        "sLoadingRecords": "Cargando...",
-                                        "search": "_INPUT_",
-                                        "searchPlaceholder": "{{ __('Buscar') }}",
-                                        "oPaginate": {
-                                            "sFirst":    "Primero",
-                                            "sLast":    "Último",
-                                            "sNext":    "Siguiente",
-                                            "sPrevious": "Anterior"
-                                        },
-                                        "oAria": {
-                                            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                                        }
-                                    },
+        if (valueSelect == 'cliente'){
+
+
+            document.getElementById('hid1').hidden = "";
+            document.getElementById('hid2').hidden = "";
+            document.getElementById('hid3').hidden = "";
+            document.getElementById('hid4').hidden = "";
+            document.getElementById('hid5').hidden = "";
+
+        }else {
+
+            document.getElementById('hid1').hidden = "hidden";
+            document.getElementById('hid2').hidden = "hidden";
+            document.getElementById('hid3').hidden = "hidden";
+            document.getElementById('hid4').hidden = "hidden";
+            document.getElementById('hid5').hidden = "hidden";
+
+        }
+
+
+    }
+
+
+    $(document).ready(function() {
+
+        $('#example').DataTable( {
+
+            "processing": true,
+            "serverSide": false,
+            dom: 'Bfrtip',
+            buttons: [
+                { extend: 'csv', text: 'Exportar CSV', className: 'btn bg-gradient-dark btn-md mt-2' }
+            ],
+            bInfo: false,
+            "responsive": true,
+            "searching": false,
+            "ajax": "{{ route('datatable.getEmployers') }}",
+            "columns": [
+
+                          {data: 'id', name: 'id'},
+                          {data: 'name', name: 'name'},
+                          {data: 'email', name: 'email'},
+                          {data: 'telefono', name: 'telefono'},
+                          {data: 'created_at', name: 'created_at'},
+                          { data: null,
+                            render: function (data, type, row) {
+                               return '<td class="text-center"><a href="/edituser/'+ row.id + '" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Editar"><i class="fas fa-user-edit text-secondary"></i></a><a href="/user/'+ row.id + '" data-bs-toggle="tooltip" data-bs-original-title="Ver"><i class="cursor-pointer far fa-eye text-secondary"></i></a><a href="/deleteuser/'+ row.id + '" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Eliminar"><i class="far fa-trash-alt text-secondary "></i></a></td>'
+                               }
+
+
+
+
+
+                          },
+                       ],
+            "columnDefs": [
+                           { "orderable": false, "targets": 5 }
+                          ],
+            "language": {
+                                            "sProcessing":    "Procesando...",
+                                            "sLengthMenu":    "Mostrar _MENU_ registros",
+                                            "sZeroRecords":   "No se encontraron resultados",
+                                            "sEmptyTable":    "Ningún dato disponible en esta tabla",
+                                            "sInfo":          "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                            "sInfoEmpty":     "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                            "sInfoFiltered":  "(filtrado de un total de _MAX_ registros)",
+                                            "sInfoPostFix":   "",
+                                            "sSearch":        "{{ __('Receipt No.') }}",
+                                            "sUrl":           "",
+                                            "sInfoThousands":  ",",
+                                            "sLoadingRecords": "Cargando...",
+                                            "search": "_INPUT_",
+                                            "searchPlaceholder": "{{ __('Buscar') }}",
+                                            "oPaginate": {
+                                                "sFirst":    "Primero",
+                                                "sLast":    "Último",
+                                                "sNext":    "Siguiente",
+                                                "sPrevious": "Anterior"
+                                            },
+                                            "oAria": {
+                                                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                                                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                                            }
+            },
+        } );
+
+
+        $('#example2').DataTable( {
+            "processing": true,
+            "serverSide": false,
+            dom: 'Bfrtip',
+            buttons: [
+                { extend: 'csv', text: 'Exportar CSV', className: 'btn bg-gradient-dark btn-md mt-2' }
+            ],
+            bInfo: false,
+            "responsive": true,
+            "searching": false,
+            "ajax": "{{ route('datatable.getCostumers') }}",
+            "columns": [
+
+                          {data: 'id', name: 'id'},
+                          {data: 'name', name: 'name'},
+                          {data: 'email', name: 'email'},
+                          {data: 'telefono', name: 'telefono'},
+                          {data: 'created_at', name: 'created_at'},
+                          { data: null,
+                            render: function (data, type, row) {
+                               return '<td class="text-center"><a href="/edituser/'+ row.id + '" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Editar"><i class="fas fa-user-edit text-secondary"></i></a><a href="/user/'+ row.id + '" data-bs-toggle="tooltip" data-bs-original-title="Ver"><i class="cursor-pointer far fa-eye text-secondary"></i></a><a href="/deleteuser/'+ row.id + '" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Eliminar"><i class="far fa-trash-alt text-secondary "></i></a></td>'
+                               }
+                          },
+                       ],
+            "columnDefs": [
+                           { "orderable": false, "targets": 5 }
+                          ],
+            "language": {
+                                            "sProcessing":    "Procesando...",
+                                            "sLengthMenu":    "Mostrar _MENU_ registros",
+                                            "sZeroRecords":   "No se encontraron resultados",
+                                            "sEmptyTable":    "Ningún dato disponible en esta tabla",
+                                            "sInfo":          "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                            "sInfoEmpty":     "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                            "sInfoFiltered":  "(filtrado de un total de _MAX_ registros)",
+                                            "sInfoPostFix":   "",
+                                            "sSearch":        "{{ __('Receipt No.') }}",
+                                            "sUrl":           "",
+                                            "sInfoThousands":  ",",
+                                            "sLoadingRecords": "Cargando...",
+                                            "search": "_INPUT_",
+                                            "searchPlaceholder": "{{ __('Buscar') }}",
+                                            "oPaginate": {
+                                                "sFirst":    "Primero",
+                                                "sLast":    "Último",
+                                                "sNext":    "Siguiente",
+                                                "sPrevious": "Anterior"
+                                            },
+                                            "oAria": {
+                                                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                                                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                                            }
+            },
+        } );
     } );
 
-
-    $('#example2').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-             { extend: 'csv', text: 'Exportar CSV', className: 'btn bg-gradient-dark btn-md mt-2' }
-        ],
-        bInfo: false,
-                                    "responsive": true,
-                                    "searching": false,
-                                    "columnDefs": [
-                                            { "orderable": false, "targets": 5 }
-                                    ],
-                                    "language": {
-                                        "sProcessing":    "Procesando...",
-                                        "sLengthMenu":    "Mostrar _MENU_ registros",
-                                        "sZeroRecords":   "No se encontraron resultados",
-                                        "sEmptyTable":    "Ningún dato disponible en esta tabla",
-                                        "sInfo":          "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                                        "sInfoEmpty":     "Mostrando registros del 0 al 0 de un total de 0 registros",
-                                        "sInfoFiltered":  "(filtrado de un total de _MAX_ registros)",
-                                        "sInfoPostFix":   "",
-                                        "sSearch":        "{{ __('Receipt No.') }}",
-                                        "sUrl":           "",
-                                        "sInfoThousands":  ",",
-                                        "sLoadingRecords": "Cargando...",
-                                        "search": "_INPUT_",
-                                        "searchPlaceholder": "{{ __('Buscar') }}",
-                                        "oPaginate": {
-                                            "sFirst":    "Primero",
-                                            "sLast":    "Último",
-                                            "sNext":    "Siguiente",
-                                            "sPrevious": "Anterior"
-                                        },
-                                        "oAria": {
-                                            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                                        }
-                                    },
-    } );
-} );
-
- </script>
+</script>
 
 
 

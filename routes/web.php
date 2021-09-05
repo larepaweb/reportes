@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Profiles\ProfileController;
+use App\Http\Controllers\Base\DashboardController;
+
 use App\Http\Livewire\Auth\ForgotPassword;
 use App\Http\Livewire\Auth\ResetPassword;
 use App\Http\Livewire\Auth\SignUp;
@@ -22,6 +25,7 @@ use App\Http\Livewire\Admin\Users\Users;
 use App\Http\Livewire\Admin\Users\EditUsers;
 use App\Http\Livewire\Admin\Users\ViewUsersI;
 use App\Http\Livewire\Admin\Users\ViewUsersE;
+use App\Http\Controllers\Users\UsersDatatableController;
 
 use App\Http\Livewire\Admin\Products\Products;
 use App\Http\Livewire\Admin\Products\EditProducts;
@@ -40,71 +44,122 @@ use App\Http\Livewire\Admin\Mantains\EditMantains;
 use App\Http\Livewire\Admin\Mantains\ViewMantains;
 
 use App\Http\Livewire\Admin\Config;
+use App\Http\Livewire\Auth\Logout;
 
 
-use App\Http\Livewire\LaravelExamples\UserProfile;
-use App\Http\Livewire\LaravelExamples\UserManagement;
+// Auth route
 
-use Illuminate\Http\Request;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('/', Login::class)->name('login');
-
-Route::get('/sign-up', SignUp::class)->name('sign-up');
-Route::get('/login', Login::class)->name('login');
-
-Route::get('/login/forgot-password', ForgotPassword::class)->name('forgot-password');
-
-Route::get('/reset-password/{id}',ResetPassword::class)->name('reset-password')->middleware('signed');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', Dashboard::class)->name('dashboard');
-    Route::get('/billing', Billing::class)->name('billing');
-    Route::get('/profile', Profile::class)->name('profile');
-    Route::get('/tables', Tables::class)->name('tables');
-    Route::get('/static-sign-in', StaticSignIn::class)->name('sign-in');
-    Route::get('/static-sign-up', StaticSignUp::class)->name('static-sign-up');
-    Route::get('/rtl', Rtl::class)->name('rtl');
-    Route::get('/laravel-user-profile', UserProfile::class)->name('user-profile');
-    Route::get('/laravel-user-management', UserManagement::class)->name('user-management');
-
-    Route::get('/quotes', Quotes::class)->name('cotizaciones');
-    Route::get('/edit-quote', EditQuote::class)->name('editar-cotizacion');
-    Route::get('/view-quote', ViewQuote::class)->name('ver-cotizacion');
-
-    Route::get('/users', Users::class)->name('usuarios');
-    Route::get('/edit-user', EditUsers::class)->name('editar-usuario');
-    Route::get('/view-user', ViewUsersI::class)->name('ver-usuario');
-    Route::get('/view-user', ViewUsersE::class)->name('ver-usuario');
-
-    Route::get('/products', Products::class)->name('productos');
-    Route::get('/edit-product', EditProducts::class)->name('editar-producto');
-    Route::get('/view-product', ViewProducts::class)->name('ver-producto');
-
-    Route::get('/tasks', Tasks::class)->name('tareas');
-    Route::get('/edit-tasks', EditTasks::class)->name('editar-tarea');
-    Route::get('/view-tasks', ViewTasks::class)->name('ver-tarea');
-
-    Route::get('/services', Services::class)->name('servicios');
-    Route::get('/edit-service', EditServices::class)->name('editar-servicio');
-    Route::get('/view-service', ViewServices::class)->name('ver-servicio');
-
-    Route::get('/mantains', Mantains::class)->name('mantenimientos');
-    Route::get('/edit-mantain', EditMantains::class)->name('editar-mantenimientos');
-    Route::get('/view-mantain', ViewMantains::class)->name('ver-mantenimientos');
+    Route::get('/', Login::class)->name('login');
+    Route::get('/login', Login::class)->name('login');
+    Route::get('/logout', [Logout::class, 'logout'])->name('logout');
 
 
-    Route::get('/config', Config::class)->name('configuracion');
+    Route::get('/sign-up', SignUp::class)->name('sign-up');
+    Route::get('/login/forgot-password', ForgotPassword::class)->name('forgot-password');
+    Route::get('/reset-password/{id}',ResetPassword::class)->name('reset-password')->middleware('signed');
 
-});
+
+    Route::middleware(['auth'])->group(function () {
+
+     // Admin route
+        Route::middleware('can:isAdmin')->group(function () {
+
+            Route::get('/dashboard', Dashboard::class)->name('dashboard');
+
+            Route::get('/user/{user}', [ProfileController::class, 'show'])->name('show.user');
+            Route::get('/edituser/{user}', [ProfileController::class, 'edit'])->name('show.user');
+            Route::post('/updateuser', [ProfileController::class, 'update'])->name('update.user');
+            Route::get('deleteuser/{id}', [ProfileController::class, 'destroy'])->name('delete.user');
+
+
+            Route::post('/store.profile', [ProfileController::class, 'store'])->name('store.profile');
+
+
+
+
+            Route::get('/users', Users::class)->name('usuarios');
+            Route::get('/getEmployers', [UsersDatatableController::class, 'getEmployers'])->name('datatable.getEmployers');
+            Route::get('/getCostumers', [UsersDatatableController::class, 'getCostumers'])->name('datatable.getCostumers');
+
+            Route::get('/view-user', ViewUsersI::class)->name('ver-usuario');
+            Route::get('/view-user', ViewUsersE::class)->name('ver-usuario');
+            Route::get('/edit-user', EditUsers::class)->name('editar-usuario');
+
+
+
+
+            Route::get('/static-sign-in', StaticSignIn::class)->name('sign-in');
+            Route::get('/static-sign-up', StaticSignUp::class)->name('static-sign-up');
+            // Route::get('/rtl', Rtl::class)->name('rtl');
+            // Route::get('/laravel-user-profile', UserProfile::class)->name('user-profile');
+            // Route::get('/laravel-user-management', UserManagement::class)->name('user-management');
+
+            Route::get('/quotes', Quotes::class)->name('cotizaciones');
+            Route::get('/edit-quote', EditQuote::class)->name('editar-cotizacion');
+            Route::get('/view-quote', ViewQuote::class)->name('ver-cotizacion');
+
+
+            Route::get('/products', Products::class)->name('productos');
+            Route::get('/edit-product', EditProducts::class)->name('editar-producto');
+            Route::get('/view-product', ViewProducts::class)->name('ver-producto');
+
+            Route::get('/tasks', Tasks::class)->name('tareas');
+            Route::get('/edit-tasks', EditTasks::class)->name('editar-tarea');
+            Route::get('/view-tasks', ViewTasks::class)->name('ver-tarea');
+
+            Route::get('/services', Services::class)->name('servicios');
+            Route::get('/edit-service', EditServices::class)->name('editar-servicio');
+            Route::get('/view-service', ViewServices::class)->name('ver-servicio');
+
+            Route::get('/mantains', Mantains::class)->name('mantenimientos');
+            Route::get('/edit-mantain', EditMantains::class)->name('editar-mantenimientos');
+            Route::get('/view-mantain', ViewMantains::class)->name('ver-mantenimientos');
+
+            Route::get('/config', Config::class)->name('configuracion');
+
+        });
+     // tecnic tecnico
+        Route::middleware('can:isTecni')->group(function () {
+
+            Route::get('/dashboardTecni',  [DashboardController::class, 'tecnico' ])->name('dashboardTecni');
+
+            Route::get('/static-sign-in', StaticSignIn::class)->name('sign-in');
+            Route::get('/static-sign-up', StaticSignUp::class)->name('static-sign-up');
+
+            Route::get('/quotes', Quotes::class)->name('cotizaciones');
+            Route::get('/edit-quote', EditQuote::class)->name('editar-cotizacion');
+            Route::get('/view-quote', ViewQuote::class)->name('ver-cotizacion');
+
+            Route::get('/products', Products::class)->name('productos');
+            Route::get('/edit-product', EditProducts::class)->name('editar-producto');
+            Route::get('/view-product', ViewProducts::class)->name('ver-producto');
+
+            Route::get('/tasks', Tasks::class)->name('tareas');
+            Route::get('/edit-tasks', EditTasks::class)->name('editar-tarea');
+            Route::get('/view-tasks', ViewTasks::class)->name('ver-tarea');
+
+            Route::get('/services', Services::class)->name('servicios');
+            Route::get('/edit-service', EditServices::class)->name('editar-servicio');
+            Route::get('/view-service', ViewServices::class)->name('ver-servicio');
+
+            Route::get('/mantains', Mantains::class)->name('mantenimientos');
+            Route::get('/edit-mantain', EditMantains::class)->name('editar-mantenimientos');
+            Route::get('/view-mantain', ViewMantains::class)->name('ver-mantenimientos');
+
+
+
+        });
+     // customer cliente
+        Route::middleware('can:isCustomer')->group(function () {
+
+            Route::get('/dashboardClient', [DashboardController::class, 'cliente' ])->name('dashboardClient');
+
+
+
+        });
+
+    });
+
+
+
 

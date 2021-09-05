@@ -22,7 +22,20 @@ class Login extends Component
 
 
         if(auth()->user()){
-            redirect('/dashboard');
+
+            switch (auth()->user()->role_name) {
+                case "admin":
+                    redirect('/dashboard');
+                    break;
+                case "tecni":
+                    redirect('/dashboardTecni');
+                    break;
+                case "cliente":
+                    redirect('/dashboardClient');
+                    break;
+            }
+
+
         }
 
         //$this->fill(['email' => 'admin@softui.com', 'password' => 'secret']);
@@ -36,7 +49,26 @@ class Login extends Component
         if(auth()->attempt(['email' => $this->email, 'password' => $this->password], $this->remember_me)) {
             $user = User::where(["email" => $this->email])->first();
             auth()->login($user, $this->remember_me);
-            return redirect()->intended('/dashboard');
+
+            switch (auth()->user()->role_name) {
+                case "admin":
+                    return redirect()->intended('/dashboard');
+                    // redirect('/dashboard');
+                    break;
+                case "tecnico":
+                    return redirect()->intended('/dashboardTecni');
+
+                    // redirect('/dashboardTecni');
+
+                    break;
+                case "cliente":
+
+                    return redirect()->intended('/dashboardClient');
+
+                    // redirect('/dashboardClient');
+                    break;
+            }
+
         }
         else{
             return $this->addError('email', trans('auth.failed'));
