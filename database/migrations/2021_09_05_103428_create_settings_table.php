@@ -15,8 +15,18 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
-            $table->string('key')->unique();
-            $table->text('value');
+            $table->string('num_service');
+            $table->string('num_mantain');
+            $table->string('moneda');
+            $table->string('iva');
+            $table->string('isr');
+            $table->string('logo');
+            $table->string('watermark');
+            $table->string('payment');
+            $table->string('warranty');
+            $table->string('requeriments');
+            $table->string('mail_services');
+            $table->string('mail_mantain');
             $table->timestamps();
         });
     }

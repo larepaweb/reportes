@@ -1,50 +1,51 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\Profiles\ProfileController;
-use App\Http\Controllers\Base\DashboardController;
-
-use App\Http\Livewire\Auth\ForgotPassword;
-use App\Http\Livewire\Auth\ResetPassword;
-use App\Http\Livewire\Auth\SignUp;
-use App\Http\Livewire\Auth\Login;
-use App\Http\Livewire\Dashboard;
-use App\Http\Livewire\Billing;
-use App\Http\Livewire\Profile;
-use App\Http\Livewire\Tables;
-use App\Http\Livewire\StaticSignIn;
-use App\Http\Livewire\StaticSignUp;
 use App\Http\Livewire\Rtl;
 
-use App\Http\Livewire\Admin\Quotes\Quotes;
-use App\Http\Livewire\Admin\Quotes\EditQuote;
-use App\Http\Livewire\Admin\Quotes\ViewQuote;
+use App\Http\Livewire\Tables;
+use App\Http\Livewire\Billing;
 
-use App\Http\Livewire\Admin\Users\Users;
-use App\Http\Livewire\Admin\Users\EditUsers;
-use App\Http\Livewire\Admin\Users\ViewUsersI;
-use App\Http\Livewire\Admin\Users\ViewUsersE;
-use App\Http\Controllers\Users\UsersDatatableController;
-
-use App\Http\Livewire\Admin\Products\Products;
-use App\Http\Livewire\Admin\Products\EditProducts;
-use App\Http\Livewire\Admin\Products\ViewProducts;
-
+use App\Http\Livewire\Profile;
+use App\Http\Livewire\Dashboard;
+use App\Http\Livewire\Auth\Login;
+use App\Http\Livewire\Auth\Logout;
+use App\Http\Livewire\Auth\SignUp;
+use App\Http\Livewire\Admin\Config;
+use App\Http\Livewire\StaticSignIn;
+use App\Http\Livewire\StaticSignUp;
+use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Admin\Tasks\Tasks;
+use App\Http\Livewire\Admin\Users\Users;
+
+use App\Http\Livewire\Auth\ResetPassword;
+use App\Http\Livewire\Admin\Quotes\Quotes;
+use App\Http\Livewire\Auth\ForgotPassword;
+
+use App\Http\Controllers\SettingController;
 use App\Http\Livewire\Admin\Tasks\EditTasks;
 use App\Http\Livewire\Admin\Tasks\ViewTasks;
+use App\Http\Livewire\Admin\Users\EditUsers;
+use App\Http\Livewire\Admin\Quotes\EditQuote;
 
-use App\Http\Livewire\Admin\Services\Services;
-use App\Http\Livewire\Admin\Services\EditServices;
-use App\Http\Livewire\Admin\Services\ViewServices;
+use App\Http\Livewire\Admin\Quotes\ViewQuote;
+use App\Http\Livewire\Admin\Users\ViewUsersE;
+use App\Http\Livewire\Admin\Users\ViewUsersI;
 
 use App\Http\Livewire\Admin\Mantains\Mantains;
+use App\Http\Livewire\Admin\Products\Products;
+use App\Http\Livewire\Admin\Services\Services;
+
+use App\Http\Controllers\Base\DashboardController;
 use App\Http\Livewire\Admin\Mantains\EditMantains;
 use App\Http\Livewire\Admin\Mantains\ViewMantains;
 
-use App\Http\Livewire\Admin\Config;
-use App\Http\Livewire\Auth\Logout;
+use App\Http\Livewire\Admin\Products\EditProducts;
+use App\Http\Livewire\Admin\Products\ViewProducts;
+use App\Http\Livewire\Admin\Services\EditServices;
+
+use App\Http\Livewire\Admin\Services\ViewServices;
+use App\Http\Controllers\Profiles\ProfileController;
+use App\Http\Controllers\Users\UsersDatatableController;
 
 
 // Auth route
@@ -71,7 +72,11 @@ use App\Http\Livewire\Auth\Logout;
             Route::post('/updateuser', [ProfileController::class, 'update'])->name('update.user');
             Route::get('deleteuser/{id}', [ProfileController::class, 'destroy'])->name('delete.user');
 
+            Route::get('/config', [SettingController::class, 'show'] )->name('configuracion');
+            Route::post('/store.setting', [SettingController::class, 'store'] )->name('store.setting');
 
+
+            //aun no se que hacer con esto
             Route::post('/store.profile', [ProfileController::class, 'store'])->name('store.profile');
 
 
@@ -115,7 +120,7 @@ use App\Http\Livewire\Auth\Logout;
             Route::get('/edit-mantain', EditMantains::class)->name('editar-mantenimientos');
             Route::get('/view-mantain', ViewMantains::class)->name('ver-mantenimientos');
 
-            Route::get('/config', Config::class)->name('configuracion');
+
 
         });
      // tecnic tecnico
