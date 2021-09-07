@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class SettingController extends Controller
 {
@@ -46,12 +47,27 @@ class SettingController extends Controller
         $setting->iva = $request->iva;
         $setting->isr = $request->isr;
 
+
+
         if($request->logo ){
-            $setting->logo = $request->logo;
+
+            $file = $request->file('logo');
+            $nombre = $file->getClientOriginalName();
+
+            Storage::disk('logos')->put( $nombre ,  File::get($file));
+
+            $setting->logo = $file->getClientOriginalName();
         }
 
         if($request->watermark ){
-            $setting->watermark = $request->watermark;
+
+
+            $file2 = $request->file('watermark');
+            $nombre = $file2->getClientOriginalName();
+
+            Storage::disk('logos')->put( $nombre ,  File::get($file2));
+
+            $setting->watermark = $file2->getClientOriginalName();
         }
 
         $setting->payment = $request->payment;
@@ -77,7 +93,7 @@ class SettingController extends Controller
 
         $content = "<?php return {  json_encode($setting)  };";
 
-        File::put(config_path('app_settings.php'), $content);
+        // File::put(config_path('app_settings.php'), $content);
 
         return view('livewire.admin.config', compact('setting') );
     }

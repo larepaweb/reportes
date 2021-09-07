@@ -13,7 +13,7 @@
                 <div class="card-body pt-4 p-3">
 
 
-                    <form action="{{ route( 'store.setting' )}}" method="POST" role="form text-left">
+                    <form action="{{ route( 'store.setting' )}}" method="POST" role="form text-left" enctype="multipart/form-data">
                         @csrf
 
                         <div class="row" >
@@ -98,7 +98,7 @@
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <div class="@error('logo')border border-danger rounded-3 @enderror" >
-                                        <img src="../assets/img/logos/{{$setting->logo}} " alt="">
+                                        <img src="{{ asset('storage/assets/img/logos/') ."/". get_setting_value( 'logo' ) }}" alt="">
                                     </div>
                                     @error('logo') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
@@ -124,7 +124,7 @@
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <div class="@error('logo')border border-danger rounded-3 @enderror" >
-                                        <img src="../assets/img/logos/{{$setting->watermark}} " alt="">
+                                        <img src="{{ asset('storage/assets/img/logos/') ."/". get_setting_value( 'logo' ) }} " alt="">
                                     </div>
                                     @error('logo') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>

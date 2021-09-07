@@ -5,7 +5,7 @@
                 <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
                     <div class="card card-plain mt-8">
                         <div class="card-header pb-0 text-left bg-transparent">
-                            <img src="../assets/img/logos/logo-dex.png" class="navbar-brand-img h-10" alt="Logo Dex Data Expert">
+                            <img src="{{ get_setting_value( 'logo' ) != 'default.png' ? asset('storage/assets/img/logos/') ."/". get_setting_value( 'logo' ) : asset('assets/img/logos/default.png') }}" class="navbar-brand-img h-10" alt="Logo Dex Data Expert">
                             <p class="mb-0 mt-5">{{__('Credenciales de prueba:') }}</p>
                             <p class="mb-0">{{ __('Admin ') }}<b>{{ __('admin@reportes.com') }}</b></p>
                             <p class="mb-0">{{ __('Técnico ') }}<b>{{ __('tecnico@reportes.com') }}</b></p>
