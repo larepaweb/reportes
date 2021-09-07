@@ -4,7 +4,7 @@
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute right-0 top-0 d-none d-xl-none"
             aria-hidden="true" id="iconSidenav"></i>
         <a class="navbar-brand m-0" href="{{ route('dashboard') }}">
-            <img src="../assets/img/logos/logo-dex.png" style="width: auto; max-height: 55px;" class="h-50" alt="...">
+            <img src="../assets/img/logos/{{ get_setting_value( 'logo' ) }}" style="width: auto; max-height: 55px;" class="h-50" alt="...">
         </a>
     </div>
     <hr class="horizontal dark mt-0">
