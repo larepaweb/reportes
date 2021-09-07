@@ -20,7 +20,7 @@ class SettingSeeder extends Seeder
             'moneda' => 'Q',
             'iva' => '12',
             'isr' => '14',
-            'logo' => 'logo.png',
+            'logo' => 'default.png',
             'watermark' => 'watermark.png',
             'payment' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis quidem mollitia iure adipisci, aut nostrum at quasi temporibus! Cupiditate hic ut nesciunt ducimus iusto consequuntur cum ullam sint reprehenderit blanditiis?',
             'warranty' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis quidem mollitia iure adipisci, aut nostrum at quasi temporibus! Cupiditate hic ut nesciunt ducimus iusto consequuntur cum ullam sint reprehenderit blanditiis?',
