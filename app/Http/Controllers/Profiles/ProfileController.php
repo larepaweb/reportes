@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Profiles;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Profile;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Snowfire\Beautymail\Beautymail;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\Profiles\ProfileCreateRequest;
 
@@ -48,6 +50,23 @@ class ProfileController extends Controller
         $profile->isr = $request['userisr'] ? 1 : 0;
 
         $user->profile()->save($profile);
+
+        // email data
+            $email_data = array(
+                'name' => $profile->contact_name,
+                'email' => $user->email,
+                'password' => $user->password,
+            );
+
+
+            $beautymail = app()->make( \Snowfire\Beautymail\Beautymail::class);
+            $beautymail->send('emails.welcome', ['email_data' => $email_data], function($message) use ($email_data) {
+                $message->to($email_data['email'], $email_data['name'])
+                    ->subject('Bienvenidos a DexData Expertr')
+                    ->from('info@reportes.com', 'soporte');
+            });
+
+
 
         Alert::success('Usuario Creado', 'Se creo exitosamente el usuario');
         return redirect()->route('usuarios');

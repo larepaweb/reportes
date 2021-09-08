@@ -59,7 +59,6 @@ use App\Http\Controllers\Users\UsersDatatableController;
     Route::get('/login/forgot-password', ForgotPassword::class)->name('forgot-password');
     Route::get('/reset-password/{id}',ResetPassword::class)->name('reset-password')->middleware('signed');
 
-
     Route::middleware(['auth'])->group(function () {
 
      // Admin route
