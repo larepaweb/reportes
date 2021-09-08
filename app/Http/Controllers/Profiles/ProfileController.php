@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Profiles;
 
 use App\Models\User;
 use App\Models\Profile;
+use App\Mail\WelcomeMail;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Snowfire\Beautymail\Beautymail;
@@ -58,15 +59,7 @@ class ProfileController extends Controller
                 'password' => $user->password,
             );
 
-
-            $beautymail = app()->make( \Snowfire\Beautymail\Beautymail::class);
-            $beautymail->send('emails.welcome', ['email_data' => $email_data], function($message) use ($email_data) {
-                $message->to($email_data['email'], $email_data['name'])
-                    ->subject('Bienvenidos a DexData Expertr')
-                    ->from('info@reportes.com', 'soporte');
-            });
-
-
+        Mail::queue( new WelcomeMail($request, $email_data));
 
         Alert::success('Usuario Creado', 'Se creo exitosamente el usuario');
         return redirect()->route('usuarios');
