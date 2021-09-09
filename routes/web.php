@@ -130,14 +130,6 @@ use App\Http\Controllers\Users\UsersDatatableController;
             Route::get('/static-sign-in', StaticSignIn::class)->name('sign-in');
             Route::get('/static-sign-up', StaticSignUp::class)->name('static-sign-up');
 
-            Route::get('/quotes', Quotes::class)->name('cotizaciones');
-            Route::get('/edit-quote', EditQuote::class)->name('editar-cotizacion');
-            Route::get('/view-quote', ViewQuote::class)->name('ver-cotizacion');
-
-            Route::get('/products', Products::class)->name('productos');
-            Route::get('/edit-product', EditProducts::class)->name('editar-producto');
-            Route::get('/view-product', ViewProducts::class)->name('ver-producto');
-
             Route::get('/tasks', Tasks::class)->name('tareas');
             Route::get('/edit-tasks', EditTasks::class)->name('editar-tarea');
             Route::get('/view-tasks', ViewTasks::class)->name('ver-tarea');
