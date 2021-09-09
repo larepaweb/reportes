@@ -41,5 +41,13 @@ class UsersTableSeeder extends Seeder
         ]);
         $cliente->profile()->save(Profile::factory()->make());
 
+        User::factory(9)->create()->each(function ($s) {
+                    $s->profile()->save(Profile::factory()->make());
+        });
+
+        User::factory(9)->tecnico()->create()->each(function ($s) {
+                    $s->profile()->save(Profile::factory()->make());
+        });
+
     }
 }
