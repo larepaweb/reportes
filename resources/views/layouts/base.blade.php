@@ -163,54 +163,54 @@
 
       document.addEventListener('DOMContentLoaded', function() {
 
-        var calendarEl = document.getElementById('calendar');
+        // var calendarEl = document.getElementById('calendar');
 
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth',
-          events: [
-                        {
-                        title: 'Event Title1',
-                        start: '2021-08-23T13:13:55.008',
-                        end: '2021-08-23T15:13:55.008',
-                        "color": "#000000"
-                        },
-                                               {
-                        title: 'Event Title4',
-                        start: '2021-08-23T13:13:55.008',
-                        end: '2021-08-23T13:13:55.008',
-                        "color": "#00ffff"
-                        },
-                        {
-                        title: 'Event Title2',
-                        start: '2021-08-25T13:13:55-0400',
-                        end: '2015-03-19T13:13:55-0400',
-                        "color": "#cba234"
-                        }
-                  ],
-          droppable: true,
-          editable: true,
-          eventDrop: function(event,dayDelta,minuteDelta,allDay,revertFunc) {
+        // var calendar = new FullCalendar.Calendar(calendarEl, {
+        //   initialView: 'dayGridMonth',
+        //   events: [
+        //                 {
+        //                 title: 'Event Title1',
+        //                 start: '2021-08-23T13:13:55.008',
+        //                 end: '2021-08-23T15:13:55.008',
+        //                 "color": "#000000"
+        //                 },
+        //                                        {
+        //                 title: 'Event Title4',
+        //                 start: '2021-08-23T13:13:55.008',
+        //                 end: '2021-08-23T13:13:55.008',
+        //                 "color": "#00ffff"
+        //                 },
+        //                 {
+        //                 title: 'Event Title2',
+        //                 start: '2021-08-25T13:13:55-0400',
+        //                 end: '2015-03-19T13:13:55-0400',
+        //                 "color": "#cba234"
+        //                 }
+        //           ],
+        //   droppable: true,
+        //   editable: true,
+        //   eventDrop: function(event,dayDelta,minuteDelta,allDay,revertFunc) {
 
-                // alert(
-                //     event.title + " was moved " +
-                //     dayDelta + " days and " +
-                //     minuteDelta + " minutes."
-                // );
+        //         // alert(
+        //         //     event.title + " was moved " +
+        //         //     dayDelta + " days and " +
+        //         //     minuteDelta + " minutes."
+        //         // );
 
-                if (allDay) {
-                    //alert("Event is now all-day");
-                }else{
-                    //alert("Event has a time-of-day");
-                }
+        //         if (allDay) {
+        //             //alert("Event is now all-day");
+        //         }else{
+        //             //alert("Event has a time-of-day");
+        //         }
 
-                // if (!confirm("Are you sure about this change?")) {
-                //     revertFunc();
-                // }
+        //         // if (!confirm("Are you sure about this change?")) {
+        //         //     revertFunc();
+        //         // }
 
-            }
-        });
+        //     }
+        // });
 
-        calendar.render();
+        // calendar.render();
 
       });
 

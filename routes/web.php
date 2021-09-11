@@ -47,6 +47,8 @@ use App\Http\Livewire\Admin\Services\ViewServices;
 use App\Http\Controllers\Profiles\ProfileController;
 use App\Http\Controllers\Users\UsersDatatableController;
 
+use App\Http\Controllers\Products\ProductController;
+
 
 // Auth route
 
@@ -63,7 +65,7 @@ use App\Http\Controllers\Users\UsersDatatableController;
 
      // Admin route
         Route::middleware('can:isAdmin')->group(function () {
-
+        //users
             Route::get('/dashboard', Dashboard::class)->name('dashboard');
 
             Route::get('/user/{user}', [ProfileController::class, 'show'])->name('show.user');
@@ -74,11 +76,15 @@ use App\Http\Controllers\Users\UsersDatatableController;
             Route::get('/config', [SettingController::class, 'show'] )->name('configuracion');
             Route::post('/store.setting', [SettingController::class, 'store'] )->name('store.setting');
 
+            Route::get('/static-sign-in', StaticSignIn::class)->name('sign-in');
+            Route::get('/static-sign-up', StaticSignUp::class)->name('static-sign-up');
+            // Route::get('/rtl', Rtl::class)->name('rtl');
+            // Route::get('/laravel-user-profile', UserProfile::class)->name('user-profile');
+            // Route::get('/laravel-user-management', UserManagement::class)->name('user-management');            
+
 
             //aun no se que hacer con esto
             Route::post('/store.profile', [ProfileController::class, 'store'])->name('store.profile');
-
-
 
 
             Route::get('/users', Users::class)->name('usuarios');
@@ -89,32 +95,26 @@ use App\Http\Controllers\Users\UsersDatatableController;
             Route::get('/view-user', ViewUsersE::class)->name('ver-usuario');
             Route::get('/edit-user', EditUsers::class)->name('editar-usuario');
 
+        //productos
+            Route::get('/products', Products::class)->name('productos');
+            Route::post('/store.product', [ProductController::class, 'store'] )->name('store.product');
+            Route::get('/edit-product', EditProducts::class)->name('editar-producto');
+            Route::get('/view-product', ViewProducts::class)->name('ver-producto');           
 
-
-
-            Route::get('/static-sign-in', StaticSignIn::class)->name('sign-in');
-            Route::get('/static-sign-up', StaticSignUp::class)->name('static-sign-up');
-            // Route::get('/rtl', Rtl::class)->name('rtl');
-            // Route::get('/laravel-user-profile', UserProfile::class)->name('user-profile');
-            // Route::get('/laravel-user-management', UserManagement::class)->name('user-management');
-
+        //cotizaciones
             Route::get('/quotes', Quotes::class)->name('cotizaciones');
             Route::get('/edit-quote', EditQuote::class)->name('editar-cotizacion');
             Route::get('/view-quote', ViewQuote::class)->name('ver-cotizacion');
 
-
-            Route::get('/products', Products::class)->name('productos');
-            Route::get('/edit-product', EditProducts::class)->name('editar-producto');
-            Route::get('/view-product', ViewProducts::class)->name('ver-producto');
-
+        //actividades
             Route::get('/tasks', Tasks::class)->name('tareas');
             Route::get('/edit-tasks', EditTasks::class)->name('editar-tarea');
             Route::get('/view-tasks', ViewTasks::class)->name('ver-tarea');
-
+        //servicios
             Route::get('/services', Services::class)->name('servicios');
             Route::get('/edit-service', EditServices::class)->name('editar-servicio');
             Route::get('/view-service', ViewServices::class)->name('ver-servicio');
-
+        //mantenimientos
             Route::get('/mantains', Mantains::class)->name('mantenimientos');
             Route::get('/edit-mantain', EditMantains::class)->name('editar-mantenimientos');
             Route::get('/view-mantain', ViewMantains::class)->name('ver-mantenimientos');
