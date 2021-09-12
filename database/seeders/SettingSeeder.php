@@ -19,7 +19,7 @@ class SettingSeeder extends Seeder
             'num_mantain' => '121',
             'moneda' => 'Q',
             'iva' => '12',
-            'isr' => '14',
+            'isr' => '7',
             'logo' => 'default.png',
             'watermark' => 'watermark.png',
             'payment' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis quidem mollitia iure adipisci, aut nostrum at quasi temporibus! Cupiditate hic ut nesciunt ducimus iusto consequuntur cum ullam sint reprehenderit blanditiis?',
