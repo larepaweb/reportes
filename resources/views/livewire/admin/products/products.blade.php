@@ -1,3 +1,4 @@
+<x-layouts.app>
  <main>
 
         <div class="container-fluid py-4">
@@ -17,8 +18,10 @@
                         <form action="{{ route('store.product') }}" class="data-form" method="POST" role="form text-left" enctype="multipart/form-data">
                             @csrf
 
-                            <input type="hidden" id="hiva" value="{{ get_setting_value('iva') }}">
-                            <input type="hidden" id="hisr" value="{{ get_setting_value('isr') }}">
+                            <input type="hidden" id="pid" name="pid" value="0">
+                            <input type="hidden" id="hiva"  name="hiva" value="{{ get_setting_value('iva') }}">
+                            <input type="hidden" id="hisr" name="hisr" value="{{ get_setting_value('isr') }}">
+
 
                             <div class="row" >
                                 <div class="col-md-1">
@@ -160,7 +163,7 @@
                                     </thead>
 
                                     <tbody>
-                                        <tr id="1" onclick="copyValues(this)">
+                                        {{-- <tr id="1" onclick="copyValues(this)">
                                             <td class="ps-4">
                                                 <p id="1-pName" class="text-xs font-weight-bold mb-0">Item 1</p>
                                             </td>
@@ -239,11 +242,65 @@
                                                     <i class="far fa-trash-alt text-secondary "></i>
                                                 </a>
                                             </td>
+                                        </tr> --}}
+
+                                        @foreach ($products as $product)
+
+                                        <tr id="{{ $product->id }}" onclick="copyValues(this)">
+                                            <td class="ps-4">
+                                                <p id="{{ $product->id }}-pName" class="text-xs font-weight-bold mb-0">{{ $product->product_name }}</p>
+                                            </td>
+
+                                            <td class="text-center">
+                                                <p id="{{ $product->id }}-pCant" class="text-xs font-weight-bold mb-0">{{ $product->cantidad }}</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p id="{{ $product->id }}-pCompra" class="text-xs font-weight-bold mb-0">{{ $product->pCompra }}</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p id="{{ $product->id }}-pBase" class="text-xs font-weight-bold mb-0">{{ $product->pBase }}</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p id="{{ $product->id }}-pIsr" class="text-xs font-weight-bold mb-0">{{ $product->isr }}</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p id="{{ $product->id }}-pIva" class="text-xs font-weight-bold mb-0">{{ $product->iva }}</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p id="{{ $product->id }}-pVenta" class="text-xs font-weight-bold mb-0">{{ $product->pVenta }}</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p id="{{ $product->id }}-pUtilidad" class="text-xs font-weight-bold mb-0">{{ $product->utilidad }}</p>
+                                            </td>
+                                            <td class="text-center">
+                                                <p class="text-xs font-weight-bold mb-0">
+                                                    <img style="height:50px;" src="{{ $product->imagen }}" alt="">
+
+
+                                                </p>
+                                            </td>
+                                            <td class="text-center">
+
+
+                                                <a class="mx-3" href="{{ route('delete.product', $product->id ) }}"  data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Eliminar">
+                                                    <i class="far fa-trash-alt text-secondary "></i>
+                                                </a>
+
+                                            </td>
                                         </tr>
+
+                                        @endforeach
+
 
                                     </tbody>
 
+
+
+
                                 </table>
+
+                                {{ $products->render() }}
 
                             </div>
                 </div>
@@ -252,6 +309,7 @@
         </div>
 
  </main>
+</x-layouts.app>
 
 <script>
 
@@ -266,11 +324,14 @@
         pventa = document.getElementById( tr.id + "-pVenta").innerHTML;
         putilidad = document.getElementById( tr.id + "-pUtilidad").innerHTML;
 
-        setValues(pname, pcant, pcompra, pbase, pisr, piva, pventa, putilidad)
+        setValues( tr.id , pname, pcant, pcompra, pbase, pisr, piva, pventa, putilidad)
 
     }
 
-    function setValues(name, cant, compra, base, isr, iva, venta, utilidad){
+    function setValues(id, name, cant, compra, base, isr, iva, venta, utilidad){
+
+        productId = document.getElementById("pid");
+        productId.value = id;
 
         productName = document.getElementById("productName");
         productName.value = name;
@@ -311,12 +372,10 @@
         iva = (iva * pBase).toFixed(2);
         isr = (isr * pBase).toFixed(2);
 
-         console.log( cantidad );
-
         pventa = cantidad * (parseFloat(pBase) + parseFloat(isr) + parseFloat(iva));
         utilidad = cantidad * (pBase - pCompra);
 
-       
+
 
 
         pIsr = document.getElementById("isr");

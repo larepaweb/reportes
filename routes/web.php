@@ -80,7 +80,7 @@ use App\Http\Controllers\Products\ProductController;
             Route::get('/static-sign-up', StaticSignUp::class)->name('static-sign-up');
             // Route::get('/rtl', Rtl::class)->name('rtl');
             // Route::get('/laravel-user-profile', UserProfile::class)->name('user-profile');
-            // Route::get('/laravel-user-management', UserManagement::class)->name('user-management');            
+            // Route::get('/laravel-user-management', UserManagement::class)->name('user-management');
 
 
             //aun no se que hacer con esto
@@ -96,10 +96,12 @@ use App\Http\Controllers\Products\ProductController;
             Route::get('/edit-user', EditUsers::class)->name('editar-usuario');
 
         //productos
-            Route::get('/products', Products::class)->name('productos');
+            Route::get('/products', [ProductController::class, 'index'] )->name('productos');
             Route::post('/store.product', [ProductController::class, 'store'] )->name('store.product');
+            Route::get('/update.product', [ProductController::class, 'update'] )->name('update.product');
+            Route::get('/delete.product/{id}', [ProductController::class, 'destroy'] )->name('delete.product');
             Route::get('/edit-product', EditProducts::class)->name('editar-producto');
-            Route::get('/view-product', ViewProducts::class)->name('ver-producto');           
+            Route::get('/view-product', ViewProducts::class)->name('ver-producto');
 
         //cotizaciones
             Route::get('/quotes', Quotes::class)->name('cotizaciones');
