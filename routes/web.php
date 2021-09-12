@@ -100,8 +100,11 @@ use App\Http\Controllers\Products\ProductController;
             Route::post('/store.product', [ProductController::class, 'store'] )->name('store.product');
             Route::get('/update.product', [ProductController::class, 'update'] )->name('update.product');
             Route::get('/delete.product/{id}', [ProductController::class, 'destroy'] )->name('delete.product');
-            Route::get('/edit-product', EditProducts::class)->name('editar-producto');
-            Route::get('/view-product', ViewProducts::class)->name('ver-producto');
+
+            Route::get('products.import',[ProductController::class, 'importForm'] )->name('importForm.products');
+            Route::post('products.import',[ProductController::class, 'import'] )->name('import.products');
+            Route::get('products.export',[ProductController::class, 'export'] )->name('export.products');
+
 
         //cotizaciones
             Route::get('/quotes', Quotes::class)->name('cotizaciones');

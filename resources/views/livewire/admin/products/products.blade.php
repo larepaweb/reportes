@@ -8,8 +8,8 @@
                 <div class="card-header pb-0 px-3">
                         <h6 class="mb-0" style="float:left">{{ __('Detalles del producto') }}</h6>
                         <h6 class="mb-0" style="float:right">
-                            <a id="more_items" class="btn bg-gradient-dark btn-md mt-2">{{ 'Importar Productos' }}</a>
-                            <a id="more_items" class="btn bg-gradient-dark btn-md mt-2">{{ 'Exportar Productos' }}</a>
+                            <a id="more_items" href="{{ route('importForm.products') }}" class="btn bg-gradient-dark btn-md mt-2">{{ 'Importar Productos' }}</a>
+                            <a id="more_items" href="{{ route('export.products') }}" class="btn bg-gradient-dark btn-md mt-2">{{ 'Exportar Productos' }}</a>
 
                         </h6>
                 </div>
@@ -29,7 +29,7 @@
                                         <label for="productName" class="form-control-label" style="font-size: 10px;">{{ __('Producto') }}</label>
                                         <div class="@error('productName')border border-danger rounded-3 @enderror" >
                                             <input class="form-control" type="text"
-                                                placeholder="" id="productName" name="productName">
+                                                placeholder="" id="productName" name="productName" required>
 
                                         </div>
                                         @error('productName') <div class="text-danger">{{ $message }}</div> @enderror
@@ -40,7 +40,7 @@
                                         <label for="cantidad" class="form-control-label" style="font-size: 10px;">{{ __('Cantidad') }}</label>
                                         <div class="@error('cantidad')border border-danger rounded-3 @enderror" >
                                             <input class="form-control" type="number" min="1"
-                                                placeholder="" id="cantidad" name="cantidad" onchange="calcValues();">
+                                                placeholder="" id="cantidad" name="cantidad" onchange="calcValues();" required>
 
                                         </div>
                                         @error('cantidad') <div class="text-danger">{{ $message }}</div> @enderror
@@ -51,7 +51,7 @@
                                         <label for="pCompra" class="form-control-label" style="font-size: 10px;">{{ __('P. Compra') }}</label>
                                         <div class="@error('pCompra')border border-danger rounded-3 @enderror" >
                                             <input class="form-control" type="number" min="1" step="0.01"
-                                                placeholder="" id="pCompra" name="pCompra" onchange="calcValues();">
+                                                placeholder="" id="pCompra" name="pCompra" onchange="calcValues();" required>
 
                                         </div>
                                         @error('pCompra') <div class="text-danger">{{ $message }}</div> @enderror
@@ -62,7 +62,7 @@
                                         <label for="pBase" class="form-control-label" style="font-size: 10px;">{{ __('P. Base') }}</label>
                                         <div class="@error('pBase')border border-danger rounded-3 @enderror" >
                                             <input class="form-control" type="number" min="1" step="0.01"
-                                                placeholder="" id="pBase" name="pBase" onchange="calcValues();">
+                                                placeholder="" id="pBase" name="pBase" onchange="calcValues();" required>
 
                                         </div>
                                         @error('pBase') <div class="text-danger">{{ $message }}</div> @enderror
@@ -117,7 +117,7 @@
                                         <label for="imagenProducto" class="form-control-label" style="font-size: 10px;">{{ __('Imagen') }}</label>
                                         <div class="@error('imagenProducto')border border-danger rounded-3 @enderror" >
 
-                                            <input class="form-control " id="imagenProducto" name="imagenProducto" type="file">
+                                            <input class="form-control " id="imagenProducto" name="imagenProducto" type="file" required>
 
 
                                         </div>
@@ -127,7 +127,7 @@
                                 <div class="col-md-1">
                                     <div class="form-group">
                                             <div class="form-group">
-                                                <button type="submit" class="btn bg-gradient-dark btn-md mt-4 mb-4">{{ 'Agregar Producto' }}</button>
+                                                <button type="submit" class="btn bg-gradient-dark btn-md mt-4 mb-4">{{ 'Agregar/Actualizar Producto' }}</button>
                                             </div>
                                     </div>
                                 </div>
@@ -274,7 +274,7 @@
                                             </td>
                                             <td class="text-center">
                                                 <p class="text-xs font-weight-bold mb-0">
-                                                    <img style="height:50px;" src="{{ $product->imagen }}" alt="">
+                                                    <img style="height:50px;" src="{{ asset('storage/assets/img/productos/') ? asset('storage/assets/img/productos/') . "/".$product->imagen  : $product->imagen }}" alt="">
 
 
                                                 </p>

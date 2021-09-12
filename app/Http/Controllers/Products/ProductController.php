@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers\Products;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Exception;
 use App\Models\Product;
-use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
+use RealRashid\SweetAlert\Facades\Alert;
+use App\Exports\Products\ProductsosExport;
+use App\Imports\Products\ProductsosImport;
 
 
 class ProductController extends Controller
@@ -130,4 +135,50 @@ class ProductController extends Controller
         Alert::success('Producto Eliminado', 'Se elimino exitosamente el producto');
         return redirect()->route('productos');
     }
+
+    public function importForm(){
+        return view('livewire.admin.products.import-products');
+    }
+
+    public function import(Request $request)
+    {
+
+        $import = new ProductsosImport();
+
+
+        try {
+        // code
+                $algo = Excel::import($import, $request->file('products'));
+        if (!$algo)
+            {
+            throw new Exception("Error leyendo el archvio.");
+            }
+        // if something is not as expected
+            // throw exception using the "throw" keyword
+
+        // code, it won't be executed if the above exception is thrown
+        } catch (Exception $errors) {
+        // exception is raised and it'll be handled here
+        // $e->getMessage() contains the error message
+
+            $error = [$errors->getMessage()];
+
+            return Redirect::back()->withErrors( $error );
+            // echo $e->getMessage();
+            die();
+
+        }
+
+
+        return view('livewire.admin.products.import-products', ['numRows'=>$import->getRowCount()]);
+    }
+
+    /**
+    * @return \Illuminate\Support\Collection
+    */
+    public function export()
+    {
+        return Excel::download(new ProductsosExport, 'productos.xlsx');
+    }
+
 }
