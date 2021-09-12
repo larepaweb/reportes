@@ -109,6 +109,8 @@
 
     @livewireStyles
 
+    <link id="pagestyle" href="../assets/css/reportes.css" rel="stylesheet" />
+
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
