@@ -74,8 +74,6 @@ class ProfileController extends Controller
     public function show(User $user)
     {
            return view('users.show', ['user'=>$user]);
-
-    //    return view('profile', ['user'=>$user]);
     }
 
     /**

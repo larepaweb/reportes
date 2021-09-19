@@ -368,11 +368,6 @@
                             render: function (data, type, row) {
                                return '<td class="text-center"><a href="/edituser/'+ row.id + '" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Editar"><i class="fas fa-user-edit text-secondary"></i></a><a href="/user/'+ row.id + '" data-bs-toggle="tooltip" data-bs-original-title="Ver"><i class="cursor-pointer far fa-eye text-secondary"></i></a><a href="/deleteuser/'+ row.id + '" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Eliminar"><i class="far fa-trash-alt text-secondary "></i></a></td>'
                                }
-
-
-
-
-
                           },
                        ],
             "columnDefs": [

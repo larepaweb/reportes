@@ -61,4 +61,10 @@ class User extends Authenticatable
     public function profile() {
         return $this->hasOne('App\Models\Profile');
     }
+
+    public function quotes() {
+        return $this->hasMany('App\Models\Quote');
+    }
+
+
 }

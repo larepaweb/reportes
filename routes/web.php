@@ -35,19 +35,20 @@ use App\Http\Livewire\Admin\Mantains\Mantains;
 use App\Http\Livewire\Admin\Products\Products;
 use App\Http\Livewire\Admin\Services\Services;
 
+use App\Http\Controllers\Quotes\QuoteController;
 use App\Http\Controllers\Base\DashboardController;
 use App\Http\Livewire\Admin\Mantains\EditMantains;
-use App\Http\Livewire\Admin\Mantains\ViewMantains;
 
+use App\Http\Livewire\Admin\Mantains\ViewMantains;
 use App\Http\Livewire\Admin\Products\EditProducts;
 use App\Http\Livewire\Admin\Products\ViewProducts;
-use App\Http\Livewire\Admin\Services\EditServices;
 
+use App\Http\Livewire\Admin\Services\EditServices;
 use App\Http\Livewire\Admin\Services\ViewServices;
+use App\Http\Controllers\Products\ProductController;
+
 use App\Http\Controllers\Profiles\ProfileController;
 use App\Http\Controllers\Users\UsersDatatableController;
-
-use App\Http\Controllers\Products\ProductController;
 
 
 // Auth route
@@ -107,7 +108,16 @@ use App\Http\Controllers\Products\ProductController;
 
 
         //cotizaciones
-            Route::get('/quotes', Quotes::class)->name('cotizaciones');
+            Route::get('/quotes', [QuoteController::class, 'index'] )->name('cotizaciones');
+            Route::post('/store.quote', [QuoteController::class, 'store'])->name('store.quote');
+            Route::get('/getQuotes', [QuoteController::class, 'getQuotes'])->name('datatable.getQuotes');
+
+            Route::get('/quote/{quote}', [QuoteController::class, 'show'])->name('show.quote');
+            Route::get('/editquote/{quote}', [QuoteController::class, 'edit'])->name('show.quote');
+            Route::post('/updatequote', [QuoteController::class, 'update'])->name('update.quote');
+            Route::get('deletequote/{id}', [QuoteController::class, 'destroy'])->name('delete.quote');
+
+
             Route::get('/edit-quote', EditQuote::class)->name('editar-cotizacion');
             Route::get('/view-quote', ViewQuote::class)->name('ver-cotizacion');
 
