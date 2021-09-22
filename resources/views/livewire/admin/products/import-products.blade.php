@@ -8,7 +8,7 @@
                 <div class="card">
 
     <div class="container mt-5">
-        <h3>Importar alumnos</h3>
+        <h3>Importar productos</h3>
 
         @if ( $errors->any() )
 
