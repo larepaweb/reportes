@@ -4,9 +4,9 @@ namespace App\Http\Requests\Profiles;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProfileCreateRequest extends FormRequest
+class ProfileUpdateRequest extends FormRequest
 {
-    /**
+  /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
@@ -26,7 +26,7 @@ class ProfileCreateRequest extends FormRequest
         return [
             'userrole'  => 'required',
             'username'  => 'required',
-            'useremail'  => 'required|unique:users,email',
+            'useremail'  => 'required',
             'userphone'  => 'nullable|max:50',
             'usernit'  => 'nullable|max:30',
             'userbusiness'  => 'nullable',
