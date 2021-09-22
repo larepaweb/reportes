@@ -24,7 +24,7 @@
 
 
                             <div class="row" >
-                                <div class="col-md-1">
+                                <div class="col-md-9">
                                     <div class="form-group">
                                         <label for="productName" class="form-control-label" style="font-size: 10px;">{{ __('Producto') }}</label>
                                         <div class="@error('productName')border border-danger rounded-3 @enderror" >
@@ -68,7 +68,14 @@
                                         @error('pBase') <div class="text-danger">{{ $message }}</div> @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-1">
+
+
+
+                                </div>
+
+                                <div class="row">
+
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label for="isr" class="form-control-label" style="font-size: 10px;">{{ __('ISR ') . get_setting_value('isr').'%'  }}</label>
                                         <div class="@error('isr')border border-danger rounded-3 @enderror" >
@@ -79,7 +86,7 @@
                                         @error('isr') <div class="text-danger">{{ $message }}</div> @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-1">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label for="iva" class="form-control-label" style="font-size: 10px;">{{  __('IVA ') . get_setting_value('iva').'%'  }}</label>
                                         <div class="@error('iva')border border-danger rounded-3 @enderror" >
@@ -90,7 +97,7 @@
                                         @error('iva') <div class="text-danger">{{ $message }}</div> @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-1">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label for="pVenta" class="form-control-label" style="font-size: 10px;">{{ __('P. Venta') }}</label>
                                         <div class="@error('pVenta')border border-danger rounded-3 @enderror" >
