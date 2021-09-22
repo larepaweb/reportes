@@ -74,19 +74,14 @@ use App\Http\Controllers\Users\UsersDatatableController;
             Route::post('/updateuser', [ProfileController::class, 'update'])->name('update.user');
             Route::get('deleteuser/{id}', [ProfileController::class, 'destroy'])->name('delete.user');
 
-            Route::get('/config', [SettingController::class, 'show'] )->name('configuracion');
-            Route::post('/store.setting', [SettingController::class, 'store'] )->name('store.setting');
+            Route::get('users.import',[ProfileController::class, 'importForm'] )->name('importForm.users');
+            Route::post('users.import',[ProfileController::class, 'import'] )->name('import.users');
 
             Route::get('/static-sign-in', StaticSignIn::class)->name('sign-in');
             Route::get('/static-sign-up', StaticSignUp::class)->name('static-sign-up');
-            // Route::get('/rtl', Rtl::class)->name('rtl');
-            // Route::get('/laravel-user-profile', UserProfile::class)->name('user-profile');
-            // Route::get('/laravel-user-management', UserManagement::class)->name('user-management');
-
 
             //aun no se que hacer con esto
             Route::post('/store.profile', [ProfileController::class, 'store'])->name('store.profile');
-
 
             Route::get('/users', Users::class)->name('usuarios');
             Route::get('/getEmployers', [UsersDatatableController::class, 'getEmployers'])->name('datatable.getEmployers');
@@ -95,6 +90,11 @@ use App\Http\Controllers\Users\UsersDatatableController;
             Route::get('/view-user', ViewUsersI::class)->name('ver-usuario');
             Route::get('/view-user', ViewUsersE::class)->name('ver-usuario');
             Route::get('/edit-user', EditUsers::class)->name('editar-usuario');
+
+        //config
+
+            Route::get('/config', [SettingController::class, 'show'] )->name('configuracion');
+            Route::post('/store.setting', [SettingController::class, 'store'] )->name('store.setting');
 
         //productos
             Route::get('/products', [ProductController::class, 'index'] )->name('productos');
@@ -145,17 +145,7 @@ use App\Http\Controllers\Users\UsersDatatableController;
             Route::get('/static-sign-in', StaticSignIn::class)->name('sign-in');
             Route::get('/static-sign-up', StaticSignUp::class)->name('static-sign-up');
 
-            Route::get('/tasks', Tasks::class)->name('tareas');
-            Route::get('/edit-tasks', EditTasks::class)->name('editar-tarea');
-            Route::get('/view-tasks', ViewTasks::class)->name('ver-tarea');
 
-            Route::get('/services', Services::class)->name('servicios');
-            Route::get('/edit-service', EditServices::class)->name('editar-servicio');
-            Route::get('/view-service', ViewServices::class)->name('ver-servicio');
-
-            Route::get('/mantains', Mantains::class)->name('mantenimientos');
-            Route::get('/edit-mantain', EditMantains::class)->name('editar-mantenimientos');
-            Route::get('/view-mantain', ViewMantains::class)->name('ver-mantenimientos');
 
 
 
