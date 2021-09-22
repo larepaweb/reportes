@@ -18,9 +18,9 @@ class CreateProfilesTable extends Migration
 
             $table->string('business_name', 100)->nullable();
             $table->string('contact_name', 100);
-            $table->text('address', 1500)->nullable();
-            $table->string('phone', 10)->nullable();
-            $table->string('nit', 11)->nullable();
+            $table->text('address', 4500)->nullable();
+            $table->string('phone', 50)->nullable();
+            $table->string('nit', 30)->nullable();
             $table->enum('payment_method', ['contra entrega', '7 dias', '15 dias', '30 dias'] )->default('contra entrega')->nullable();
             $table->boolean('isr')->nullable();
 

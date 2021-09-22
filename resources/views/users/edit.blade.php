@@ -33,9 +33,9 @@
                                 <div class="row" >
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="user-name" class="form-control-label">{{ __('Rol') }}</label>
-                                            <div class="@error('user.name')border border-danger rounded-3 @enderror" id="userrole">
-                                                <select wire:model="user.name" class="form-control" name="userrole">
+                                            <label for="user-role" class="form-control-label">{{ __('Rol') }}</label>
+                                            <div class="@error('userrole')border border-danger rounded-3 @enderror" id="userrole">
+                                                <select wire:model="userrole" class="form-control" name="userrole">
                                                     <option value="{{ $user->role_name}}" >
                                                         @switch( $user->role_name )
                                                             @case("admin")
@@ -58,17 +58,17 @@
                                                 </select>
 
                                             </div>
-                                            @error('user.name') <div class="text-danger">{{ $message }}</div> @enderror
+                                            @error('username') <div class="text-danger">{{ $message }}</div> @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="user-email" class="form-control-label">{{ __('Nombre') }}</label>
-                                            <div class="@error('user.email')border border-danger rounded-3 @enderror">
+                                            <label for="user-name" class="form-control-label">{{ __('Nombre') }}</label>
+                                            <div class="@error('username')border border-danger rounded-3 @enderror">
                                                 <input class="form-control" type="text" step="0.01"
                                                     name="username" id="username" value="{{ $user->profile->contact_name}}">
                                             </div>
-                                            @error('user.email') <div class="text-danger">{{ $message }}</div> @enderror
+                                            @error('username') <div class="text-danger">{{ $message }}</div> @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -76,116 +76,121 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="user.location" class="form-control-label">{{ __('Correo') }}</label>
-                                            <div class="@error('user.location') border border-danger rounded-3 @enderror">
+                                            <label for="useremail" class="form-control-label">{{ __('Correo') }}</label>
+                                            <div class="@error('useremail') border border-danger rounded-3 @enderror">
                                                 <input  id="useremail"  name="useremail" class="form-control" type="email" value="{{ $user->email}}">
                                             </div>
-                                            @error('user.location') <div class="text-danger">{{ $message }}</div> @enderror
+                                            @error('useremail') <div class="text-danger">{{ $message }}</div> @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="user.phone" class="form-control-label">{{ __('Telefono') }}</label>
-                                            <div class="@error('user.phone')border border-danger rounded-3 @enderror">
-                                                <input  class="form-control" type="tel"
-                                                    id="userphone" name="userphone" value="{{ $user->profile->phone }}">
+                                    @if ($user->role_name == "cliente" )
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="userphone" class="form-control-label">{{ __('Telefono') }}</label>
+                                                <div class="@error('userphone')border border-danger rounded-3 @enderror">
+                                                    <input  class="form-control" type="tel"
+                                                        id="userphone" name="userphone" value="{{ $user->profile->phone }}">
+                                                </div>
+                                                @error('userphone') <div class="text-danger">{{ $message }}</div> @enderror
                                             </div>
-                                            @error('user.phone') <div class="text-danger">{{ $message }}</div> @enderror
                                         </div>
-                                    </div>
+                                    @endif
 
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="user.location" class="form-control-label">{{ __('NIT') }}</label>
-                                            <div class="@error('user.location') border border-danger rounded-3 @enderror">
-                                                <input  class="form-control" type="text"
-                                                    id="usernit" name="usernit" value="{{ $user->profile->nit}}">
+                                @if ($user->role_name == "cliente" )
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="usernit" class="form-control-label">{{ __('NIT') }}</label>
+                                                <div class="@error('usernit') border border-danger rounded-3 @enderror">
+                                                    <input  class="form-control" type="text"
+                                                        id="usernit" name="usernit" value="{{ $user->profile->nit}}">
+                                                </div>
+                                                @error('usernit') <div class="text-danger">{{ $message }}</div> @enderror
                                             </div>
-                                            @error('user.location') <div class="text-danger">{{ $message }}</div> @enderror
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="userbusiness" class="form-control-label">{{ __('Teléfono 2') }}</label>
+                                                <div class="@error('userbusiness') border border-danger rounded-3 @enderror">
+                                                    <input value="{{ $user->profile->userbusiness }}" class="form-control" type="text"
+                                                        id="userbusiness" name="userbusiness"  value="{{ $user->profile->business_name }}">
+                                                </div>
+                                                @error('user.location') <div class="text-danger">{{ $message }}</div> @enderror
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="user.location" class="form-control-label">{{ __('Nombre de empresa') }}</label>
-                                            <div class="@error('user.location') border border-danger rounded-3 @enderror">
-                                                <input value="Corporacion LLT." class="form-control" type="text"
-                                                     id="userbusiness" name="userbusiness"  value="{{ $user->profile->business_name }}">
+
+                                    <div class="form-group">
+                                        <label for="useraddress">{{ 'Dirección' }}</label>
+                                        <div class="@error('useraddress')border border-danger rounded-3 @enderror">
+                                            <textarea class="form-control" id="useraddress" name="useraddress" rows="3"
+                                                placeholder="Especifique dirección detallada">{{ $user->profile->address }}</textarea>
+                                        </div>
+                                        @error('useraddress') <div class="text-danger">{{ $message }}</div> @enderror
+                                    </div>
+
+                                    <div class="row" >
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="user-name" class="form-control-label">{{ __('Forma de pago') }}</label>
+                                                <div class="@error('userpayment')border border-danger rounded-3 @enderror" id="user-name">
+                                                    <select id="userpayment"  name="userpayment" class="form-control" >
+
+                                                        <option value="{{ $user->profile->payment_method }}">
+                                                            @switch( $user->profile->payment_method )
+                                                                @case("contra entrega")
+                                                                    Contra Entrega
+                                                                    @break
+                                                                @case("7 dias")
+                                                                    7 días
+                                                                    @break
+                                                                @case("15 dias")
+                                                                    15 días
+                                                                    @break
+                                                                @case("30 dias")
+                                                                    30 días
+                                                                    @break
+                                                                @default
+
+                                                            @endswitch
+
+                                                        </option>
+                                                        <option value="contra entrega">Contra Entrega</option>
+                                                        <option value="7 dias">7 días</option>
+                                                        <option value="15 dias">15 días</option>
+                                                        <option value="30 dias">30 días</option>
+                                                    </select>
+
+                                                </div>
+                                                @error('username') <div class="text-danger">{{ $message }}</div> @enderror
                                             </div>
-                                            @error('user.location') <div class="text-danger">{{ $message }}</div> @enderror
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="usercontact" class="form-control-label">{{ __('Persona de contacto') }}</label>
+                                                <div class="@error('usercontact')border border-danger rounded-3 @enderror">
+                                                    <input value="{{ $user->profile->contact_name}}" class="form-control" type="text" step="0.01"
+                                                        id="usercontact" name="usercontact" >
+                                                </div>
+                                                @error('usercontact') <div class="text-danger">{{ $message }}</div> @enderror
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="form-group">
-                                    <label for="about">{{ 'Dirección' }}</label>
-                                    <div class="@error('user.about')border border-danger rounded-3 @enderror">
-                                        <textarea class="form-control" id="useraddress" name="useraddress" rows="3"
-                                            placeholder="Especifique dirección detallada">{{ $user->profile->address }}</textarea>
-                                    </div>
-                                    @error('user.about') <div class="text-danger">{{ $message }}</div> @enderror
-                                </div>
-
-                                <div class="row" >
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="user-name" class="form-control-label">{{ __('Forma de pago') }}</label>
-                                            <div class="@error('user.name')border border-danger rounded-3 @enderror" id="user-name">
-                                                <select id="userpayment"  name="userpayment" class="form-control" >
-
-                                                    <option value="{{ $user->profile->payment_method }}">
-                                                        @switch( $user->profile->payment_method )
-                                                            @case("contra entrega")
-                                                                Contra Entrega
-                                                                @break
-                                                            @case("7 dias")
-                                                                7 días
-                                                                @break
-                                                            @case("15 dias")
-                                                                15 días
-                                                                @break
-                                                            @case("30 dias")
-                                                                30 días
-                                                                @break
-                                                            @default
-
-                                                        @endswitch
-
-                                                    </option>
-                                                    <option value="contra entrega">Contra Entrega</option>
-                                                    <option value="7 dias">7 días</option>
-                                                    <option value="15 dias">15 días</option>
-                                                    <option value="30 dias">30 días</option>
-                                                </select>
-
-                                            </div>
-                                            @error('user.name') <div class="text-danger">{{ $message }}</div> @enderror
+                                    <div class="form-group">
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="userisr" name="userisr" @if( $user->profile->isr ) checked @else @endif>
+                                        <label class="custom-control-label" for="customCheck1">¿Es agente retenedor de ISR?</label>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="user-email" class="form-control-label">{{ __('Persona de contacto') }}</label>
-                                            <div class="@error('user.email')border border-danger rounded-3 @enderror">
-                                                <input value="{{ $user->profile->contact_name}}" class="form-control" type="text" step="0.01"
-                                                    id="usercontact" name="usercontact" >
-                                            </div>
-                                            @error('user.email') <div class="text-danger">{{ $message }}</div> @enderror
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="userisr" name="userisr" @if( $user->profile->isr ) checked @else @endif>
-                                    <label class="custom-control-label" for="customCheck1">¿Es agente retenedor de ISR?</label>
-                                    </div>
-                                </div>
+                                @endif
 
                                 <div class="d-flex justify-content-end">
                                     <button type="submit" class="btn bg-gradient-dark btn-md mt-4 mb-4">{{ 'Actualizar Usuario' }}</button>
                                 </div>
+
                             </form>
 
                         </div>

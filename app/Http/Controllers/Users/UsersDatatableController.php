@@ -12,7 +12,9 @@ class UsersDatatableController extends Controller
 
     public function getEmployers(){
 
-        $users = User::where('role_name', '=' , 'tecnico' );
+        $users = User::where([
+                                ['role_name', '!=', 'cliente']
+                 ]);
 
        return Datatables::of($users)
                 ->addColumn('name', function (User $user) {

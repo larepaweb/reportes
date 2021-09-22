@@ -31,32 +31,17 @@
 
 
         <div role="tabpanel" class="row mt-4  tab-pane fade in show active" id ="crear">
-
-
             <div class="card">
                 <div class="card-header pb-0 px-3">
                     <h6 class="mb-0" style="float:left">{{ __('Crear usuario') }}</h6>
                     <h6 class="mb-0" style="float:right">
-                        <a id="more_items" class="btn bg-gradient-dark btn-md mt-2">{{ 'Importar Usuarios' }}</a>
+                        <a id="more_items" href="{{ route('importForm.users') }}" class="btn bg-gradient-dark btn-md mt-2">{{ 'Importar Usuarios' }}</a>
                     </h6>
 
                 </div>
 
                 <div class="card-body pt-4 p-3">
 
-                    @php
-                        $showSuccesNotification = false;
-                    @endphp
-                    @if ($showSuccesNotification)
-                        <div wire:model="showSuccesNotification"
-                            class="mt-3 alert alert-primary alert-dismissible fade show" role="alert">
-                            <span class="alert-icon text-white"><i class="ni ni-like-2"></i></span>
-                            <span
-                                class="alert-text text-white">{{ __('Your profile information have been successfuly saved!') }}</span>
-                            <button  type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                            </button>
-                        </div>
-                    @endif
 
                     <form action="{{ route( 'store.profile' )}}" method="POST" role="form text-left">
                         @csrf
@@ -71,22 +56,30 @@
                                             @switch( old('userrole') )
                                                 @case("admin")
                                                     <option value="admin">Administrador</option>
+                                                    <option value="tecnico">Técnico</option>
+                                                    <option value="cliente">Cliente</option>
                                                     @break
 
                                                 @case("tecnico")
                                                     <option value="tecnico">Técnico</option>
+                                                     <option value="admin">Administrador</option>
+
+                                            <option value="cliente">Cliente</option>
                                                     @break
 
                                                 @case("cliente")
                                                     <option value="cliente">Cliente</option>
+                                                     <option value="admin">Administrador</option>
+                                            <option value="tecnico">Técnico</option>
+
                                                     @break
 
                                                 @default
-                                                    <option>Seleccione un rol</option>
+                                                    <option value="cliente">Cliente</option>
+                                                    <option value="admin">Administrador</option>
+                                                    <option value="tecnico">Técnico</option>
                                             @endswitch
-                                            <option value="admin">Administrador</option>
-                                            <option value="tecnico">Técnico</option>
-                                            <option value="cliente">Cliente</option>
+
                                         </select>
 
                                     </div>
@@ -115,7 +108,7 @@
                                     @error('useremail') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6" id="hid1" hidden>
+                            <div class="col-md-6" id="hid1" >
                                 <div class="form-group">
                                     <label for="userphone" class="form-control-label">{{ __('Teléfono') }}</label>
                                     <div class="@error('userphone')border border-danger rounded-3 @enderror">
@@ -128,7 +121,7 @@
 
                         </div>
 
-                        <div class="row"  id="hid2" hidden>
+                        <div class="row"  id="hid2" >
                              <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="usernit" class="form-control-label">{{ __('NIT') }}</label>
@@ -141,7 +134,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="userbusiness" class="form-control-label">{{ __('Nombre de empresa') }}</label>
+                                    <label for="userbusiness" class="form-control-label">{{ __('Teléfono 2') }}</label>
                                     <div class="@error('userbusiness') border border-danger rounded-3 @enderror">
                                         <input class="form-control" type="text"
                                             id="userbusiness" name="userbusiness" value="{{ old('userbusiness') }}" >
@@ -151,26 +144,45 @@
                             </div>
                         </div>
 
-                        <div class="form-group"  id="hid3" hidden>
+                        <div class="form-group"  id="hid3" >
                             <label for="useraddress">{{ 'Dirección' }}</label>
                             <div class="@error('useraddress')border border-danger rounded-3 @enderror">
                                 <textarea  class="form-control" id="useraddress" name="useraddress" rows="3"
-                                    placeholder="Especifique dirección detallada" value="{{ old('useraddress') }}" ></textarea>
+                                    placeholder="Especifique dirección detallada" > {{ old('useraddress') }} </textarea>
                             </div>
                             @error('useraddress') <div class="text-danger">{{ $message }}</div> @enderror
                         </div>
 
-                        <div class="row"  id="hid4" hidden>
+                        <div class="row"  id="hid4" >
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="userpayment" class="form-control-label">{{ __('Forma de pago') }}</label>
                                     <div class="@error('userpayment')border border-danger rounded-3 @enderror">
                                         <select id="userpayment"  name="userpayment" class="form-control" >
-                                            <option value="contra entrega">Seleccione la forma de pago</option>
-                                            <option value="contra entrega">Contra Entrega</option>
-                                            <option value="7 dias">7 días</option>
+
+
+                                            @switch( old('usepayment') )
+                                                @case("15 dias")
+                                                    <option value="15 dias">15 días</option>
+                                                    @break
+                                                @case("30 dias")
+                                                    <option value="30 dias">30 días</option>
+                                                    @break
+                                                @case("contra entrega")
+                                                    <option value="contra entrega">Contra Entrega</option>
+                                                    @break
+                                                @default
+                                                 <option value="7 dias">7 días</option>
+                                            @endswitch
+
                                             <option value="15 dias">15 días</option>
                                             <option value="30 dias">30 días</option>
+                                            <option value="contra entrega">Contra Entrega</option>
+
+
+
+
+
                                         </select>
 
                                     </div>
@@ -189,7 +201,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group"  id="hid5" hidden>
+                        <div class="form-group"  id="hid5" >
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="{{ old('userisr') }}" id="userisr" name="userisr" checked>
                                 <label class="custom-control-label" for="userisr">¿Es agente retenedor de ISR?</label>
@@ -229,7 +241,7 @@
                                             <th  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
                                             <th  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nombre</th>
                                             <th  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
-                                            <th  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Telefono</th>
+                                            {{-- <th  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Telefono</th> --}}
                                             <th  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Fecha de creacion</th>
                                             <th  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                                         </tr>
@@ -320,22 +332,22 @@
         valueSelect = document.getElementById("userrole").value;
 
 
-        if (valueSelect == 'cliente'){
-
-
-            document.getElementById('hid1').hidden = "";
-            document.getElementById('hid2').hidden = "";
-            document.getElementById('hid3').hidden = "";
-            document.getElementById('hid4').hidden = "";
-            document.getElementById('hid5').hidden = "";
-
-        }else {
+        if (valueSelect != 'cliente'){
 
             document.getElementById('hid1').hidden = "hidden";
             document.getElementById('hid2').hidden = "hidden";
             document.getElementById('hid3').hidden = "hidden";
             document.getElementById('hid4').hidden = "hidden";
             document.getElementById('hid5').hidden = "hidden";
+
+
+        }else {
+
+            document.getElementById('hid1').hidden = "";
+            document.getElementById('hid2').hidden = "";
+            document.getElementById('hid3').hidden = "";
+            document.getElementById('hid4').hidden = "";
+            document.getElementById('hid5').hidden = "";
 
         }
 
@@ -362,7 +374,7 @@
                           {data: 'id', name: 'id'},
                           {data: 'name', name: 'name'},
                           {data: 'email', name: 'email'},
-                          {data: 'telefono', name: 'telefono'},
+                        //   {data: 'telefono', name: 'telefono'},
                           {data: 'created_at', name: 'created_at'},
                           { data: null,
                             render: function (data, type, row) {
@@ -370,9 +382,9 @@
                                }
                           },
                        ],
-            "columnDefs": [
-                           { "orderable": false, "targets": 5 }
-                          ],
+            // "columnDefs": [
+            //                { "orderable": false, "targets": 5 }
+            //               ],
             "language": {
                                             "sProcessing":    "Procesando...",
                                             "sLengthMenu":    "Mostrar _MENU_ registros",
