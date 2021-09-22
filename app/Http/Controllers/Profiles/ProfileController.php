@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers\Profiles;
 
+use Exception;
 use App\Models\User;
 use App\Models\Profile;
 use App\Mail\WelcomeMail;
 use Illuminate\Support\Str;
+use App\Imports\UsersImport;
 use Illuminate\Http\Request;
 use Snowfire\Beautymail\Beautymail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Redirect;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\Profiles\ProfileCreateRequest;
+use App\Http\Requests\Profiles\ProfileUpdateRequest;
 
 class ProfileController extends Controller
 {
@@ -59,7 +64,9 @@ class ProfileController extends Controller
                 'password' => $user->password,
             );
 
-        Mail::queue( new WelcomeMail($request, $email_data));
+        if($user->role_name != "cliente"){
+            Mail::queue( new WelcomeMail($email_data));
+        }
 
         Alert::success('Usuario Creado', 'Se creo exitosamente el usuario');
         return redirect()->route('usuarios');
@@ -94,12 +101,17 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(ProfileUpdateRequest  $request)
     {
 
         $user = User::find($request->user);
 
-        $user->email = $request->useremail;
+        if( $user->email !=  $request->useremail){
+
+            $user->email = $request->useremail;
+
+        }
+
         $user->role_name = $request->userrole;
 
         $user->profile->contact_name = $request->username;
@@ -131,4 +143,34 @@ class ProfileController extends Controller
         return redirect()->route('usuarios');
 
     }
+
+    public function importForm(){
+        return view('livewire.admin.users.import-users');
+    }
+
+    public function import(Request $request)
+    {
+
+        $import = new UsersImport();
+
+
+        try {
+                $algo = Excel::import($import, $request->file('users'));
+        if (!$algo)
+            {
+            throw new Exception("Error leyendo el archivo.");
+            }
+        } catch (Exception $errors) {
+
+            $error = [$errors->getMessage()];
+
+            return Redirect::back()->withErrors( $error );
+            die();
+
+        }
+
+
+        return view('livewire.admin.users.import-users', ['numRows'=>$import->getRowCount()]);
+    }
+
 }

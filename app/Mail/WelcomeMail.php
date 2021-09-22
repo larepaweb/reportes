@@ -18,7 +18,7 @@ class WelcomeMail extends Mailable
      *
      * @return void
      */
-    public function __construct($request, $email_data)
+    public function __construct($email_data)
     {
         $this->email_data = $email_data;
     }
