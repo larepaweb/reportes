@@ -40,17 +40,18 @@
     <!-- Alpine -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
-    {{-- fullcalendar --}}
-    <script src='https://cdn.jsdelivr.net/npm/moment@2.27.0/min/moment.min.js'></script>
-    <link href='../assets/css/fullcalendar/main.css' rel='stylesheet' />
-    <script src='../assets/js/fullcalendar/main.js'></script>
-    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/moment@5.5.0/main.global.min.js'></script>
 
 
 
         {{-- datatables --}}
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+{{--
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> --}}
+
 
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
@@ -78,16 +79,246 @@
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+ {{-- fullcalendar --}}
+    <script src='https://cdn.jsdelivr.net/npm/moment@2.27.0/min/moment.min.js'></script>
+    {{-- <link href='../assets/css/fullcalendar/main.css' rel='stylesheet' /> --}}
+    {{-- <script src='../assets/js/fullcalendar/main.js'></script> --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" integrity="sha512-KXkS7cFeWpYwcoXxyfOumLyRGXMp7BTMTjwrgjMg0+hls4thG2JGzRgQtRfnAuKTn2KWTDZX4UdPg+xTs8k80Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+    {{-- <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/moment@5.5.0/main.global.min.js'></script> --}}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+ <script>
+        $(document).ready(function () {
+
+            var SITEURL = "{{ url('/') }}";
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            var calendar = $('#calendar').fullCalendar({
+
+                buttonText:{    today:    'Hoy',
+                                month:    'mes',
+                                week:     'semana',
+                                day:      'día',
+                                list:     'lista'},
+                monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+                monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+                dayNames: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+                dayNamesShort: ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],
+                editable: true,
+                events: SITEURL + "/activities",
+                displayEventTime: true,
+                eventRender: function (event, element, view) {
+                    if (event.allDay === 'true') {
+                        event.allDay = true;
+                    } else {
+                        event.allDay = false;
+                    }
+                },
+                selectable: true,
+                selectHelper: true,
+                // select: function (event_start, event_end, allDay) {
+                //     var event_name = prompt('Nombre de actividad:');
+                //     if (event_name) {
+                //         var event_start = $.fullCalendar.formatDate(event_start, "Y-MM-DD HH:mm:ss");
+                //         var event_end = $.fullCalendar.formatDate(event_end, "Y-MM-DD HH:mm:ss");
+                //         $.ajax({
+                //             url: SITEURL + "/fullcalenderAjax",
+                //             data: {
+                //                 event_name: event_name,
+                //                 event_start: event_start,
+                //                 event_end: event_end,
+                //                 type: 'create'
+                //             },
+                //             type: "POST",
+                //             success: function (data) {
+                //                 displayMessage("Actividad creada.");
+
+                //                 calendar.fullCalendar('renderEvent', {
+                //                     id: data.id,
+                //                     title: event_name,
+                //                     start: event_start,
+                //                     end: event_end,
+                //                     allDay: allDay
+                //                 }, true);
+                //                 calendar.fullCalendar('unselect');
+                //             }
+                //         });
+                //     }
+                // },
+                eventDrop: function (event, delta) {
+
+                     console.log(event);
+
+                     var event_start = $.fullCalendar.formatDate(event.start, "YY-MM-DD");
+                     var event_end = event.start.add(1, "h").format("YY-MM-DD");
+
+                    $.ajax({
+                        url: SITEURL + '/fullcalenderAjax',
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            title: event.title,
+                            start: event_start,
+                            end: event_end,
+                            id: event.id,
+                            type: 'update'
+                        },
+                        type: "POST",
+                        success: function (response) {
+                            calendar.fullCalendar('refetchEvents');
 
 
-    <script>
+                            Swal.fire('Actividad Actualizada');
 
-    // $(function() {
 
-    //     $('#calendar').fullCalendar({
-    //     });
+                            displayMessage("Event updated");
+                        }
+                    });
+                },
+                // eventClick: function (event) {
 
-    // });
+                //     var eventDelete = confirm("Seguro que desea eliminar la actividad");
+
+                //     if (eventDelete) {
+                //         $.ajax({
+                //             type: "POST",
+                //             url: SITEURL + '/fullcalenderAjax',
+                //             data: {
+                //                 "_token": "{{ csrf_token() }}",
+                //                 id: event.id,
+                //                 type: 'delete'
+                //             },
+                //             success: function (response) {
+                //                 calendar.fullCalendar('removeEvents', event.id);
+                //                 displayMessage("Event removed");
+                //             }
+                //         });
+                //     }
+                // }
+                eventClick: function (event) {
+
+                    window.location.href = SITEURL + '/edittask/' + event.id;
+                }
+            });
+
+            var calendar = $('#calendarTecni').fullCalendar({
+
+                buttonText:{    today:    'Hoy',
+                                month:    'mes',
+                                week:     'semana',
+                                day:      'día',
+                                list:     'lista'},
+                monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+                monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+                dayNames: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+                dayNamesShort: ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],
+                editable: true,
+                events: SITEURL + "/activitiesTecni",
+                displayEventTime: true,
+                eventRender: function (event, element, view) {
+                    if (event.allDay === 'true') {
+                        event.allDay = true;
+                    } else {
+                        event.allDay = false;
+                    }
+                },
+                selectable: true,
+                selectHelper: true,
+                // select: function (event_start, event_end, allDay) {
+                //     var event_name = prompt('Nombre de actividad:');
+                //     if (event_name) {
+                //         var event_start = $.fullCalendar.formatDate(event_start, "Y-MM-DD HH:mm:ss");
+                //         var event_end = $.fullCalendar.formatDate(event_end, "Y-MM-DD HH:mm:ss");
+                //         $.ajax({
+                //             url: SITEURL + "/fullcalenderAjax",
+                //             data: {
+                //                 event_name: event_name,
+                //                 event_start: event_start,
+                //                 event_end: event_end,
+                //                 type: 'create'
+                //             },
+                //             type: "POST",
+                //             success: function (data) {
+                //                 displayMessage("Actividad creada.");
+
+                //                 calendar.fullCalendar('renderEvent', {
+                //                     id: data.id,
+                //                     title: event_name,
+                //                     start: event_start,
+                //                     end: event_end,
+                //                     allDay: allDay
+                //                 }, true);
+                //                 calendar.fullCalendar('unselect');
+                //             }
+                //         });
+                //     }
+                // },
+                eventDrop: function (event, delta) {
+
+                     console.log(event);
+
+                     var event_start = $.fullCalendar.formatDate(event.start, "YY-MM-DD");
+                     var event_end = event.start.add(1, "h").format("YY-MM-DD");
+
+                    $.ajax({
+                        url: SITEURL + '/fullcalenderAjaxTecni',
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            title: event.title,
+                            start: event_start,
+                            end: event_end,
+                            id: event.id,
+                            type: 'update'
+                        },
+                        type: "POST",
+                        success: function (response) {
+                            calendar.fullCalendar('refetchEvents');
+
+
+                            Swal.fire('Actividad Actualizada');
+
+
+                            displayMessage("Event updated");
+                        }
+                    });
+                },
+                // eventClick: function (event) {
+
+                //     var eventDelete = confirm("Seguro que desea eliminar la actividad");
+
+                //     if (eventDelete) {
+                //         $.ajax({
+                //             type: "POST",
+                //             url: SITEURL + '/fullcalenderAjax',
+                //             data: {
+                //                 "_token": "{{ csrf_token() }}",
+                //                 id: event.id,
+                //                 type: 'delete'
+                //             },
+                //             success: function (response) {
+                //                 calendar.fullCalendar('removeEvents', event.id);
+                //                 displayMessage("Event removed");
+                //             }
+                //         });
+                //     }
+                // }
+                eventClick: function (event) {
+
+                    window.location.href = SITEURL + '/edittask/' + event.id;
+                }
+            });
+
+        });
+
+        function displayMessage(message) {
+            toast('Success Toast','success');
+        }
 
     </script>
 
@@ -169,64 +400,6 @@
                 return filename.replace('(', '_').replace(']', '_');
             }
         });
-
-
-      document.addEventListener('DOMContentLoaded', function() {
-
-        // var calendarEl = document.getElementById('calendar');
-
-        // var calendar = new FullCalendar.Calendar(calendarEl, {
-        //   initialView: 'dayGridMonth',
-        //   events: [
-        //                 {
-        //                 title: 'Event Title1',
-        //                 start: '2021-08-23T13:13:55.008',
-        //                 end: '2021-08-23T15:13:55.008',
-        //                 "color": "#000000"
-        //                 },
-        //                                        {
-        //                 title: 'Event Title4',
-        //                 start: '2021-08-23T13:13:55.008',
-        //                 end: '2021-08-23T13:13:55.008',
-        //                 "color": "#00ffff"
-        //                 },
-        //                 {
-        //                 title: 'Event Title2',
-        //                 start: '2021-08-25T13:13:55-0400',
-        //                 end: '2015-03-19T13:13:55-0400',
-        //                 "color": "#cba234"
-        //                 }
-        //           ],
-        //   droppable: true,
-        //   editable: true,
-        //   eventDrop: function(event,dayDelta,minuteDelta,allDay,revertFunc) {
-
-        //         // alert(
-        //         //     event.title + " was moved " +
-        //         //     dayDelta + " days and " +
-        //         //     minuteDelta + " minutes."
-        //         // );
-
-        //         if (allDay) {
-        //             //alert("Event is now all-day");
-        //         }else{
-        //             //alert("Event has a time-of-day");
-        //         }
-
-        //         // if (!confirm("Are you sure about this change?")) {
-        //         //     revertFunc();
-        //         // }
-
-        //     }
-        // });
-
-        // calendar.render();
-
-      });
-
-
-
-
 
 
     </script>
