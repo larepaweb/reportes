@@ -190,7 +190,7 @@
                     </a>
                 </li>
 
-            {{--
+
                 <li class="nav-item">
                     <a class="nav-link {{ Route::currentRouteName() == 'mantenimientos' ? 'active' : '' }}"
                         href="{{ route('mantenimientos') }}">
@@ -222,8 +222,6 @@
                         <span class="nav-link-text ms-1">B. de Mantenimientos</span>
                     </a>
                 </li>
-            --}}
-
 
                 <li class="nav-item">
                     <a class="nav-link {{ Route::currentRouteName() == 'configuracion' ? 'active' : '' }}"

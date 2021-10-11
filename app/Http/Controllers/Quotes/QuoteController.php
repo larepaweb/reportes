@@ -26,9 +26,10 @@ class QuoteController extends Controller
         $users = User::where('role_name', "=", "cliente")->get();
         $products = Product::all();
         $references = Ref::all();
-        $quotes = Quote::all();
+        $quotes = Quote::latest('created_at')->first();
 
-        $quote_correlative = count($quotes);
+
+        $quote_correlative = $quotes ? $quotes->id : 0;
         $quote_correlative = date('ym') . ( str_pad($quote_correlative + 1, 2, '0', STR_PAD_LEFT)  );
 
 

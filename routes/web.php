@@ -31,23 +31,26 @@ use App\Http\Livewire\Admin\Quotes\ViewQuote;
 use App\Http\Livewire\Admin\Users\ViewUsersE;
 use App\Http\Livewire\Admin\Users\ViewUsersI;
 
+use App\Http\Controllers\Tasks\TaskController;
 use App\Http\Livewire\Admin\Mantains\Mantains;
 use App\Http\Livewire\Admin\Products\Products;
-use App\Http\Livewire\Admin\Services\Services;
 
+use App\Http\Livewire\Admin\Services\Services;
 use App\Http\Controllers\Quotes\QuoteController;
 use App\Http\Controllers\Base\DashboardController;
-use App\Http\Livewire\Admin\Mantains\EditMantains;
 
+use App\Http\Livewire\Admin\Mantains\EditMantains;
 use App\Http\Livewire\Admin\Mantains\ViewMantains;
 use App\Http\Livewire\Admin\Products\EditProducts;
-use App\Http\Livewire\Admin\Products\ViewProducts;
 
+use App\Http\Livewire\Admin\Products\ViewProducts;
 use App\Http\Livewire\Admin\Services\EditServices;
 use App\Http\Livewire\Admin\Services\ViewServices;
-use App\Http\Controllers\Products\ProductController;
 
+use App\Http\Controllers\Mantains\MantainController;
+use App\Http\Controllers\Products\ProductController;
 use App\Http\Controllers\Profiles\ProfileController;
+use App\Http\Controllers\Services\ServiceController;
 use App\Http\Controllers\Users\UsersDatatableController;
 
 
@@ -67,7 +70,6 @@ use App\Http\Controllers\Users\UsersDatatableController;
      // Admin route
         Route::middleware('can:isAdmin')->group(function () {
         //users
-            Route::get('/dashboard', Dashboard::class)->name('dashboard');
 
             Route::get('/user/{user}', [ProfileController::class, 'show'])->name('show.user');
             Route::get('/edituser/{user}', [ProfileController::class, 'edit'])->name('show.user');
@@ -120,27 +122,74 @@ use App\Http\Controllers\Users\UsersDatatableController;
 
             Route::get('/edit-quote', EditQuote::class)->name('editar-cotizacion');
             Route::get('/view-quote', ViewQuote::class)->name('ver-cotizacion');
-
         //actividades
-            Route::get('/tasks', Tasks::class)->name('tareas');
+            Route::get('/tasks', [TaskController::class, 'index']  )->name('tareas');
+            Route::post('/store.tasks', [TaskController::class, 'store'])->name('store.tasks');
+
+            Route::get('/task/{task}', [TaskController::class, 'show'])->name('show.task');
+            Route::get('/edittask/{task}', [TaskController::class, 'edit'])->name('edit.task');
+
+            Route::post('/updatetask', [TaskController::class, 'update'])->name('update.task');
+
+            Route::get('deletetask/{id}', [TaskController::class, 'destroy'])->name('delete.task');
+            Route::get('/getTasks', [TaskController::class, 'getTasks'])->name('datatable.getTasks');
+
+
+            Route::get('/dashboard', [TaskController::class, 'calendar'])->name('dashboard');
+            Route::get('/activities', [TaskController::class, 'activities'])->name('activities');
+            Route::post('fullcalenderAjax', [TaskController::class, 'ajax']);
+
+
             Route::get('/edit-tasks', EditTasks::class)->name('editar-tarea');
             Route::get('/view-tasks', ViewTasks::class)->name('ver-tarea');
+
         //servicios
-            Route::get('/services', Services::class)->name('servicios');
+            Route::get('/services', [ServiceController::class, 'index'])->name('servicios');
+            Route::post('/store.services', [ServiceController::class, 'store'])->name('store.services');
+
+            Route::get('/getServices', [ServiceController::class, 'getServices'])->name('datatable.getServices');
+            Route::get('/editservice/{service}', [ServiceController::class, 'edit'])->name('edit.service');
+            Route::post('/updateservice', [ServiceController::class, 'update'])->name('update.service');
+            Route::get('deleteservice/{id}', [ServiceController::class, 'destroy'])->name('delete.service');
+
+
+
             Route::get('/edit-service', EditServices::class)->name('editar-servicio');
             Route::get('/view-service', ViewServices::class)->name('ver-servicio');
         //mantenimientos
-            Route::get('/mantains', Mantains::class)->name('mantenimientos');
+            Route::get('/mantains', [MantainController::class, 'index'])->name('mantenimientos');
+            Route::post('/store.mantains', [MantainController::class, 'store'])->name('store.mantains');
+
+
             Route::get('/edit-mantain', EditMantains::class)->name('editar-mantenimientos');
             Route::get('/view-mantain', ViewMantains::class)->name('ver-mantenimientos');
 
 
 
         });
+
+
      // tecnic tecnico
         Route::middleware('can:isTecni')->group(function () {
 
             Route::get('/dashboardTecni',  [DashboardController::class, 'tecnico' ])->name('dashboardTecni');
+
+        //actividades
+            // Route::get('/tasks', [TaskController::class, 'index']  )->name('tareas');
+            // Route::post('/store.tasks', [TaskController::class, 'store'])->name('store.tasks');
+
+            // Route::get('/task/{task}', [TaskController::class, 'show'])->name('show.task');
+            // Route::get('/edittask/{task}', [TaskController::class, 'edit'])->name('edit.task');
+
+            // Route::post('/updatetask', [TaskController::class, 'update'])->name('update.task');
+
+            // Route::get('deletetask/{id}', [TaskController::class, 'destroy'])->name('delete.task');
+            // Route::get('/getTasks', [TaskController::class, 'getTasks'])->name('datatable.getTasks');
+
+            // Route::get('/activitiesTecni', [TaskController::class, 'activities'])->name('activities');
+            // Route::post('fullcalenderAjaxTecni', [TaskController::class, 'ajax']);
+
+
 
             Route::get('/static-sign-in', StaticSignIn::class)->name('sign-in');
             Route::get('/static-sign-up', StaticSignUp::class)->name('static-sign-up');

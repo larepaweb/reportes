@@ -87,9 +87,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
     {{-- <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/moment@5.5.0/main.global.min.js'></script> --}}
 
+    <style>
+        .kbw-signature { width: 100%; height: 150px;}
+        #sig canvas{
+            width: 100% !important;
+            height: 170px;
+        }
+    </style>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
- <script>
+
+    <script>
         $(document).ready(function () {
 
             var SITEURL = "{{ url('/') }}";
@@ -316,10 +325,6 @@
 
         });
 
-        function displayMessage(message) {
-            toast('Success Toast','success');
-        }
-
     </script>
 
     {{-- fileinput --}}
@@ -350,10 +355,7 @@
 
 <body class="g-sidenav-show bg-gray-100">
 
-
     {{ $slot }}
-
-
 
     <!--   Core JS Files   -->
     <script src="../assets/js/core/popper.min.js"></script>
@@ -382,6 +384,17 @@
     <script src="https://cdn.jsdelivr.net/npm/table-to-json@1.0.0/lib/jquery.tabletojson.min.js" integrity="sha256-H8xrCe0tZFi/C2CgxkmiGksqVaxhW0PFcUKZJZo1yNU=" crossorigin="anonymous"></script>
 
 
+
+    <link type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css" rel="stylesheet">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <script type="text/javascript" src="../assets/pad/jquery.signature.js"></script>
+
+    <script type="text/javascript" src="../assets/pad/jq-signature.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../assets/pad/jquery.signature.css">
+
+
     <script>
 
         $("#file-1").fileinput({
@@ -400,6 +413,18 @@
                 return filename.replace('(', '_').replace(']', '_');
             }
         });
+
+        $('.js-signature').jqSignature();
+
+
+
+        // var sig = $('#sig').signature({syncField: '#signature64', syncFormat: 'PNG'});
+        //     $('#clear').click(function(e) {
+        //         e.preventDefault();
+        //         sig.signature('clear');
+        //         $("#signature64").val('');
+        //     });
+
 
 
     </script>
